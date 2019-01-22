@@ -25,9 +25,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "webpack",
-    "start": "webpack --watch --mode=development"
+    "postinstall": "./node_modules/.bin/webpack --mode=production",
+    "start": "./node_modules/.bin/webpack --mode=production",
+    "webpack": "webpack --watch --mode=development"
   },
+  "engines": {
+    "node": 10.13.0,
+    "npm": 6.5.0
+  }
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amzick/lets_go_eros.git"
