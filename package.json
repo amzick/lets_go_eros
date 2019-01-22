@@ -30,8 +30,8 @@
     "webpack": "webpack --watch --mode=development"
   },
   "engines": {
-    "node": 10.13.0,
-    "npm": 6.5.0
+    "node": "10.13.0",
+    "npm": "6.5.0"
   },
   "repository": {
     "type": "git",
