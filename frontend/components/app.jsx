@@ -9,6 +9,12 @@ import SignupFormContainer from '../components/session_form/signup_form_containe
 import ProfileContainer from '../components/profile/profile_container';
 import Logout from '../components/logout/logout';
 
+// function test(thing) {
+//   console.log(thing);
+//   debugger;
+// };
+// test(RouteUtil);
+
 // todo: change users route to profiles , add components, etc
 const App = () => {
   return (
@@ -17,7 +23,7 @@ const App = () => {
       <AuthRoute exact path="/" component={SplashContainer} />
       <AuthRoute exact path='/login' component={LoginFormContainer} />
       <AuthRoute exact path='/onboarding' component={SignupFormContainer} />
-      {/* <ProtectedRoute path={`/users/${window.currentUser}`} component={ProfileContainer} /> */}
+      <ProtectedRoute path={`/users/:id`} component={ProfileContainer} />
 
     </Switch>
   );

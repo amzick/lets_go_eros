@@ -1,12 +1,17 @@
 import React from 'react';
-import { logout } from '../../util/session_api_util';
+import { logout } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 class Logout extends React.Component {
+
   render() {
+    debugger
     return (
-      <h1>Please fucking work</h1>
+      <div>
+        <h1>Please  work</h1>
+        <button onClick={this.props.logout}>Log Out Maybe who knows</button>
+      </div>
     )
 
   }
@@ -18,5 +23,11 @@ const msp = state => {
   };
 };
 
+const mdp = dispatch => {
+  return {
+    logout: () => dispatch(logout()),
+  };
+};
 
-export default withRouter(connect(msp, null)(Logout));
+
+export default connect(msp, mdp)(Logout);

@@ -7,7 +7,7 @@ import { login, RECEIVE_SESSION_ERRORS } from '../../actions/session_actions';
 const msp = state => {
   return {
     errors: state.errors.session,
-    formType: "Log In",
+    formType: "Sign In",
     currentUser: state.entities.users[state.session.id],
     user: { email: "", password: "" },
   };
