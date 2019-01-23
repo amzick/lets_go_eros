@@ -9,7 +9,8 @@ class Api::SessionsController < ApplicationController
       # testing
       # p "logged in"
       login(@user)
-      render 'api/users/show'
+      # render 'api/users/show'
+      redirect_to "/#/users/#{@user.id}"
     else
       # todo: make errors more specific to if wrong username or password
       render json: ["Wrong username or password"], status: 400

@@ -5,12 +5,11 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 
 // thunk action creators
 export const login = (user) => dispatch => {
-  // testing
-
+  // testing START HERE
+  console.log(`API: ${SessionAPI.login}`);
   return (
-    SessionAPI.login(user)
-      .then((resp) => dispatch(receiveCurrentUser(resp)),
-        (errors) => dispatch(receiveErrors(errors.responseJSON)))
+    SessionAPI.login(user).then((resp) => dispatch(receiveCurrentUser(resp)),
+      (errors) => dispatch(receiveErrors(errors.responseJSON)))
   );
 };
 
