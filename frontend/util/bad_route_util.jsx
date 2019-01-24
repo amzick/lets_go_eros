@@ -24,7 +24,7 @@
 
 
 // const Protected = ({ component: Component, path, loggedIn, exact }) => {
-//   debugger
+
 //   return (
 //     <Route path={path} exact={exact} render={(props) => (
 //       loggedIn ? (

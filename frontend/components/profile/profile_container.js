@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Profile from './profile';
 
 const msp = (state, ownProps) => {
-  debugger
+  
   return {
 
   };

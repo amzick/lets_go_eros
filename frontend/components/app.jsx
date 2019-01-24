@@ -9,11 +9,7 @@ import SignupFormContainer from '../components/session_form/signup_form_containe
 import ProfileContainer from '../components/profile/profile_container';
 import Logout from '../components/logout/logout';
 
-// function test(thing) {
-//   console.log(thing);
-//   debugger;
-// };
-// test(RouteUtil);
+
 
 // todo: change users route to profiles , add components, etc
 const App = () => {

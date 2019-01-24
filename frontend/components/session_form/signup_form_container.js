@@ -38,7 +38,6 @@ class SignupForm extends React.Component {
   }
 
   handleChange(field) {
-    console.log(`${field}: ${this.state.field}`);
 
     return (event) => {
 
@@ -57,14 +56,12 @@ class SignupForm extends React.Component {
       "birthday": new Date((`${this.state.year}-${this.state.month}-${this.state.day}`)),
       "location": parseInt(this.state.location),
     });
-    console.log(newUser);
     this.props.signup(newUser);
 
   }
 
   handleBirthday(field) {
     return (event) => {
-      console.log(this.state);
 
       this.setState({
         [field]: event.target.value

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 class Logout extends React.Component {
 
   render() {
-    debugger
+    
     return (
       <div>
         <h1>Please  work</h1>
