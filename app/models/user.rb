@@ -23,8 +23,11 @@ class User < ApplicationRecord
   validates :password_digest, :session_token, :birthday, :location, presence:true
   #TODO bonus: custom password validation (include symbols caps numbs, etc)
   validates :password, length: {minimum: 6}, allow_nil:true
+
   validate :at_least_eighteen
   validate :valid_zip_code
+  validate :five_genders_max
+
 
   after_initialize :ensure_session_token
   
@@ -34,6 +37,20 @@ class User < ApplicationRecord
 
   # assosiations
 
+ 
+  has_many :genders_joins, dependent: :destroy, inverse_of: :user
+  has_many :genders, through: :genders_joins
+
+  has_many :ethnicities_joins, dependent: :destroy, inverse_of: :user
+  has_many :ethnicities, through: :ethnicities_joins
+
+  # has_many :ethnicities_joins,
+  #   foreign_key: :user_id,
+  #   class_name: :EthnicitiesJoin
+
+  # has_many :ethnicities,
+  #   through: :ethnicities_joins,
+  #   class_name: :Ethnicity
   
   def self.find_by_credentials(email,password)
     user = User.find_by(email: email)
@@ -71,6 +88,12 @@ class User < ApplicationRecord
   def at_least_eighteen
     unless self.birthday < ((Date.today << 216)+1)
       self.errors[:birthday] << "must be at least 18 years in the past"
+    end
+  end
+
+  def five_genders_max
+    unless self.genders.length < 6
+      self.errors[:genders] << "selected can't exceed five."
     end
   end
 
