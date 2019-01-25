@@ -8,8 +8,11 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_logged_in
-    #todo redirect to log in page instead?
-    redirect_to root_url unless logged_in?
+    # #todo redirect to log in page instead?
+    # # redirect_to root_url unless logged_in?
+    unless logged_in?
+      render json: ["You don't have permission to go here"], status: 401
+    end
   end
 
   def login(user)

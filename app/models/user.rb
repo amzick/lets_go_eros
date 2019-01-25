@@ -16,6 +16,7 @@
 #
 
 class User < ApplicationRecord
+  # include Rails.application.routes.url_helpers
   
   # TODO bonus: custom email validation, use to send mailers
   validates :email, presence:true, uniqueness:true
@@ -44,13 +45,15 @@ class User < ApplicationRecord
   has_many :ethnicities_joins, dependent: :destroy, inverse_of: :user
   has_many :ethnicities, through: :ethnicities_joins
 
-  # has_many :ethnicities_joins,
-  #   foreign_key: :user_id,
-  #   class_name: :EthnicitiesJoin
+  # TODO AWS: 
+  has_many_attached :profile_pictures
+  has_one_attached :thing
+  
 
-  # has_many :ethnicities,
-  #   through: :ethnicities_joins,
-  #   class_name: :Ethnicity
+  # helper function returning an array of the profile_picture URLs? pictures urls?
+  def pictureURLs
+    self.profile_pictures.map {|picture| url_for(picture)}
+  end
   
   def self.find_by_credentials(email,password)
     user = User.find_by(email: email)
