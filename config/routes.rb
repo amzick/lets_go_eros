@@ -7,4 +7,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
   end
   
+  #  was testing aws picture retrieval
+  # resources :users, only: [:show]
+
 end

@@ -16,15 +16,19 @@
 #
 
 class User < ApplicationRecord
+  # include Rails.application.routes.url_helpers
   
   # TODO bonus: custom email validation, use to send mailers
   validates :email, presence:true, uniqueness:true
   # checking for unique combination of email and fname probably not necessary; want to limit one account per email
-  validates :password_digest, :session_token, :birthday, :location, presence:true
+  validates :fname, :password_digest, :session_token, :birthday, :location, presence:true
   #TODO bonus: custom password validation (include symbols caps numbs, etc)
   validates :password, length: {minimum: 6}, allow_nil:true
+
   validate :at_least_eighteen
   validate :valid_zip_code
+  validate :five_genders_max
+
 
   after_initialize :ensure_session_token
   
@@ -34,6 +38,22 @@ class User < ApplicationRecord
 
   # assosiations
 
+ 
+  has_many :genders_joins, dependent: :destroy, inverse_of: :user
+  has_many :genders, through: :genders_joins
+
+  has_many :ethnicities_joins, dependent: :destroy, inverse_of: :user
+  has_many :ethnicities, through: :ethnicities_joins
+
+  # TODO AWS: 
+  has_many_attached :profile_pictures
+  has_one_attached :thing
+  
+
+  # helper function returning an array of the profile_picture URLs? pictures urls?
+  def pictureURLs
+    self.profile_pictures.map {|picture| url_for(picture)}
+  end
   
   def self.find_by_credentials(email,password)
     user = User.find_by(email: email)
@@ -69,8 +89,16 @@ class User < ApplicationRecord
   end
 
   def at_least_eighteen
+    return false if self.birthday.nil?
+
     unless self.birthday < ((Date.today << 216)+1)
       self.errors[:birthday] << "must be at least 18 years in the past"
+    end
+  end
+
+  def five_genders_max
+    unless self.genders.length < 6
+      self.errors[:genders] << "selected can't exceed five."
     end
   end
 

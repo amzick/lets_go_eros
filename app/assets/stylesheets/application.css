@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  *= reset.css
- *= style.css
+ *= splash.css
+ *= forms.css
  */

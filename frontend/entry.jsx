@@ -6,6 +6,7 @@ import configureStore from './store/store';
 // window testing
 // import { signup, login, logout } from './util/session_api_util';
 import { login, signup, logout } from './actions/session_actions';
+import { fetchUser } from './actions/user_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.signup = signup;
   window.login = login;
   window.logout = logout;
+  window.fetchUser = fetchUser;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   //end 
