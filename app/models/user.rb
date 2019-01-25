@@ -21,7 +21,7 @@ class User < ApplicationRecord
   # TODO bonus: custom email validation, use to send mailers
   validates :email, presence:true, uniqueness:true
   # checking for unique combination of email and fname probably not necessary; want to limit one account per email
-  validates :password_digest, :session_token, :birthday, :location, presence:true
+  validates :fname, :password_digest, :session_token, :birthday, :location, presence:true
   #TODO bonus: custom password validation (include symbols caps numbs, etc)
   validates :password, length: {minimum: 6}, allow_nil:true
 
@@ -89,6 +89,8 @@ class User < ApplicationRecord
   end
 
   def at_least_eighteen
+    return false if self.birthday.nil?
+
     unless self.birthday < ((Date.today << 216)+1)
       self.errors[:birthday] << "must be at least 18 years in the past"
     end

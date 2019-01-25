@@ -6,7 +6,7 @@ class Profile extends React.Component {
   render() {
 
     const { profile_pictures } = this.props.currentUser;
-    debugger
+
 
     const profilePictureLIs = profile_pictures.map((url) => {
       // TODO make containers

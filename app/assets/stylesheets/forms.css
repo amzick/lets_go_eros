@@ -1,0 +1,132 @@
+.login-div {
+  height: 100vh;
+  width: inherit;
+  background-color: #b9efef;
+}
+
+.login-div h2 {
+  /* TODO CSS: wtf is this font */
+  font-size: 19px;
+  /* font-family: serif; */
+}
+
+.center-form-span {
+  margin: auto auto;
+  display: flex;
+  /* border: solid 1px black; */
+  width: 460px;
+  /* height: 525px;
+   */
+   height: auto;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.form-emoji-span {
+  width: 33px;
+  /* height: 40px; */
+  font-size: 2em;
+  margin: 25px;
+
+}
+
+.session-form {
+  /* border: solid 2px red; */
+  width: 300px;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+  /* padding: auto; */
+}
+
+.session-form label {
+  /* border: solid 1px green; */
+  /* width: inherit; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+.session-form label > span {
+  margin-bottom: 10px;
+}
+
+.session-form-input {
+  background-color: #faffbd;
+  border-radius: 2px;
+  width: 270px;
+  height: 26px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+}
+
+::placeholder {
+  color: #aaacae;
+}
+
+.forgot-password {
+  color: #76a8e2;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.valid-submit {
+  /* border: solid 5px #4c7bd9; */
+  /* border: solid 5px purple; */
+  background-color: #4c7bd9;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  text-align: center;
+  width: 300px;
+  height: 60px;
+  margin: 25px auto;
+}
+
+.invalid-submit {
+  /* border: solid 5px #4c7bd9; */
+  /* border: solid 5px purple; */
+  /* TODO CSS get real color here, OKC down */
+  background-color: rgb(155,155,155);
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  text-align: center;
+  width: 300px;
+  height: 60px;
+  margin: 25px auto;
+}
+
+.invalid-submit:hover {
+  cursor: inherit;
+}
+
+.demo-signin {
+  /* border: solid 1px yellow; */
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  text-align: center;
+  width: 300px;
+  height: 60px;
+  /* margin: 25px auto; */
+}
+
+.error-messages {
+  /* border: 1px solid red; */
+  color: red;
+  text-align: center;
+  margin: 20px;
+}
