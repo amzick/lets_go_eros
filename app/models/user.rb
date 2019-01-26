@@ -48,12 +48,19 @@ class User < ApplicationRecord
   # TODO AWS: 
   has_many_attached :profile_pictures
   has_one_attached :thing
+
+  # https://stackoverflow.com/questions/4804591/rails-activerecord-validate-single-attribute
+  def valid_attribute?(attribute_name)
+    self.valid?
+    self.errors[attribute_name].empty?
+  end
   
 
   # helper function returning an array of the profile_picture URLs? pictures urls?
-  def pictureURLs
-    self.profile_pictures.map {|picture| url_for(picture)}
-  end
+  # not needed - handled in jbuilder
+  # def pictureURLs
+  #   self.profile_pictures.map {|picture| url_for(picture)}
+  # end
   
   def self.find_by_credentials(email,password)
     user = User.find_by(email: email)
@@ -95,6 +102,8 @@ class User < ApplicationRecord
       self.errors[:birthday] << "must be at least 18 years in the past"
     end
   end
+
+  protected
 
   def five_genders_max
     unless self.genders.length < 6
