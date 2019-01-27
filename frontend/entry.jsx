@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
+
 // window testing
 // import { signup, login, logout } from './util/session_api_util';
 import { login, signup, logout } from './actions/session_actions';
 import { fetchUser } from './actions/user_actions';
+import {updateNewUser} from './actions/ui_actions';
+
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchUser = fetchUser;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
+  window.updateNewUser = updateNewUser;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

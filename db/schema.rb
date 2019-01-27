@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_24_171416) do
+ActiveRecord::Schema.define(version: 2019_01_27_024003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 2019_01_24_171416) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "category", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_categories_on_category", unique: true
+  end
+
   create_table "ethnicities", force: :cascade do |t|
     t.string "ethnicity", null: false
     t.datetime "created_at", null: false
@@ -58,6 +65,23 @@ ActiveRecord::Schema.define(version: 2019_01_24_171416) do
     t.integer "user_id", null: false
     t.integer "gender_id", null: false
     t.index ["user_id", "gender_id"], name: "index_genders_joins_on_user_id_and_gender_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "question", null: false
+    t.boolean "inversion", default: false, null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "question_id", null: false
+    t.integer "response", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "question_id"], name: "index_responses_on_user_id_and_question_id"
   end
 
   create_table "users", force: :cascade do |t|

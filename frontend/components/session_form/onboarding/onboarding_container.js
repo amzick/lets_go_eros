@@ -41,6 +41,7 @@ class OnboardingContainer extends React.Component {
       case "gender":
         this.setState({ formType: "birthday", buttonText: "Select Birthdate" });
         break;
+      //race.....
       case "birthday":
         this.setState({ formType: "location", buttonText: "Choose Location" });
         break;

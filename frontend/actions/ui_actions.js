@@ -1,11 +1,23 @@
 export const RECEIVE_DATUM = 'RECEIVE_DATUM';
+export const RECEIVE_FIELD = "RECEIVE_FIELD";
+export const RECEIVE_UI_ERRORS = "RECEIVE_UI_ERRORS";
+
+import * as UiAPI from '../util/ui_util';
 
 //thunk action creators
 export const updateNewUser = (datum) => dispatch => {
-  //eventually this will make a validity check ajax request to a custom route
-  return () => {
-    dispatch(receiveDatum(datum));
-  };
+  //eventually this will make a validity check ajax request to a custom route (from handle change)
+  return UiAPI.validateField(datum.field,datum.value).then(
+    resp => dispatch(receiveDatum(resp)),
+    (errors) => dispatch(receiveErrors(errors.responseJSON))
+  );
+};
+
+export const updateField = (field) => dispatch => {
+  console.log("updateField Thunk action creator");
+  // no return, no ajax request
+  dispatch(receiveField(field));
+  
 };
 
 const receiveDatum = ({field, value}) => {
@@ -13,6 +25,20 @@ const receiveDatum = ({field, value}) => {
     type: RECEIVE_DATUM,
     field,
     value,
+  });
+};
+
+const receiveField = (field) => {
+  return ({
+    type: RECEIVE_FIELD,
+    field,
+  });
+};
+
+export const receiveErrors = (array) => {
+  return({
+    type: RECEIVE_UI_ERRORS,
+    errors: array,
   });
 };
 

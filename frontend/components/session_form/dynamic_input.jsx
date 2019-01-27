@@ -26,8 +26,9 @@ class DynamicInput extends React.Component {
 
   }
 
+  // handle errors and update button class
   handleChange(field) {
-    console.log(this.state);
+
     return event => {
       this.setState({
         [field]: event.target.value
@@ -36,7 +37,7 @@ class DynamicInput extends React.Component {
   };
 
   render() {
-    console.log(this.state)
+
     return (
       <div className="dynamic-input-div"><h1 className="dynamic-input-message">{this.props.message}</h1>
         <form className="session-form" onSubmit={this.props.action}>
