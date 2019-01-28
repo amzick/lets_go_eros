@@ -42,10 +42,6 @@ class GenderForm extends React.Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-    
-=======
->>>>>>> user_auth
     this.props.fetchOptions("genders");
   }
 
