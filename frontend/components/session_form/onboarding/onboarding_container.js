@@ -70,11 +70,6 @@ class OnboardingContainer extends React.Component {
 
   handleSignUp(event) {
     event.preventDefault();
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> user_auth
   }
 
   render() {
