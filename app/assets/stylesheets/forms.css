@@ -36,6 +36,7 @@
   width: 300px;
   height: 60%;
   display: flex;
+  margin: auto;
   flex-direction: column;
   justify-content: space-around;
   align-items: left;
@@ -66,6 +67,43 @@
 
 ::placeholder {
   color: #aaacae;
+}
+
+.back-arrow:hover {
+  cursor:pointer;
+}
+
+.dynamic-input-div {
+  width: 75%;
+  margin: auto;
+}
+.dynamic-span-container-div {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dynamic-span-container-div > span {
+  height: 70px;
+  width: 30px;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.dynaimc-form-label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dynamic-input-message {
+  width: 414px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 2em;
+  margin: auto;
 }
 
 .forgot-password {
@@ -129,4 +167,12 @@
   color: red;
   text-align: center;
   margin: 20px;
+}
+
+.dynamic-error-messages {
+  color: red;
+  text-align: right;
+  margin: 20px auto;
+  width: 300px;
+  height: 17px;
 }

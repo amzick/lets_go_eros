@@ -50,7 +50,6 @@ class SignupForm extends React.Component {
 
   componentDidMount() {
     //TODO - remove this
-    alert("Styling this now - 1.25.18 pm. Is functional however");
   }
 
   handleChange(field) {
