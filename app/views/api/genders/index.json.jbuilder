@@ -1,0 +1,1 @@
+json.array! @genders, :id, :gender

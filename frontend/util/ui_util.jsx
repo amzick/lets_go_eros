@@ -6,3 +6,10 @@ export const validateField = (field, value) => {
     url: `/api/validity/${field}/${value}`,
   });
 };
+
+export const fetchOptions = (options) => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/${options}`,
+  });
+};

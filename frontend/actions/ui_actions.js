@@ -1,26 +1,33 @@
 export const RECEIVE_DATUM = 'RECEIVE_DATUM';
 export const RECEIVE_FIELD = "RECEIVE_FIELD";
 export const RECEIVE_UI_ERRORS = "RECEIVE_UI_ERRORS";
+export const RECEIVE_OPTIONS = "RECEIVE_OPTIONS";
 
 import * as UiAPI from '../util/ui_util';
 
 //thunk action creators
 export const updateNewUser = (datum) => dispatch => {
   //eventually this will make a validity check ajax request to a custom route (from handle change)
-  return UiAPI.validateField(datum.field,datum.value).then(
+  return UiAPI.validateField(datum.field, datum.value).then(
     resp => dispatch(receiveDatum(resp)),
     (errors) => dispatch(receiveErrors(errors.responseJSON))
   );
 };
 
 export const updateField = (field) => dispatch => {
-  console.log("updateField Thunk action creator");
   // no return, no ajax request
   dispatch(receiveField(field));
-  
 };
 
-const receiveDatum = ({field, value}) => {
+export const fetchOptions = (options) => dispatch => {
+  UiAPI.fetchOptions(options).then(
+    resp => dispatch(receiveOptions(resp))
+  );
+};
+
+
+// POJO actions
+const receiveDatum = ({ field, value }) => {
   return ({
     type: RECEIVE_DATUM,
     field,
@@ -36,9 +43,17 @@ const receiveField = (field) => {
 };
 
 export const receiveErrors = (array) => {
-  return({
+  return ({
     type: RECEIVE_UI_ERRORS,
     errors: array,
+  });
+};
+
+const receiveOptions = (options) => {
+  
+  return ({
+    type: RECEIVE_OPTIONS,
+    options,
   });
 };
 

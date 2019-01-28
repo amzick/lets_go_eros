@@ -8,7 +8,7 @@ import configureStore from './store/store';
 // import { signup, login, logout } from './util/session_api_util';
 import { login, signup, logout } from './actions/session_actions';
 import { fetchUser } from './actions/user_actions';
-import {updateNewUser} from './actions/ui_actions';
+import { fetchOptions } from './util/ui_util';
 
 // end
 
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchUser = fetchUser;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.updateNewUser = updateNewUser;
+  window.fetchOptions = fetchOptions;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

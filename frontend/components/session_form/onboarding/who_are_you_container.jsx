@@ -25,8 +25,8 @@ class WhoAreYou extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = (props.field === "" ? { field: "email" } : { field: props.field });
-    this.buttonFunction = this.buttonFunction.bind(this);
+    this.state = (props.field !== "password" ? { field: "email" } : { field: props.field });
+    this.backFunction = this.backFunction.bind(this);
     this.handler = this.handler.bind(this);
   }
 
@@ -34,27 +34,23 @@ class WhoAreYou extends React.Component {
   // I need to pass a function down that will change the state of the parent
   // https://stackoverflow.com/questions/35537229/how-to-update-parents-state-in-react
   handler(field) {
-    console.log(`handling field: ${field}`);
     this.setState({
       field
     });
 
   }
 
-  componentDidUpdate(prevProps, nextProps) {
 
-  }
-
-
-  buttonFunction(event) {
+  backFunction(event) {
     event.preventDefault();
     this.setState({
       field: "email",
     });
   }
+
   render() {
     const { field } = this.state;
-    const backArrow = (field === "email" ? <Link to="/"><i className="fas fa-angle-left"></i></Link> : <i onClick={this.buttonFunction} className="fas fa-angle-left"></i>);
+    const backArrow = (field === "email" ? <Link to="/"><i className="fas fa-angle-left"></i></Link> : <i onClick={this.backFunction} className="fas fa-angle-left"></i>);
 
     let ComponentToBeRendered;
     switch (field) {

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     # https://github.com/rails/rails/issues/28901
     get 'validity/:field/:value/', to: 'validity#show', constraints: {value: %r{[^\/]+}}
 
+    resources :genders, only: [:index]
   end
   
   #  was testing aws picture retrieval
