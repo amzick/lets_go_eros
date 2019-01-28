@@ -4,8 +4,9 @@ import RenderDynamicErrors from '../../errors/render_dynamic_errors';
 import RenderDyanmicMessages from '../../errors/render_dynamic_messages';
 import { merge } from 'lodash';
 
+
 import { updateField, updateNewUser, receiveErrors } from '../../../actions/ui_actions';
-import { validateField } from "../../../util/ui_util";
+import { revealLocation, validateField } from "../../../util/ui_util";
 import { signup, clearErrors } from '../../../actions/session_actions';
 
 
@@ -36,6 +37,7 @@ class LocationForm extends React.Component {
     this.state.submitClass = (props.newUser.location === "" ? "invalid-submit" : "valid-submit");
     this.state.disabled = (props.newUser.location === "" ? "disabled" : "");
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state.messages = [];
   }
 
   //dispatch to update state
@@ -67,7 +69,16 @@ class LocationForm extends React.Component {
         validateField(field, event.target.value)
           .then(
             (resp) => {
-              this.setState({ errors: [], disabled: "", submitClass: "valid-submit" });
+              this.setState({ errors: [], disabled: "", submitClass: "valid-submit" },
+                () => {
+                  revealLocation(this.state.newUser.location)
+                    .then(resp => {
+                      this.setState({ messages: [`Ahh, ${resp.places[0]["place name"]}`], errors: [] });
+                    },
+                      errors => {
+                        this.setState({ errors: ["Please enter an existing zip code"] });
+                      });
+                });
             },
             (bad) => {
               this.setState({ errors: bad.responseJSON, disabled: "disabled", submitClass: "invalid-submit" });
@@ -95,7 +106,7 @@ class LocationForm extends React.Component {
     return (
       <div className="dynamic-input-div"><h1 className="dynamic-input-message">Where do you primarily live?</h1>
         <form className="session-form" onSubmit={this.handleSubmit}>
-          <label>{this.state.errors.length === 0 ? <RenderDyanmicMessages messages={["test", "fuck"]} /> : <RenderDynamicErrors errors={this.state.errors} />}
+          <label>{this.state.errors.length === 0 ? <RenderDyanmicMessages messages={this.state.messages} /> : <RenderDynamicErrors errors={this.state.errors} />}
             <input className="session-form-input" onChange={this.handleChange("location")} type="text" value={this.state.newUser["location"]} placeholder="i.e. 10001" ></input>
           </label>
           <button className={this.state.submitClass} disabled={this.state.disabled}>next</button>

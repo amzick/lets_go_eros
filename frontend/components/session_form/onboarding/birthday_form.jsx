@@ -88,7 +88,7 @@ class BirthdayForm extends React.Component {
 
   render() {
 
-    console.log("errors:", this.state.errors);
+    
 
     const { yearsArray } = this.props;
     let daysInMonth = 0;

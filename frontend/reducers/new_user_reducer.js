@@ -9,7 +9,7 @@ const _newUser = {
   genders: [],
   ethnicities: [],
   birthday: new Date(),
-  location: 0
+  location: undefined
 };
 
 // make new sub fields for field and validity. so the state would be {_newUser:{...}, field:'email', valid: false}
@@ -23,7 +23,7 @@ export const newUserReducer = (state = _newUser, action) => {
   switch (action.type) {
     case RECEIVE_DATUM:
       newState = { [action.field]: action.value };
-      
+
       return merge({}, state, newState);
     case RECEIVE_CURRENT_USER:
       return _newUser;

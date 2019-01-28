@@ -6,7 +6,7 @@ import configureStore from './store/store';
 
 // window testing
 // import { signup, login, logout } from './util/session_api_util';
-import { updateNewUser } from './actions/ui_actions';
+import { revealLocation } from './util/ui_util';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,9 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.updateNewUser = updateNewUser;
-  window.viewNewUser = () => { return window.getState().ui.newUser.birthday; }
-  window.x = { field: "birthday", value: new Date('1989-9-12') };
+  window.revealLocation = revealLocation;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

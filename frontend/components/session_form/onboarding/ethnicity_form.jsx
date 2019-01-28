@@ -76,7 +76,7 @@ class EthnicityForm extends React.Component {
         this.validateOptions();
       });
     }
-    console.log(this.state.newUser.ethnicities);
+    
   }
 
   itemChecked(id) {
@@ -108,7 +108,7 @@ class EthnicityForm extends React.Component {
       const isChecked = this.itemChecked(option.id);
       return <label onClick={this.handleToggle} key={option.id}>{option.ethnicity}<input type="checkbox" value={option.id} defaultChecked={isChecked} readOnly={false} /></label>
     });
-    console.log("disabled", this.state.disabled);
+    
     return (
       <div className="dynamic-input-div">
         <h1>Which ethnicity best describes you?</h1>
