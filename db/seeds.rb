@@ -244,17 +244,10 @@ LA_ZIPS=(90001..90021).to_a+(90026..90039).to_a+(90052..90072).to_a
 
   if idx < 100 && idx.even?
     zip_code = NEW_YORK_ZIPS.sample
-    p idx
-    p zip_code
   elsif idx < 100
     zip_code = LA_ZIPS.sample
-    p idx
-    p zip_code
   else
-    zip_code = Faker::Address.zip[0..4].to_i.to_s
-    zip_code.prepend("0") if zip_code.length < 5
-    p idx
-    p zip_code
+    zip_code = Faker::Address.zip[0..4]
   end
 
   User.create!(
@@ -267,3 +260,4 @@ LA_ZIPS=(90001..90021).to_a+(90026..90039).to_a+(90052..90072).to_a
     location: zip_code
   )
 end
+

@@ -119,7 +119,7 @@ class User < ApplicationRecord
     # TODO: actually check the maps API to make sure zipcode exists... :/
 
     unless self.location.to_s.length == 5
-      console.log(self.location)
+      
       self.errors[:location] << "Zip Codes must be five digits"
     end
   end
