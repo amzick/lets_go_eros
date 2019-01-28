@@ -46,7 +46,8 @@ class LoginForm extends React.Component {
   demo(event) {
     event.preventDefault();
     // todo : not me!!!
-    const demoUser = { email: "aaron.zick@gmail.com", password: 'password' };
+    const demoUser = {email: "demoUser", password: "pa$$word" };
+    this.setState({ newUser: demoUser });
     this.props.login(demoUser).then(this.props.clearErrors);
   }
 

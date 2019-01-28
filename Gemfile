@@ -47,6 +47,8 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
+  gem 'faker'
+  gem 'factory_bot'
 end
 
 group :development do
