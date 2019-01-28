@@ -30,7 +30,7 @@ class OnboardingSwitcher extends React.Component {
 
   buttonFunction(event) {
     event.preventDefault();
-    console.log(this.stat);
+    
 
     switch (this.state.field) {
       case "tell":
@@ -53,7 +53,7 @@ class OnboardingSwitcher extends React.Component {
   render() {
     let component = <p>No component yet</p>;
     // action will dispatch action to update ui
-    let action = () => console.log(this.props.field);
+    
     // button will be the same for all except location
     let button = <button className="valid-submit" onClick={this.buttonFunction}>{this.state.buttonText}</button>
 

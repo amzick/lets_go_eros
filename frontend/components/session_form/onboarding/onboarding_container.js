@@ -66,7 +66,7 @@ class OnboardingContainer extends React.Component {
 
   handleSignUp(event) {
     event.preventDefault();
-    console.log(this.state);
+    
   }
 
   render() {

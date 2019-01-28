@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchOptions } from '../../../actions/ui_actions';
 
 const msp = state => {
-  debugger
+
   return ({
     errors: state.errors.ui,
     options: Object.values(state.ui.options),
@@ -24,7 +24,7 @@ class GenderForm extends React.Component {
   }
 
   componentDidMount() {
-    console.log("gender mounted");
+    
     this.props.fetchOptions("genders");
   }
 
