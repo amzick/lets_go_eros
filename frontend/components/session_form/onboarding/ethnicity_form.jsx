@@ -25,15 +25,15 @@ const mdp = dispatch => {
   });
 };
 
-class GenderForm extends React.Component {
+class EthnicityForm extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {};
     this.state.newUser = props.newUser;
     this.state.errors = props.errors;
-    this.state.submitClass = (this.state.newUser.genders.length < 6 && this.state.newUser.genders.length >= 1 ? "valid-submit" : "invalid-submit");
-    this.state.disabled = ((this.state.newUser.genders.length < 6 && this.state.newUser.genders.length >= 1) ? "" : "disabled");
+    this.state.submitClass = (this.state.newUser.ethnicities.length < 6 && this.state.newUser.ethnicities.length >= 1 ? "valid-submit" : "invalid-submit");
+    this.state.disabled = ((this.state.newUser.ethnicities.length < 6 && this.state.newUser.ethnicities.length >= 1) ? "" : "disabled");
     this.handleToggle = this.handleToggle.bind(this);
     this.validateOptions = this.validateOptions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,39 +42,35 @@ class GenderForm extends React.Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-    
-=======
->>>>>>> user_auth
-    this.props.fetchOptions("genders");
+    this.props.fetchOptions("ethnicities");
   }
 
   handleToggle(event) {
-    // need to either add the gender ID into the array if not there or add it if it is there
+    // need to either add the ethnicity ID into the array if not there or add it if it is there
     // event.preventDefault();
-    let idx = this.state.newUser.genders.indexOf(event.target.value);
+    let idx = this.state.newUser.ethnicities.indexOf(event.target.value);
     let setUser;
-    let badIdx = this.state.newUser.genders.indexOf(undefined);
+    let badIdx = this.state.newUser.ethnicities.indexOf(undefined);
     if (idx === -1) {
       setUser = merge({}, this.state.newUser);
-      setUser.genders.push(event.target.value);
+      setUser.ethnicities.push(event.target.value);
       this.setState({ newUser: setUser }, () => {
-        badIdx = this.state.newUser.genders.indexOf(undefined);
+        badIdx = this.state.newUser.ethnicities.indexOf(undefined);
         if (badIdx !== -1) {
-          setUser.genders.splice(badIdx, 1);
+          setUser.ethnicities.splice(badIdx, 1);
           this.setState({ newUser: setUser }, () => this.validateOptions);
-          // this.props.updateNewUser({ field: "genders", value: setUser.genders });
+          // this.props.updateNewUser({ field: "ethnicities", value: setUser.ethnicities });
           // this.validateOptions();
         }
         this.validateOptions();
       });
     } else {
       setUser = merge({}, this.state.newUser);
-      setUser.genders.splice(idx, 1);
+      setUser.ethnicities.splice(idx, 1);
       this.setState({ newUser: setUser }, () => {
-        badIdx = this.state.newUser.genders.indexOf(undefined);
+        badIdx = this.state.newUser.ethnicities.indexOf(undefined);
         if (badIdx !== -1) {
-          setUser.genders.splice(badIdx, 1);
+          setUser.ethnicities.splice(badIdx, 1);
           this.setState({ newUser: setUser }, this.validateOptions);
         }
         this.validateOptions();
@@ -84,38 +80,38 @@ class GenderForm extends React.Component {
   }
 
   itemChecked(id) {
-    return this.state.newUser.genders.includes(id);
+    return this.state.newUser.ethnicities.includes(id);
     // this.setState({isChecked});
   }
 
   validateOptions() {
 
-    if (this.state.newUser.genders.length > 0 && this.state.newUser.genders.length < 6) {
+    if (this.state.newUser.ethnicities.length > 0 && this.state.newUser.ethnicities.length < 6) {
       this.setState({ errors: [], disabled: "", submitClass: "valid-submit" });
-    } else if (this.state.newUser.genders.length < 1) {
-      this.setState({ errors: ["Please select at least one gender"], disabled: "disabled", submitClass: "invalid-submit" });
+    } else if (this.state.newUser.ethnicities.length < 1) {
+      this.setState({ errors: ["Please select at least one ethnicity"], disabled: "disabled", submitClass: "invalid-submit" });
     } else {
-      this.setState({ errors: ["Please select fewer than five genders"], disabled: "disabled", submitClass: "invalid-submit" });
+      this.setState({ errors: ["Please select fewer than five ethnicities"], disabled: "disabled", submitClass: "invalid-submit" });
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handler("ethnicity");
-    this.props.updateField("ethnicity");
-    this.props.updateNewUser({ field: "genders", value: this.state.newUser.genders });
+    this.props.handler("birthday");
+    this.props.updateField("birthday");
+    this.props.updateNewUser({ field: "ethnicities", value: this.state.newUser.ethnicities });
   }
 
   render() {
 
     this.checkBoxItems = this.props.options.map(option => {
       const isChecked = this.itemChecked(option.id);
-      return <label onClick={this.handleToggle} key={option.id}>{option.gender}<input type="checkbox" value={option.id} defaultChecked={isChecked} readOnly={false} /></label>
+      return <label onClick={this.handleToggle} key={option.id}>{option.ethnicity}<input type="checkbox" value={option.id} defaultChecked={isChecked} readOnly={false} /></label>
     });
     
     return (
       <div className="dynamic-input-div">
-        <h1>Which gender best describes you?</h1>
+        <h1>Which ethnicity best describes you?</h1>
         <form onSubmit={this.handleSubmit}>
           {this.checkBoxItems}
           <RenderDynamicErrors errors={this.state.errors} />
@@ -126,4 +122,4 @@ class GenderForm extends React.Component {
   }
 }
 
-export default connect(msp, mdp)(GenderForm);
+export default connect(msp, mdp)(EthnicityForm);

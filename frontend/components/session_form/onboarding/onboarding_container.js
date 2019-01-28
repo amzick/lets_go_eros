@@ -6,6 +6,7 @@ import SessionNavBar from '../session_nav_bar';
 import Landing from './landing';
 import FnameForm from './fname_form';
 import GenderForm from './gender_form';
+import EthnicityForm from './ethnicity_form';
 import BirthdayForm from './birthday_form';
 import LocationForm from './location_form';
 
@@ -55,10 +56,13 @@ class OnboardingContainer extends React.Component {
         this.setState({ field: "fname" });
         break;
       //race.....
-      case "birthday":
+      case "ethnicity":
         this.setState({ field: "gender" });
         break;
-      case "birhday":
+      case "birthday":
+        this.setState({ field: "ethnicity" });
+        break;
+      case "location":
         this.setState({ field: "birthday" });
         break;
     }
@@ -66,7 +70,11 @@ class OnboardingContainer extends React.Component {
 
   handleSignUp(event) {
     event.preventDefault();
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> user_auth
   }
 
   render() {
@@ -77,29 +85,23 @@ class OnboardingContainer extends React.Component {
 
     switch (field) {
       case "landing":
-        // determine the component to be rendered
+
         ComponentToBeRendered = <Landing handler={this.handler} />;
         // don't render  a back button from the landing
         backArrow = null;
         aboutYou = null;
         break;
       case "fname":
-        // determine the component to be rendered
         ComponentToBeRendered = <FnameForm handler={this.handler} />
-        // determine what field the back button renders
-
         break;
       case "gender":
         ComponentToBeRendered = <GenderForm handler={this.handler} />
-        // determine the component to be rendered
-        // determine what field the back button renders
-
         break;
-      //race.....
+      case "ethnicity":
+        ComponentToBeRendered = <EthnicityForm handler={this.handler} />
+        break;
       case "birthday":
         ComponentToBeRendered = <BirthdayForm handler={this.handler} />
-        // determine the component to be rendered
-        // determine what field the back button render
         break;
       case "location":
         ComponentToBeRendered = <LocationForm handler={this.handler} />

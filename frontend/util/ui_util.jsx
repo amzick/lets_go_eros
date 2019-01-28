@@ -13,3 +13,10 @@ export const fetchOptions = (options) => {
     url: `/api/${options}`,
   });
 };
+
+export const revealLocation = (zip) => {
+  return $.ajax({
+    method: "GET",
+    url: `http://api.zippopotam.us/us/${zip}`,
+  });
+};
