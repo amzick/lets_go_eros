@@ -6,10 +6,7 @@ import configureStore from './store/store';
 
 // window testing
 // import { signup, login, logout } from './util/session_api_util';
-import { login, signup, logout } from './actions/session_actions';
-import { fetchUser } from './actions/user_actions';
-import { fetchOptions } from './util/ui_util';
-
+import { updateNewUser } from './actions/ui_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,13 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //window testing functions
   window.aaron = { email: "aaron.zick@gmail.com", password: "password" };
-  window.signup = signup;
-  window.login = login;
-  window.logout = logout;
-  window.fetchUser = fetchUser;
+
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.fetchOptions = fetchOptions;
+  window.updateNewUser = updateNewUser;
+  window.viewNewUser = () => { return window.getState().ui.newUser.birthday; }
+  window.x = { field: "birthday", value: new Date('1989-9-12') };
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

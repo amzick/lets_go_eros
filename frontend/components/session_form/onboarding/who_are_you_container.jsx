@@ -58,7 +58,6 @@ class WhoAreYou extends React.Component {
         ComponentToBeRendered = <EmailForm handler={this.handler} />;
         break;
       case "password":
-        console.log("password case");
         ComponentToBeRendered = <PasswordForm newUser={this.props.newUser} handler={this.handler} />;
         break;
     }

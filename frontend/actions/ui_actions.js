@@ -8,7 +8,7 @@ import * as UiAPI from '../util/ui_util';
 //thunk action creators
 export const updateNewUser = (datum) => dispatch => {
   //eventually this will make a validity check ajax request to a custom route (from handle change)
-  return UiAPI.validateField(datum.field, datum.value).then(
+  UiAPI.validateField(datum.field, datum.value).then(
     resp => dispatch(receiveDatum(resp)),
     (errors) => dispatch(receiveErrors(errors.responseJSON))
   );
@@ -20,7 +20,7 @@ export const updateField = (field) => dispatch => {
 };
 
 export const fetchOptions = (options) => dispatch => {
-  UiAPI.fetchOptions(options).then(
+  return UiAPI.fetchOptions(options).then(
     resp => dispatch(receiveOptions(resp))
   );
 };

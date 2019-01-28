@@ -8,13 +8,13 @@ class Api::ValidityController < ApplicationController
       value = CGI::unescape(params[:value])
     when "birthday"
       value = Date.parse(params[:value])
-    when "genders"
+    when "genders", "ethnicities"
       value = params[:value].split(",").map {|el| el.to_i}
     else
       value = params[:value]
     end
 
-    unless field == "genders" 
+    unless field == "genders" || field == "ethnicities"
       @user = User.new(field => value)
     else
       @user = User.new

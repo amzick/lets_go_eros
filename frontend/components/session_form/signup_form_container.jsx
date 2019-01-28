@@ -15,7 +15,7 @@ const msp = state => {
     return <option value={year.toString()} key={year}>{year}</option>;
   });
 
-  //todo: I'm having to retrieve an actual date because trying to submit a non date object breaks the site
+  
   const today = new Date();
 
 
