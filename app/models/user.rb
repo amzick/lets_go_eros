@@ -70,10 +70,11 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
   # def unanswered_questions
   #   Question.all.reject {|question| self.answered_questions.include?(question)}
   # end
+ 
 
   def unanswered_questions
     id = self.id
-    data = ActiveRecord::Base.connection.execute(<<-SQL, @id)
+    data = ActiveRecord::Base.connection.execute(<<-SQL, id)
       select 
         *
       from 
@@ -86,7 +87,7 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
         left outer join responses on responses.question_id = questions.id
         join users on responses.user_id = users.id
         where users.id = ? 
-        )
+        ) 
     SQL
     data.map {|datum| Question.new(datum)}
   end
