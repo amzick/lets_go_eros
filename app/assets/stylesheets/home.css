@@ -1,0 +1,78 @@
+.html {
+  background-color: #f3f5f9;
+}
+
+.home-space-div {
+  height: 70px;
+  background-color: #f3f5f9;
+
+}
+
+.discovery-section {
+  height: auto;
+  background-color: #f3f5f9;
+  border: solid 1px red;  
+  width: 952px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+
+.discovery-section > h1 {
+  border: solid 1px green;
+  margin: 21px 0;
+  margin-left: 10px;
+
+}
+
+.discover-section * {
+  background-color: #f3f5f9;
+  padding: 0 auto;
+}
+
+.
+
+.discover-search-div {
+  border: solid 1px green;
+  background-color: darkslateblue;
+  margin: 5px;
+  height: 52px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.discover-search-form {
+  display: flex;
+  flex-direction: row-reverse;
+
+}
+
+.discover-search-form input {
+  border: solid 1px purple;
+  width: 325px;
+  height: 42px;
+  background-color: #ebedf2;
+  text-indent: 20px;
+  font-size: 1.1em;
+}
+
+.discover-search-form input:hover {
+  background-color: white;
+}
+
+.discover-search-form .fa-search {
+  border: solid 1px orange;
+  height: auto;
+  width: auto;
+  color: #aaacae;
+  position: relative;
+  left: -40px;
+  top: 11px;
+}
+
+.discover-search-form::-webkit-search-cancel-button {
+  background-color: red;
+}

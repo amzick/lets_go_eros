@@ -54,8 +54,19 @@ class User < ApplicationRecord
     through: :responses,
     source: :question
 
-    # todo... querying data base constantly
+    
+  def unanswered_questions
+    Question.select(:id)
+    .left_outer_joins(:responses)
+    .where("responses.user_id != ? OR responses.user_id IS NULL", self.id)
+    .group(:id)
+  end
+
 =begin
+select questions.id from questions left join responses on responses
+.question_id = questions.id 
+WHERE responses.user_id !=  1295 OR responses.user_id IS NULL group by questions.id;
+
 via https://stackoverflow.com/questions/19682816/sql-statement-select-the-inverse-of-this-query
     select *
     from questions
@@ -64,33 +75,30 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
       from questions
       left outer join responses on responses.question_id = questions.id
       join users on responses.user_id = users.id
-      where users.id = (self.id)
+      where users.id = 1295
     );
-=end
-  # def unanswered_questions
-  #   Question.all.reject {|question| self.answered_questions.include?(question)}
+  
+ # def unanswered_questions
+    
+  #   data = ActiveRecord::Base.connection.execute(<<-SQL, self.id)
+  #     select 
+  #       *
+  #     from 
+  #       questions
+  #     where id NOT IN (
+  #       select 
+  #         questions.id
+  #       from 
+  #         questions
+  #       left outer join responses on responses.question_id = questions.id
+  #       join users on responses.user_id = users.id
+  #       where users.id = ? 
+  #       ) 
+  #   SQL
+  #   data.map {|datum| Question.new(datum)}
   # end
- 
+=end
 
-  def unanswered_questions
-    id = self.id
-    data = ActiveRecord::Base.connection.execute(<<-SQL, id)
-      select 
-        *
-      from 
-        questions
-      where id NOT IN (
-        select 
-          questions.id
-        from 
-          questions
-        left outer join responses on responses.question_id = questions.id
-        join users on responses.user_id = users.id
-        where users.id = ? 
-        ) 
-    SQL
-    data.map {|datum| Question.new(datum)}
-  end
 
   # TODO AWS: 
   has_many_attached :profile_pictures

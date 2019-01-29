@@ -1,0 +1,24 @@
+.usercard-row {
+  height: 332;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  background: transparent;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.usercard-div {
+  border: solid 1px orange;
+  background-color:yellow;
+  min-width: 180px;
+  min-height: 276px;
+  margin: 0 10px;
+}
+
+.usercard-thumb {
+  max-width: 180px;
+  max-height: 180px;
+  overflow: hidden;
+}

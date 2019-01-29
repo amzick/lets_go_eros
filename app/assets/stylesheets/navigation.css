@@ -1,0 +1,34 @@
+.navigation-header {
+  height: 66px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  /* padding-left: 0; */
+  
+  margin-top: 0;
+  background-color: #104da1;
+  /* border: solid 1px yellow; */
+  border-bottom: solid 2px #76a8e2;
+}
+
+.nav-left {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  justify-content: space-between; 
+}
+
+.nav-left img {
+  width: 90px;
+  height: 30px;
+}
+
+.nav-right {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  justify-content: space-between; 
+}
