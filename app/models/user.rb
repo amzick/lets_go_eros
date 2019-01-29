@@ -1,3 +1,4 @@
+# require_relative 'question'
 # == Schema Information
 #
 # Table name: users
@@ -49,6 +50,47 @@ class User < ApplicationRecord
 
   has_many :responses, dependent: :destroy, inverse_of: :user
 
+  has_many :answered_questions,
+    through: :responses,
+    source: :question
+
+    # todo... querying data base constantly
+=begin
+via https://stackoverflow.com/questions/19682816/sql-statement-select-the-inverse-of-this-query
+    select *
+    from questions
+    where id NOT IN (
+      select questions.id
+      from questions
+      left outer join responses on responses.question_id = questions.id
+      join users on responses.user_id = users.id
+      where users.id = (self.id)
+    );
+=end
+  # def unanswered_questions
+  #   Question.all.reject {|question| self.answered_questions.include?(question)}
+  # end
+
+  def unanswered_questions
+    id = self.id
+    data = ActiveRecord::Base.connection.execute(<<-SQL, @id)
+      select 
+        *
+      from 
+        questions
+      where id NOT IN (
+        select 
+          questions.id
+        from 
+          questions
+        left outer join responses on responses.question_id = questions.id
+        join users on responses.user_id = users.id
+        where users.id = ? 
+        )
+    SQL
+    data.map {|datum| Question.new(datum)}
+  end
+
   # TODO AWS: 
   has_many_attached :profile_pictures
   has_one_attached :thing
@@ -92,6 +134,7 @@ class User < ApplicationRecord
   end
 
   #other functions
+
 
   private 
 
