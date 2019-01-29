@@ -25,11 +25,14 @@ class DiscoverySection extends React.Component {
     }
 
     return (
-      <div className="discovery-section" >
-        {this.props.search ? <DiscoverySearch /> : null}
-        <h1>Get H from props</h1>
-        <div className="usercard-row">{queryResult}</div>
-      </div>
+      <>
+        <div className="discovery-section" >
+          {this.props.search ? <DiscoverySearch /> : null}
+          <h1>Get H from props</h1>
+          <div className="usercard-row">{queryResult}</div>
+        </div>
+        <div className="discovery-section-fader" />
+      </>
     );
   }
 }

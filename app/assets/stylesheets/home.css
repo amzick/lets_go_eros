@@ -1,4 +1,4 @@
-.html {
+.home {
   background-color: #f3f5f9;
 }
 
@@ -11,16 +11,26 @@
 .discovery-section {
   height: auto;
   background-color: #f3f5f9;
-  border: solid 1px red;  
+  /* border: solid 1px red;   */
   width: 952px;
   margin: 0 auto;
   padding-bottom: 60px;
   /* display: flex; */
   /* flex-direction: row; */
+  position: relative;
 }
 
+/* .discovery-section-fader {
+  border: solid 1px red;
+  background: linear-gradient(to bottom, rgba(251, 251, 251, 1) 0%, rgba(251, 251, 251, 0) 100%);
+  content: '';
+  height: auto;
+  position: absolute;
+  margin-top: 441px;
+} */
+
 .discovery-section > h1 {
-  border: solid 1px green;
+  /* border: solid 1px green; */
   margin: 21px 0;
   margin-left: 10px;
 
@@ -34,8 +44,8 @@
 .
 
 .discover-search-div {
-  border: solid 1px green;
-  background-color: darkslateblue;
+  /* border: solid 1px green; */
+  /* background-color: darkslateblue; */
   margin: 5px;
   height: 52px;
   width: 100%;
@@ -51,7 +61,7 @@
 }
 
 .discover-search-form input {
-  border: solid 1px purple;
+  /* border: solid 1px purple; */
   width: 325px;
   height: 42px;
   background-color: #ebedf2;
@@ -63,16 +73,21 @@
   background-color: white;
 }
 
-.discover-search-form .fa-search {
-  border: solid 1px orange;
+.discover-search-form > span {
+  /* border: solid 1px orange; */
   height: auto;
   width: auto;
   color: #aaacae;
   position: relative;
   left: -40px;
-  top: 11px;
+  top: 13px;
 }
 
+.discover-search-form .fa-times-circle {
+  cursor: pointer;
+}
+/* 
 .discover-search-form::-webkit-search-cancel-button {
   background-color: red;
-}
+  border: solid 1px red;
+} */

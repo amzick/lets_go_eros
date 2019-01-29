@@ -25,7 +25,7 @@ class User < ApplicationRecord
   validates :password_digest, :session_token, :birthday, :location, presence:true
   #TODO bonus: custom password validation (include symbols caps numbs, etc)
   validates :password, length: {minimum: 6}, allow_nil:true
-  validates :fname, length: {maximum:15}
+  validates :fname, length: {maximum:13}
 
   validate :at_least_eighteen
   validate :valid_zip_code

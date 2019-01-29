@@ -19,7 +19,7 @@ class HomeContainer extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="home">
         <Navigation />
         <div className="home-space-div" />
         <DiscoverySection search={true} />
