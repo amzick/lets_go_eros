@@ -1,9 +1,11 @@
-/* fonts */
-
-/* headers */
+@font-face {
+  font-family: 'Comic Zine';
+  src: url(./fonts/comic_zine_ot-webfont.woff) format('woff');
+}
+	/* headers */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
-  font-family: GT America,Helvetica,Helvetica,Arial,sans-serif;
+  font-family: GT America,Helvetica,Helvitca Neue;
 }
 
 /* regular */
@@ -12,16 +14,31 @@ body, button, input, textare {
   font-size: 15px;
 }
 
+/* https://fonts.google.com/specimen/Londrina+Outline?selection.family=Londrina+Outline */
+.logo-full {
+  
+  font-family: 'Comic Zine', 'Londrinda Outline', cursive;
+  font-size: 3em;
+}
+.logo-short {
+  font-family: 'Comic Zine', 'Londrinda Outline', cursive;
+  font-size: 3em;
+  font-weight: 200;
+  color:white;
+  /* -webkit-text-stroke: 0.5px white;
+  -webkit-text-fill-color: white; */
+}
 /* splash page */
 
 #splash-main {
-  height: 100vh;
+  height: 670px;
   width: 100%;
-  -webkit-transition: background-image 1s;
-  transition: background-image 1s;
   -webkit-transition: background-color 1s;
   transition: background-color 1s;
+  /* -webkit-transition: background-image 0.2s;
+  transition: background-image 0.2s; */
   background-repeat: no-repeat;
+  
   /* background-position: 50% 35%; */
   background-size: auto 80%;
   padding-left: 75px;
@@ -29,37 +46,79 @@ body, button, input, textare {
   margin-top: 0;
   margin-bottom: 0;
 }
-
-.splash-page-eyemasks {
-  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
-  background-color: #20bd66;
-  background-position: 50%;
+/* 
+@-webkit-keyframes fadeinout {
+  0%, 100% {opacity: 1;}
+  50% {opacity: 0}
 }
+
+@keyframes fadeinout {
+  0%, 100% {opacity: 1;}
+  50% {opacity: 0}
+} */
+
+
 
 .splash-page-couch {
   background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/couch.jpg);
   background-color: #24d8f3;
-  background-position: 50%;
+  background-position: 50% 100%;
+  /* background-size: 200% 200%;
+  animation-name: fadeinout;
+  animation-duration: 0.5s; */
+}
+
+/* .splash-page-couch-none {
+  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/couch.jpg);
+  opacity: 0;
+  background-color: #24d8f3;
+  background-position: 75% 100%;
+  background-size: 200% 200%;
+  animation-name: fadeinout;
+  animation-duration: 0.5s;
+} */
+
+.splash-page-eyemasks {
+  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
+  background-color: #20bd66;
+  background-position: 50% 100%;
+  background-size: 1000%;
 }
 
 .splash-page-rose {
   background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/rose.jpg);
   background-color: #ffc5e3;
-  background-position: 75%;
+  background-position: 75% 100%;
+  background-size: 100% 100%;
 
 }
 
 .splash-page-facepaint {
   background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/facepaint.jpg);
   background-color: #22c2fc;
-  background-position: 50%;
+  background-position: 50% 100%;
+  background-size: 100% 100%;
 
 }
 
 .splash-page-hands {
   background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/hands.jpg);
   background-color: #f0a1c1;
-  background-position: 75%;
+  background-position: 75% 100%;
+  background-size: 100% 100%;
+  
+}
+
+.splash-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px 0 0;
+  /* padding-left: 0; */
+  margin: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  box-sizing: border-box;
 }
 
 .splash-header img {
@@ -67,42 +126,57 @@ body, button, input, textare {
   height: 30px;
 }
 
-.splash-header {
+.splash-header-right-div {
+  width: 250px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 30px 0;
-  /* padding-left: 0; */
-  margin: 10px;
-  margin-top: 0;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 100px;
 }
-
 
 .sign-in-link {
   box-sizing: border-box;
   border: solid 1px black;
-  border-radius: 5%;
-  padding: 14px;
-  margin: 120px;
+  border-radius: 3px;
+  min-height: 36px;
+  max-height: 36px;
+  padding: 9px 9px;
+  font-family: Georgia, 'Times New Roman', Times, serif
+  /* margin: 120px; */
 }
 
 .splash-greeting {
-  color: white;
-  font-size: 40pt;
-  text-shadow: -10px 10px black;
+  width: 750px;
+  overflow: visible;
+  color: black;
+  font-size: 35pt;
+  /* font-weight: 1000; */
   /* border: solid 1px black; */
-  -webkit-text-stroke: 2px black;
   text-transform: uppercase;
+  -webkit-text-stroke: 2px black;
+  -webkit-text-fill-color: white;
+  text-shadow: -1px 1px 0px black,
+  -2px 2px 0px black,
+  -3px 3px 0px black,
+  -4px 4px 0px black,
+  -5px 5px 0px black,
+  -6px 6px 0px black,
+  -7px 7px 0px black,
+  -8px 8px 0px black,
+  -9px 9px 0px black;
+  /* font-stretch: ultra-expanded; */
+  font-family: 'Notable', sans-serif;
 }
 
 .splash-content {
   box-sizing: border-box;
-  height: 700px;
+  height: 600px;
   padding-bottom: 0;
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
+  justify-content: space-between;
 }
 
 .splash-content-top {
@@ -112,11 +186,13 @@ body, button, input, textare {
 
 .splash-content-top p {
   /* border: solid 1px black; */
-  margin: 40px;
+  margin: 20px;
   margin-left: 0;
   width: 453px;
-  font-size: 1.2em;
-  line-height: 25px;
+  font-size: 1.5em;
+  /* line-height: 25px; */
+  line-height: 150%;
+
 }
 
 .splash-content-join {
@@ -127,7 +203,8 @@ body, button, input, textare {
   display: inline-block;
   width: 285px;
   height: 65px;
-  border: solid 1px black;
+  /* border: solid 1px black; */
+  border-radius: 3px;
   box-sizing: border-box;
   /* padding: 30px 100px; */
   /* justify-content: center; */
@@ -135,8 +212,31 @@ body, button, input, textare {
   margin: auto;
   padding: 23px 0;
   background-color: rgba(0,0,0,0.5);
-
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: white;
+  position: relative;
+}
+
+.sign-up-flex-div {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  /* position: relative; */
+}
+
+.sign-up-space {
+  width: 10px;
+}
+
+.sign-up-logo {
+  font-family: 'Comic Zine', 'Londrinda Outline', cursive;
+
+  font-size: 2em;
+  /* position: absolute; */
+  transform: rotate(-10deg) translate(5px, -8px);
+  /* top: -5px; */
 }
 
 .splash-content-bottom {
@@ -149,7 +249,13 @@ body, button, input, textare {
   margin-left: 0;
   width: 453px;
   font-size: 0.8em;
+  /* padding-bottom: 40px; */
+  min-height: 80px;
 }
+/* 
+.areyouserious {
+  min-height: 3px;
+} */
 
 /* .splash-content h1, div, p, a {
   box-sizing: border-box;
@@ -167,4 +273,22 @@ body, button, input, textare {
   height: 125px;
   padding: 0;
   margin: 0;
+}
+
+.splash-footer-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600px;
+  font-size: 1.2em;
+}
+
+.splash-footer-div > span {
+  margin: 0 10px;
+  min-height: 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }

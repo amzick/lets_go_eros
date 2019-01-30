@@ -13,13 +13,14 @@ const SplashMain = (props) => {
          you look like. Because you deserve what dating deserves: better.</p>
       </div>
       <div className="splash-content-join">
-        <NavLink className="sign-up-link" to="/signup">Join OKC</NavLink>
+        <NavLink className="sign-up-link" to="/signup"><div className="sign-up-flex-div"><p>Join</p><div className="sign-up-space" /> <span className="sign-up-logo" >l g e</span></div></NavLink>
       </div>
       <div className="splash-content-bottom">
         <p>By clicking Join, you agree to our Terms of Service. Learn about how we
           process and use your data in our Privacy Policy and how we use cookies and
          similar technology in our Cookie Policy.</p>
       </div>
+      {/* <div className="areyouserious" /> */}
     </div>
   )
 }

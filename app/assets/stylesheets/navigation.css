@@ -1,4 +1,12 @@
+.session-header-left {
+  margin-left: 75px;
+}
+
 .navigation-header {
+  color: lightgrey;
+  letter-spacing: 1px;
+  font-size: 1.2em;
+  
   height: 66px;
   display: flex;
   flex-direction: row;
@@ -15,10 +23,24 @@
 }
 
 .nav-left {
+  width: 250px;
   display: flex;
   flex-direction: row;
   padding: 30px;
-  justify-content: space-between; 
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left > a:hover {
+  color:white;
+}
+
+.nav-right > button:hover {
+  color: white;
+}
+
+.nav-right > span:hover {
+  color: white;
 }
 
 .nav-left img {
@@ -27,8 +49,30 @@
 }
 
 .nav-right {
+  width: 400px;
   display: flex;
   flex-direction: row;
   padding: 30px;
   justify-content: space-between; 
+  align-items: center;
+}
+
+.nav-right-icon {
+  display: flex;
+  min-height: 50px;
+  min-width: 50px;
+  font-size: 1.8em;
+  /* margin: auto auto; */
+  justify-content: center;
+  align-items: center;
+
+}
+
+.nav-user-img > img {
+  width: auto;
+  height: auto;
+  min-height: 42px;
+  min-width: 42px;
+  max-height:42px;
+  border-radius: 50%;
 }
