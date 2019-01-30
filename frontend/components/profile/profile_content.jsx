@@ -1,18 +1,18 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import YouAndThem from './you_and_them';
 
-const msp = state => {
-  return ({
-    currentUser: state.entities.users[state.session.id],
-  });
-};
+// const msp = state => {
+//   return ({
+//     currentUser: state.entities.users[state.session.id],
+//   });
+// };
 
-const mdp = dispatch => {
-  return ({
+// const mdp = dispatch => {
+//   return ({
 
-  });
-};
+//   });
+// };
 
 class ProfileContent extends React.Component {
 
@@ -22,7 +22,7 @@ class ProfileContent extends React.Component {
 
   render() {
 
-    const { pageUser } = this.props;
+    const { currentUser, pageUser } = this.props;
 
     return (
       <div className="profile-content">
@@ -46,4 +46,4 @@ class ProfileContent extends React.Component {
   }
 }
 
-export default connect(msp, mdp)(ProfileContent);
+export default ProfileContent;

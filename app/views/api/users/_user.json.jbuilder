@@ -1,5 +1,5 @@
 
-json.extract! user, :id, :fname, :birthday, :location
+json.extract! user, :id, :fname, :gender_ids, :ethnicity_ids, :birthday, :age, :location
 # json.profile_pictures user.profile_pictures.map {|pic| url_for(pic)}
 # json.profile_pictures do
 #    user.profile_pictures.each do |pic|

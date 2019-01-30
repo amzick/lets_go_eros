@@ -7,6 +7,8 @@ import configureStore from './store/store';
 // window testing
 // import { signup, login, logout } from './util/session_api_util';
 import { revealLocation } from './util/ui_util';
+import * as UserApiUtil from './util/user_api_util';
+import { fetchGenders, fetchEthnicities } from './actions/user_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,6 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.revealLocation = revealLocation;
+  window.fetchGenders = fetchGenders;
+  window.fetchEthnicities = fetchEthnicities;
+  window.UserApiUtil = UserApiUtil;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

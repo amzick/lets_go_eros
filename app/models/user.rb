@@ -142,6 +142,12 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
     self.password_digest = BCrypt::Password.create(password)
   end
 
+  # https://stackoverflow.com/questions/819263/get-persons-age-in-ruby
+  def age
+    result = Date.today.year - birthday.year
+    result -= 1 if Date.today < birthday + result.years
+    result
+  end
   #other functions
 
 

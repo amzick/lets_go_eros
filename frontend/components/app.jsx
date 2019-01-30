@@ -12,7 +12,7 @@ import HomeContainer from '../components/home/home_container';
 
 //Testing
 import Logout from '../components/logout/logout';
-import SignupFormContainer from '../components/session_form/signup_form_container';
+import SignupFormContainer from './session_form/__signup_form_container';
 
 
 

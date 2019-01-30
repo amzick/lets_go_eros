@@ -31,6 +31,21 @@
   align-items: center;
 }
 
+.nav-left * {
+  font-size: 20px;
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  color: #f5f8fb;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-left > a {
+  display: inline-block;
+  min-width: 170px;
+  /* padding: 0 10px; */
+  padding-left: -20px;
+}
+
 .nav-left > a:hover {
   color:white;
 }
@@ -55,6 +70,14 @@
   padding: 30px;
   justify-content: space-between; 
   align-items: center;
+}
+
+.nav-right > button {
+  font-size: 20px;
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  color: #f5f8fb;
+  -webkit-font-smoothing: antialiased;
 }
 
 .nav-right-icon {

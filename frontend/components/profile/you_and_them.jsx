@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const msp = state => {
-  return ({
+// const msp = state => {
+//   return ({
 
-  });
-};
+//   });
+// };
 
-const mdp = dispatch => {
-  return ({
+// const mdp = dispatch => {
+//   return ({
 
-  });
-};
+//   });
+// };
 
 class YouAndThem extends React.Component {
 
@@ -28,4 +28,4 @@ class YouAndThem extends React.Component {
   }
 }
 
-export default connect(msp, mdp)(YouAndThem);
+export default YouAndThem;

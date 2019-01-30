@@ -5,12 +5,12 @@
 	/* headers */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
-  font-family: GT America,Helvetica,Helvitca Neue;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
 }
 
 /* regular */
-body, button, input, textare {
-  font-family: GT America,sans-serif;
+body, button, input, textare, p, div {
+  font-family: 'GT America','IBM Plex Sans', sans-serif;
   font-size: 15px;
 }
 

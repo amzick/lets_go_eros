@@ -1,19 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import HeartMessageButtons from './heart_message_buttons';
 
-const msp = state => {
-  return ({
-    currentUser: state.entities.users[state.session.id],
-  });
-};
+// const msp = state => {
+//   return ({
+//     currentUser: state.entities.users[state.session.id],
+//   });
+// };
 
-const mdp = dispatch => {
-  return ({
+// const mdp = dispatch => {
+//   return ({
 
-  });
-};
+//   });
+// };
 
 class ProfileHeader extends React.Component {
 
@@ -36,14 +36,16 @@ class ProfileHeader extends React.Component {
         <div className="profile-header-inner">
           <div className="profile-header-left">
             <div className="profile-picture-thumb">
-              <img src="https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg" />
+              {/* <img src="https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg" /> */}
+              <img src="https://randomuser.me//api//portraits//women//68.jpg" />
             </div>
             <div className="profile-info-div">
               <h1>{pageUser.fname}</h1>
               <div className="profile-age-location-match">
-                <span>{randomAge}</span>
+                <p>{pageUser.age}</p>
                 <span>•</span>
-                <span>{randomLocation}</span>
+                <span>{pageUser.city}, {pageUser.state}</span>
+                {/* <span>Super freaking long, {pageUser.state}</span> */}
                 {pageUser.id === currentUser.id ? null : <span>•</span>}
                 {pageUser.id === currentUser.id ? null : <span>{randomMatchPercentage}% Match</span>}
               </div>
@@ -59,4 +61,4 @@ class ProfileHeader extends React.Component {
   }
 }
 
-export default connect(msp, mdp)(ProfileHeader);
+export default ProfileHeader;

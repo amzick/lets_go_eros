@@ -1,31 +1,146 @@
 .profile-header {
-
+  width: 100%;
+  max-height: 200px;
+  /* max-height: 200px; */
+  background-color: #104da1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding-bottom: 35px;
 }
 
 .profile-header * {
   background-color: #104da1;
+  color: #f5f8fb;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
 }
 .profile-header-spacer {
-  min-height: 200px;
+  min-height: 50px;
 }
 
 .profile-header-inner {
-  position: relative;
-  width: 1000px;
+  /* border: solid 1px white; */
+  width: 100%;
+  height: 150px;
+  box-sizing: border-box;
   padding-left: 60px;
   padding-right: 60px;
-  marin-left: auto;
+  margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  /* padding-bottom: 35px; */
 }
 
 .profile-header-left {
+  /* border: solid 1px green;
+  background-color: green; */
+  min-width: 555px;
+  height: auto;
   display:flex;
   flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  /* position: relative;  */
+  /* float: left; */
 }
 
 .profile-picture-thumb {
-  max-width: 180px;
   max-height: 180px;
+  min-width: 180px;
+  max-width: 180px;
   overflow: hidden;
   border-radius: 50%;
+  margin: 0px 20px -65px;
+  /* position: absolute;
+  top: -40px;
+  left: -185px; */
+  /* cursor: pointer; */
+
+}
+
+.profile-info-div {
+  /* border: solid 1px yellow; */
+  width: auto;
+  /* padding-left: 25px; */
+  max-height: 107px;
+  /* white-space: nowrap; */
+}
+
+.profile-info-div > h1 {
+  /* border: dashed 1px red; */
+  width: 100%;
+  font-size: 35px;
+  line-height: 50px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  color: #f5f8fb;
+  -webkit-font-smoothing: antialiased;
+}
+
+.profile-age-location-match {
+  /* padding-top: 5px; */
+}
+
+.profile-age-location-match > p {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  color: #f5f8fb;
+  -webkit-font-smoothing: antialiased;
+}
+
+.profile-age-location-match > span {
+  font-size: 20px;
+  /* letter-spacing: 1px; */
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  color: #f5f8fb;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 10px;
+}
+
+.profile-header-right {
+  /* border: solid 1px pink; */
+  height: auto;
+}
+
+.heart-message-buttons {
+  /* border: solid 1px purple; */
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.heart-message-buttons > button {
+  border: solid 1px #f5f8fb;
+  display: flex;
+  flex-direction: row;
+  
+  min-width: 150px;
+  min-height: 46px;
+  font-size: 20px;
+  /* letter-spacing: 1px; */
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  color: #f5f8fb;
+  -webkit-font-smoothing: antialiased;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8px;
+}
+
+.heart-message-buttons > button * {
+  padding: 0 5px;
+}
+
+.heart-message-buttons > button:hover {
+  color: pink;
+  border: solid 1px white;
 }

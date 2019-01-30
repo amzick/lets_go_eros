@@ -1,17 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-const msp = state => {
-  return ({
+// const msp = state => {
+//   return ({
 
-  });
-};
+//   });
+// };
 
-const mdp = dispatch => {
-  return ({
+// const mdp = dispatch => {
+//   return ({
 
-  });
-};
+//   });
+// };
 
 class HeartMessageButtons extends React.Component {
 
@@ -22,11 +22,11 @@ class HeartMessageButtons extends React.Component {
   render() {
     return (
       <div className='heart-message-buttons'>
-        <button>Heart</button>
-        <button>Message</button>
+        <button><i className="fas fa-heart"></i><span>Heart</span></button>
+        <button><i className="fas fa-envelope"></i><span>Message</span></button>
       </div>
     )
   }
 }
 
-export default connect(msp, mdp)(HeartMessageButtons);
+export default HeartMessageButtons;
