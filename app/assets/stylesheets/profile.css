@@ -1,0 +1,31 @@
+.profile-header {
+
+}
+
+.profile-header * {
+  background-color: #104da1;
+}
+.profile-header-spacer {
+  min-height: 200px;
+}
+
+.profile-header-inner {
+  position: relative;
+  width: 1000px;
+  padding-left: 60px;
+  padding-right: 60px;
+  marin-left: auto;
+  margin-right: auto;
+}
+
+.profile-header-left {
+  display:flex;
+  flex-direction: row;
+}
+
+.profile-picture-thumb {
+  max-width: 180px;
+  max-height: 180px;
+  overflow: hidden;
+  border-radius: 50%;
+}

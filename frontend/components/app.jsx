@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 //components
@@ -26,7 +26,8 @@ const App = () => {
       <AuthRoute exact path="/signup" component={WhoAreYouContainer} />
       <AuthRoute exact path='/onboarding' component={OnboardingContainer} />
       <ProtectedRoute exact path='/home' component={HomeContainer} />
-      <ProtectedRoute path={`/users/:id`} component={ProfileContainer} />
+      <ProtectedRoute exact path ='/profile' component={ProfileContainer} />
+      <ProtectedRoute path={`/profiles/:id`} component={ProfileContainer} />
     </Switch>
   );
 };
