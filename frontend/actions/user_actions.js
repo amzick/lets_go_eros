@@ -26,13 +26,7 @@ export const fetchUser = (userId) => {
 
 export const fetchUsers = () => {
   return (dispatch) => {
-    return UserApiUtil.fetchUsers()
-      .then(resp => {
-        // dispatch(receiveUsers(resp));
-        Object.keys(resp).forEach((userId) => {
-          dispatch(fetchUser(userId));
-        });
-      });
+    UserApiUtil.fetchUsers().then(resp => dispatch(receiveUsers(resp)));
   };
 };
 

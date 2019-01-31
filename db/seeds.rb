@@ -212,7 +212,9 @@ User.create!(
   password: "pa$$word",
   fname: "Demi",
   birthday: Date.new(1989,9,12),
-  location: 11216,
+  location: 44111,
+  city: "Cleveland",
+  state: "OH",
   genders: [Gender.find_by(gender:"Agender"),Gender.find_by(gender:"Two Spirit")],
   ethnicities: [Ethnicity.find_by(ethnicity:"Asian"),Ethnicity.find_by(ethnicity:"Indian")],
   summary: demi_summary,
@@ -240,18 +242,35 @@ end
 
 # come up with different New York zips
 NEW_YORK_ZIPS=(10001..10041).to_a+(10301..10314).to_a+(10451..10475).to_a+(11101..11106).to_a+(11201..11245).to_a
-LA_ZIPS=(90001..90021).to_a+(90026..90039).to_a+(90052..90072).to_a
 # come up with different LA zips
+LA_ZIPS=(90001..90021).to_a+(90026..90039).to_a+(90052..90072).to_a
+
+def summary_maker
+  (Faker::BojackHorseman.quote + " " + Faker::Book.title + " " +  Faker::BojackHorseman.tongue_twister +  " " +  Faker::Company.industry +  " " +  Faker::Company.profession +  " " +  Faker::Dessert.variety +  " " +  Faker::Educator.university +  " " +  Faker::Educator.course +  " " +  Faker::Esport.game +  " " +  Faker::Hipster.paragraph +  " " +  Faker::Music.band +  " " +  Faker::Music.album)
+end
+
+# height along a gaussian curve using ruby stats
+# https://stackoverflow.com/questions/5825680/code-to-generate-gaussian-normally-distributed-random-numbers-in-ruby
+# http://www.usablestats.com/lessons/normal
+
+height_gaussian = Rubystats::NormalDistribution.new(68,4)
+
 
 # 50 in new york, 50 in la, 100 random
 200.times do |idx|
 
   if idx < 100 && idx.even?
     zip_code = NEW_YORK_ZIPS.sample
+    city = ["New York City", "Manhattan", "Bronx", "Brooklyn", "Staten Island"].sample
+    state = "NY"
   elsif idx < 100
     zip_code = LA_ZIPS.sample
+    city = "Los Angeles"
+    state = "CA"
   else
     zip_code = Faker::Address.zip[0..4]
+    city = Faker::Address.city
+    state = Faker::Address.state_abbr  
   end
 
   User.create!(
@@ -261,7 +280,11 @@ LA_ZIPS=(90001..90021).to_a+(90026..90039).to_a+(90052..90072).to_a
     genders: gender_picker,
     ethnicities: ethnicity_picker,
     birthday: Faker::Date.birthday(19,65),
-    location: zip_code
+    location: zip_code,
+    city: city,
+    state: state,
+    summary: summary_maker,
+    height_in_inches: height_gaussian.rng
   )
 end
 

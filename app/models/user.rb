@@ -9,11 +9,13 @@
 #  password_digest  :string           not null
 #  session_token    :string           not null
 #  birthday         :date             not null
-#  location         :integer          not null
+#  location         :string           not null
 #  summary          :text
 #  height_in_inches :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  city             :string
+#  state            :string
 #
 
 class User < ApplicationRecord

@@ -47,7 +47,7 @@ class UserCard extends React.Component {
           </div>
           <div className="usercard-text">
             <span className="usercard-info">{cardUser.fname}, {cardUser.age}</span>
-            <span className="usercard-location">{cardUser.city ? cardUser.city : "Loading..."}, {cardUser.state ? cardUser.state : "..."}</span>
+            <span className="usercard-location">{cardUser.city ? cardUser.city : "No city..."}, {cardUser.state ? cardUser.state : "XX"}</span>
             <div className={matchClass}>{randomMatchPercentage}%</div>
           </div>
         </div>

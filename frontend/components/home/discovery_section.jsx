@@ -27,7 +27,7 @@ class DiscoverySection extends React.Component {
 
   componentDidMount() {
     console.log("mounting discovery section");
-    this.props.fetchUsers().then(() => console.log('users fetched'));
+    this.props.fetchUsers();
     this.setState({ mounted: true });
     //todo -> get fetch users to get location at same time
 
@@ -39,7 +39,7 @@ class DiscoverySection extends React.Component {
     const randomUsers = [];
     if (this.state.mounted) {
       for (let i = 0; i < 30; i++) {
-        const rand = Math.floor(Math.random() * (1512 - 1295 + 1) + 1295);
+        const rand = Math.floor(Math.random() * (1917 - 1717 + 1) + 1717);
         randomUsers.push(allUsers[rand]);
       }
     }

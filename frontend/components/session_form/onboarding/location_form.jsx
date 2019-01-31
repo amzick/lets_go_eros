@@ -32,7 +32,10 @@ class LocationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+
     this.state.newUser = props.newUser;
+    this.state.city = "";
+    this.state.state = "";
     this.state.errors = props.errors;
     this.state.submitClass = (props.newUser.location === "" ? "invalid-submit" : "valid-submit");
     this.state.disabled = (props.newUser.location === "" ? "disabled" : "");
@@ -52,8 +55,11 @@ class LocationForm extends React.Component {
       "birthday": new Date(this.state.newUser.birthday),
       "gender_ids": this.state.newUser.genders,
       "ethnicity_ids": this.state.newUser.ethnicities,
-      "location": this.state.newUser.location
+      "location": this.state.newUser.location,
+      "city": this.state.city,
+      "state": this.state.state
     });
+    debugger
     this.props.signup(newUser);
   }
 
@@ -73,9 +79,10 @@ class LocationForm extends React.Component {
             (resp) => {
               this.setState({ errors: [], disabled: "", submitClass: "valid-submit" },
                 () => {
+                  let that = this;
                   revealLocation(this.state.newUser.location)
                     .then(resp => {
-                      this.setState({ messages: [`Ahh, ${resp.places[0]["place name"]}`], errors: [] });
+                      that.setState({ messages: [`Ahh, ${resp.places[0]["place name"]}`], errors: [], city: resp.places[0]["place name"], state: resp.places[0]["state abbreviation"] });
                     },
                       errors => {
                         this.setState({ errors: ["Please enter an existing zip code"] });
@@ -90,6 +97,7 @@ class LocationForm extends React.Component {
       } else {
         this.setState({ errors: ["Location required"], disabled: "disabled", submitClass: "invalid-submit" });
       }
+      console.log(this.state.city, this.state.state);
     };
   };
 
