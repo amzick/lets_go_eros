@@ -52,7 +52,7 @@ class GenderForm extends React.Component {
     let setUser;
     let badIdx = this.state.newUser.genders.indexOf(undefined);
     if (idx === -1) {
-      console.log("adding gender");
+      
       setUser = merge({}, this.state.newUser);
       setUser.genders.push(event.target.value);
       this.setState({ newUser: setUser }, () => {
@@ -64,10 +64,10 @@ class GenderForm extends React.Component {
           // this.validateOptions();
         }
         this.validateOptions();
-        console.log(this.state.newUser.genders);
+        
       });
     } else {
-      console.log("removing gender");
+      
       setUser = merge({}, this.state.newUser);
       setUser.genders.splice(idx, 1);
       this.setState({ newUser: setUser }, () => {
@@ -77,7 +77,7 @@ class GenderForm extends React.Component {
           this.setState({ newUser: setUser }, this.validateOptions);
         }
         this.validateOptions();
-        console.log(this.state.newUser.genders);
+        
 
       });
     }

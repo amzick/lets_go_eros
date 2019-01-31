@@ -52,7 +52,7 @@ class EthnicityForm extends React.Component {
     let setUser;
     let badIdx = this.state.newUser.ethnicities.indexOf(undefined);
     if (idx === -1) {
-      console.log("adding race");
+      
       setUser = merge({}, this.state.newUser);
       setUser.ethnicities.push(event.target.value);
       this.setState({ newUser: setUser }, () => {
@@ -64,11 +64,11 @@ class EthnicityForm extends React.Component {
           // this.validateOptions();
         }
         this.validateOptions();
-        console.log(this.state.newUser.ethnicities);
+        
 
       });
     } else {
-      console.log("removing race");
+      
       setUser = merge({}, this.state.newUser);
       setUser.ethnicities.splice(idx, 1);
       this.setState({ newUser: setUser }, () => {
@@ -78,7 +78,7 @@ class EthnicityForm extends React.Component {
           this.setState({ newUser: setUser }, this.validateOptions);
         }
         this.validateOptions();
-        console.log(this.state.newUser.ethnicities);
+        
 
       });
     }

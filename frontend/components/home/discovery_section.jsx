@@ -26,7 +26,7 @@ class DiscoverySection extends React.Component {
   }
 
   componentDidMount() {
-    console.log("mounting discovery section");
+    
     this.props.fetchUsers();
     this.setState({ mounted: true });
     //todo -> get fetch users to get location at same time

@@ -59,7 +59,7 @@ class LocationForm extends React.Component {
       "city": this.state.city,
       "state": this.state.state
     });
-    debugger
+    
     this.props.signup(newUser);
   }
 
@@ -97,7 +97,7 @@ class LocationForm extends React.Component {
       } else {
         this.setState({ errors: ["Location required"], disabled: "disabled", submitClass: "invalid-submit" });
       }
-      console.log(this.state.city, this.state.state);
+      
     };
   };
 

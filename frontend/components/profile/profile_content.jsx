@@ -5,7 +5,7 @@ import YouAndThem from './you_and_them';
 
 
 const msp = state => {
-  // console.log("msp");
+  
   return ({
     // genders: state.entities.genders,
     // ethnicities: state.entities.ethnicities,
