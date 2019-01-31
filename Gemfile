@@ -35,6 +35,9 @@ gem 'jquery-rails'
 #some kinda rails 5.2 bullshit
 gem 'bootsnap'
 
+  gem 'faker'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -47,7 +50,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'pry-rails'
-  gem 'faker'
   gem 'factory_bot'
   gem 'rubystats'
 end
