@@ -18,6 +18,8 @@ const mdp = dispatch => {
 class Navigation extends React.Component {
   render() {
     // <img src="https://www.logolynx.com/images/logolynx/6a/6ae1e4dd5837d09a8cd998dbc4ae9c26.jpeg" />
+    const profilePictureLastIndex = pageUser.profile_pictures.length - 1;
+    const profilePictureSrc = pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
 
     return (
       <header className="navigation-header">
@@ -30,7 +32,7 @@ class Navigation extends React.Component {
         <div className="nav-right">
           <span className="nav-right-icon"><i className="fas fa-heart"></i></span>
           <span className="nav-right-icon"><i className="fas fa-comments"></i></span>
-          <NavLink to={"/profile"} className="nav-user-img"><img src="https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg" alt="profile picture" /></NavLink>
+          <NavLink to={"/profile"} className="nav-user-img"><img src={profilePictureSrc} alt="profile picture" /></NavLink>
           <button onClick={this.props.logout}>Sign Out</button>
         </div>
 
