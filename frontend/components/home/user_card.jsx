@@ -23,8 +23,8 @@ class UserCard extends React.Component {
 
   render() {
     const { cardUser } = this.props;
-    const profilePictureLastIndex = pageUser.profile_pictures.length - 1;
-    const profilePictureSrc = pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+    const profilePictureLastIndex = cardUser.profile_pictures.length - 1;
+    const profilePictureSrc = cardUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
 
     // const randomAge = Math.floor(Math.random() * (65 - 18 + 1) + 18);
     const randomMatchPercentage = Math.floor(Math.random() * 100);
