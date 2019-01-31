@@ -211,7 +211,7 @@ User.create!(
   email: "demoUser",
   password: "pa$$word",
   fname: "Demi",
-  birthday: Date.new(1989,9,12),
+  birthday: Date.new(1954,10,17),
   location: 44111,
   city: "Cleveland",
   state: "OH",
@@ -219,6 +219,21 @@ User.create!(
   ethnicities: [Ethnicity.find_by(ethnicity:"Asian"),Ethnicity.find_by(ethnicity:"Indian")],
   summary: demi_summary,
   height_in_inches: 62
+)
+
+#demonstrate email
+User.create!(
+  email: "aaron.zick@gmail.com",
+  password: "password",
+  fname: "Aaron",
+  birthday: Date.new(1989,9,12),
+  location: 11216,
+  city: "Brooklyn",
+  state: "NY",
+  genders: [Gender.find_by(gender:"Man")],
+  ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
+  summary: summary_maker,
+  height_in_inches: 70
 )
 
 # function to return a unique array of valid genders
