@@ -29,6 +29,9 @@ class ProfileHeader extends React.Component {
     const randomLocation = Math.floor(Math.random() * (99999 - 10000 + 1) + 10000);
     const randomMatchPercentage = Math.floor(Math.random() * 100);
 
+    const profilePictureLastIndex = pageUser.profile_pictures.length-1;
+    const profilePictureSrc = pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+
 
     return (
       <div className="profile-header" >
@@ -37,7 +40,7 @@ class ProfileHeader extends React.Component {
           <div className="profile-header-left">
             <div className="profile-picture-thumb">
               {/* <img src="https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg" /> */}
-              <img src="https://randomuser.me//api//portraits//women//68.jpg" />
+              <img src={profilePictureSrc} />
             </div>
             <div className="profile-info-div">
               <h1>{pageUser.fname}</h1>
