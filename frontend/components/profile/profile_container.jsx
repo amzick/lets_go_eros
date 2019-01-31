@@ -10,10 +10,12 @@ import ProfileContent from './profile_content';
 
 const msp = (state, ownProps) => {
   const id = parseInt(ownProps.match.params.id) || state.session.id;
-
+  
   return {
     currentUser: state.entities.users[state.session.id],
     pageUser: state.entities.users[id] || {},
+    genders: state.entities.genders,
+    ethnicities: state.entities.ethnicities,
   };
 };
 
@@ -29,7 +31,6 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     // this.props.pageUser.id ? this.props.fetchUser(this.props.pageUser.id) : this.props.fetchUser(this.props.currentUser.id);
-    console.log('mounted');
     this.props.match.path === "/profile" ? this.props.fetchUser(this.props.currentUser.id) : this.props.fetchUser(this.props.match.params.id);
     // fetch user location info -> handled in fetchUser
     // fetch user age using birthday -> handled in fetchUser
@@ -41,7 +42,6 @@ class ProfileContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("component updated");
 
     if (this.props.pageUser.id !== prevProps.pageUser.id) {
       if (this.props.match.path === "/profile") {
@@ -50,16 +50,20 @@ class ProfileContainer extends React.Component {
         this.props.fetchUser(this.props.match.params.id);
       }
     }
+    // this.props.fetchGenders();
+    // this.props.fetchEthnicities();
+
   }
 
 
   render() {
-    const { currentUser, pageUser } = this.props;
+    const { currentUser, pageUser, genders, ethnicities } = this.props;
+    
     return (
       <div className="base">
         <Navigation />
         <ProfileHeader currentUser={currentUser} pageUser={pageUser} />
-        <ProfileContent currentUser={currentUser} pageUser={pageUser} />
+        <ProfileContent currentUser={currentUser} pageUser={pageUser} genders={genders} ethnicities={ethnicities} />
       </div>
     )
   }

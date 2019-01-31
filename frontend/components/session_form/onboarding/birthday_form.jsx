@@ -6,6 +6,7 @@ import { validateField } from "../../../util/ui_util";
 import { updateField, updateNewUser } from '../../../actions/ui_actions';
 import { clearErrors } from '../../../actions/session_actions';
 import RenderDynamicErrors from '../../errors/render_dynamic_errors';
+import RenderDynamicMessages from '../../errors/render_dynamic_messages';
 
 
 const msp = state => {
@@ -43,6 +44,7 @@ class BirthdayForm extends React.Component {
     this.state.year = "";
     this.state.month = "";
     this.state.day = "";
+    this.state.messages = [];
     // fix
     this.state.submitClass = "invalid-submit";
     this.state.disabled = "disabled";
@@ -60,7 +62,7 @@ class BirthdayForm extends React.Component {
 
           validateField("birthday", date)
             .then((resp) => {
-              this.setState({ errors: [], disabled: "", submitClass: "valid-submit" },
+              this.setState({ errors: [], disabled: "", submitClass: "valid-submit", messages: [`Oooh, a ${resp.sign}!`] },
                 () => {
 
                   this.props.updateNewUser({ field: resp.field, value: (new Date(resp.value)) })
@@ -68,7 +70,7 @@ class BirthdayForm extends React.Component {
             },
               (bad) => {
 
-                this.setState({ errors: bad.responseJSON, disabled: "disabled", submitClass: "invalid-submit" });
+                this.setState({ errors: bad.responseJSON, disabled: "disabled", submitClass: "invalid-submit", messages: [] });
               })
         }
       });
@@ -88,7 +90,7 @@ class BirthdayForm extends React.Component {
 
   render() {
 
-    
+
 
     const { yearsArray } = this.props;
     let daysInMonth = 0;
@@ -164,7 +166,7 @@ class BirthdayForm extends React.Component {
             </select>
 
           </label>
-          <RenderDynamicErrors errors={this.state.errors} />
+          {this.state.errors.length === 0 ? <RenderDynamicMessages messages={this.state.messages} /> : <RenderDynamicErrors errors={this.state.errors} />}
           <button className={this.state.submitClass} disabled={this.state.disabled}>next</button>
 
         </form>

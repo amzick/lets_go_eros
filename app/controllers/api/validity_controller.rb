@@ -8,6 +8,7 @@ class Api::ValidityController < ApplicationController
       value = CGI::unescape(params[:value])
     when "birthday"
       value = Date.parse(params[:value])
+      astrology_sign = User.new(birthday:value).astrology_sign
     when "genders", "ethnicities"
       value = params[:value].split(",").map {|el| el.to_i}
     else
@@ -18,11 +19,16 @@ class Api::ValidityController < ApplicationController
       @user = User.new(field => value)
     else
       @user = User.new
-      @user.gender_ids = value
+      @user.gender_ids = value if field == "genders"
+      @user.ethnicity_ids = value if field == "ethnicities"
     end
 
     if @user.valid_attribute?(field)
-      render json: {field:field,value:value}, status: 200
+      unless field == "birthday"
+        render json: {field:field,value:value}, status: 200
+      else
+        render json: {field:field,value:value,sign:astrology_sign}, status:200
+      end
     else
       render json: @user.errors[field], status: 400
     end

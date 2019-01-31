@@ -52,6 +52,7 @@ class EthnicityForm extends React.Component {
     let setUser;
     let badIdx = this.state.newUser.ethnicities.indexOf(undefined);
     if (idx === -1) {
+      console.log("adding race");
       setUser = merge({}, this.state.newUser);
       setUser.ethnicities.push(event.target.value);
       this.setState({ newUser: setUser }, () => {
@@ -63,8 +64,11 @@ class EthnicityForm extends React.Component {
           // this.validateOptions();
         }
         this.validateOptions();
+        console.log(this.state.newUser.ethnicities);
+
       });
     } else {
+      console.log("removing race");
       setUser = merge({}, this.state.newUser);
       setUser.ethnicities.splice(idx, 1);
       this.setState({ newUser: setUser }, () => {
@@ -74,9 +78,11 @@ class EthnicityForm extends React.Component {
           this.setState({ newUser: setUser }, this.validateOptions);
         }
         this.validateOptions();
+        console.log(this.state.newUser.ethnicities);
+
       });
     }
-    
+
   }
 
   itemChecked(id) {
@@ -108,7 +114,7 @@ class EthnicityForm extends React.Component {
       const isChecked = this.itemChecked(option.id);
       return <label onClick={this.handleToggle} key={option.id}>{option.ethnicity}<input type="checkbox" value={option.id} defaultChecked={isChecked} readOnly={false} /></label>
     });
-    
+
     return (
       <div className="dynamic-input-div">
         <h1>Which ethnicity best describes you?</h1>

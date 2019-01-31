@@ -4,6 +4,7 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    
     if @user.save
       login(@user)
       # render json response.. for now show (todo: profile)
@@ -32,7 +33,7 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :fname, :password, :birthday, :location)
+    params.require(:user).permit(:email, :fname, :password, :birthday, :location, {gender_ids: []}, {ethnicity_ids: []})
   end
 
 end

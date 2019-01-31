@@ -7,6 +7,7 @@
   flex-direction: row;
   align-items: flex-end;
   padding-bottom: 35px;
+  border-bottom: solid 1px #76a8e2;
 }
 
 .profile-header * {
@@ -48,6 +49,7 @@
 }
 
 .profile-picture-thumb {
+  border: solid 1px #76a8e2;
   max-height: 180px;
   min-width: 180px;
   max-width: 180px;
@@ -143,4 +145,62 @@
 .heart-message-buttons > button:hover {
   color: pink;
   border: solid 1px white;
+}
+
+.profile-content {
+  /* border: solid 1px red; */
+  height: auto;
+  width: 1000px;
+  margin: 40px auto 0;
+  padding: 20px 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile-content-2-3 {
+  /* border: solid 1px blue; */
+  /* background-color: white; */
+  /* box-sizing: border-box; */
+  height: auto;
+  width: 60%;
+  /* padding-right: 50px;  */
+}
+
+.profile-content-1-3 {
+  border: solid 1px green;
+  height: auto;
+  width: 35%;
+
+}
+
+.profile-text-card {
+  background-color: white;
+  border-radius: 4px;
+  min-height: 165px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  font-size: 18px;
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  color: black;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.profile-text-card > h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.null-info {
+  font-size: 18px;
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  font-style: italic;
+  color: #aaacae;
 }

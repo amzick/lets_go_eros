@@ -50,6 +50,8 @@ class LocationForm extends React.Component {
       "password": this.state.newUser.password,
       "fname": this.state.newUser.fname,
       "birthday": new Date(this.state.newUser.birthday),
+      "gender_ids": this.state.newUser.genders,
+      "ethnicity_ids": this.state.newUser.ethnicities,
       "location": this.state.newUser.location
     });
     this.props.signup(newUser);

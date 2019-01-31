@@ -17,7 +17,6 @@
 #
 
 class User < ApplicationRecord
-  # include Rails.application.routes.url_helpers
   
   # TODO bonus: custom email validation, use to send mailers
   validates :email, presence:true, uniqueness:true
@@ -142,14 +141,53 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
     self.password_digest = BCrypt::Password.create(password)
   end
 
+  #other functions///////////////////////////////////////////
+
+
   # https://stackoverflow.com/questions/819263/get-persons-age-in-ruby
   def age
     result = Date.today.year - birthday.year
     result -= 1 if Date.today < birthday + result.years
     result
   end
-  #other functions
 
+  def height
+    return nil if self.height_in_inches.nil?
+    feet = self.height_in_inches / 12
+    inches = self.height_in_inches % 12
+    return inches.zero? ? "#{feet}\'"  : "#{feet}\' #{inches}\""
+  end
+
+  def astrology_sign
+    month = birthday.month
+    day = birthday.day
+    if (month == 3 && day >= 21) || (month==4 && day <= 19 )
+      "Aries" 
+    elsif (month == 4 && day >= 20) || (month==5 && day <= 20 )
+      "Taurus" 
+    elsif (month == 5 && day >= 21) || (month==6 && day <= 20 )
+      "Gemini" 
+    elsif (month == 6 && day >= 21) || (month==7 && day <= 22 )
+      "Cancer" 
+    elsif (month == 7 && day >= 23) || (month==8 && day <= 22 )
+      "Leo" 
+    elsif (month == 8 && day >= 23) || (month==9 && day <= 22 )
+      "Virgo" 
+    elsif (month == 9 && day >= 23) || (month==10 && day <= 22 )
+      "Libra" 
+    elsif (month == 10 && day >= 23) || (month==11 && day <= 21 )
+      "Scorpio" 
+    elsif (month == 11 && day >= 22) || (month==12 && day <= 21 )
+      "Sagittarius" 
+    elsif (month == 12 && day >= 22) || (month==1 && day <= 19 )
+      "Capricorn" 
+    elsif (month == 1 && day >= 20) || (month==2 && day <= 18 )
+      "Aquarius" 
+    elsif (month == 2 && day >= 19) || (month==3 && day <= 20 )
+      "Pisces" 
+    end
+    
+  end
 
   private 
 

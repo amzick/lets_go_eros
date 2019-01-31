@@ -204,6 +204,8 @@ OPENNESS_QUESTIONS.each.with_index do |question,idx|
   end
 end
 
+demi_summary = "Hey! This is the demo account for Aaron Zick's full stack project. My name is Demi. Please click around and enjoy the site. You can contact Aaron with the links at the bottom of the page for more information or to hire him. Please feel free to edit anything after this part of the text! //////////////////////////////////////////////////"
+
 # Demo User
 User.create!(
   email: "demoUser",
@@ -212,7 +214,9 @@ User.create!(
   birthday: Date.new(1989,9,12),
   location: 11216,
   genders: [Gender.find_by(gender:"Agender"),Gender.find_by(gender:"Two Spirit")],
-  ethnicities: [Ethnicity.find_by(ethnicity:"Asian"),Ethnicity.find_by(ethnicity:"Indian")]
+  ethnicities: [Ethnicity.find_by(ethnicity:"Asian"),Ethnicity.find_by(ethnicity:"Indian")],
+  summary: demi_summary,
+  height_in_inches: 62
 )
 
 # function to return a unique array of valid genders
