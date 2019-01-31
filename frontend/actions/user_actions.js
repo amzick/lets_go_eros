@@ -3,6 +3,7 @@ import { revealLocation } from '../util/ui_util';
 
 
 export const RECEIVE_USER = "RECEIVE_USER";
+export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_GENDERS = 'RECEIVE_GENDERS';
 export const RECEIVE_ETHNICITIES = 'RECEIVE_ETHNICITIES';
 
@@ -18,6 +19,18 @@ export const fetchUser = (userId) => {
           resp.state = info.places[0]["state abbreviation"];
         }).then(() => {
           return dispatch(receiveUser(resp));
+        });
+      });
+  };
+};
+
+export const fetchUsers = () => {
+  return (dispatch) => {
+    return UserApiUtil.fetchUsers()
+      .then(resp => {
+        // dispatch(receiveUsers(resp));
+        Object.keys(resp).forEach((userId) => {
+          dispatch(fetchUser(userId));
         });
       });
   };
@@ -46,6 +59,13 @@ const receiveUser = (user) => {
   return {
     type: RECEIVE_USER,
     user
+  };
+};
+
+const receiveUsers = (users) => {
+  return {
+    type: RECEIVE_USERS,
+    users
   };
 };
 

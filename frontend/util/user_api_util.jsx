@@ -6,6 +6,13 @@ export const fetchUser = (userId) => {
   });
 };
 
+export const fetchUsers = () => {
+  return $.ajax({
+    method: "GET",
+    url: 'api/users/',
+  });
+};
+
 export const fetchGenders = () => {
   return $.ajax({
     method: "GET",

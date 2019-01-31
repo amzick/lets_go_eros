@@ -5,6 +5,7 @@ import DiscoverySection from './discovery_section';
 
 
 const msp = state => {
+
   return ({
     currentUser: state.entities.users[state.session.id],
   });
@@ -16,8 +17,20 @@ const mdp = dispatch => {
 };
 
 class HomeContainer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    
+  }
+
+  componentDidMount() {
+    
+  }
+
   render() {
 
+    
+    
     return (
       <div className="base">
         <Navigation />

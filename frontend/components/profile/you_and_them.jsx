@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 // const msp = state => {
 //   return ({
@@ -20,9 +20,10 @@ class YouAndThem extends React.Component {
   }
 
   render() {
+    const {pageUser} = this.props;
     return (
-      <div className='you-and-them-div'>
-        you and them
+      <div className='profile-text-card'>
+        <h2>You &amp; {pageUser.fname}</h2>
       </div>
     )
   }

@@ -8,7 +8,7 @@ import configureStore from './store/store';
 // import { signup, login, logout } from './util/session_api_util';
 import { revealLocation } from './util/ui_util';
 import * as UserApiUtil from './util/user_api_util';
-import { fetchGenders, fetchEthnicities } from './actions/user_actions';
+import { fetchGenders, fetchEthnicities, fetchUsers, fetchUser } from './actions/user_actions';
 import { signup } from './util/session_api_util';
 // end
 
@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchEthnicities = fetchEthnicities;
   window.UserApiUtil = UserApiUtil;
   window.signup = signup;
+  window.fetchUsers = fetchUsers;
+  window.fetchUser = fetchUser;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

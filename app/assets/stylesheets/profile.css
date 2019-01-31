@@ -204,3 +204,56 @@
   font-style: italic;
   color: #aaacae;
 }
+
+.profile-stats {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.profile-details {
+  border: solid 1px red;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.profile-details * {
+  min-height: 52px;
+  font-size: 18px; 
+}
+
+.details-text {
+  width: 90%;
+  padding-right: 10px;
+  margin: auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  color: black;
+}
+
+.details-icon {
+  width: 22px;
+  height: 22px;
+  margin: auto 0;
+  display: flex;
+  justify-content: flex-start;
+
+}
+
+.details-icon > img {
+  display: block;
+  /* border: solid 1px green; */
+  max-width: 22px;
+  max-height: 22px;
+  
+}

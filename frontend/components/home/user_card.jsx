@@ -1,32 +1,59 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { fetchUser } from '../../actions/user_actions';
+import { Link } from 'react-router-dom';
 
-const UserCard = props => {
-  const randomAge = Math.floor(Math.random() * (65 - 18 + 1) + 18);
-  const randomMatchPercentage = Math.floor(Math.random() * 100);
-  let matchClass;
-  switch (true) {
-    case (randomMatchPercentage <= 10):
-      matchClass = "usercard-match-percentage-bad";
-      break;
-    case (randomMatchPercentage >= 90):
-      matchClass = "usercard-match-percentage-good";
-      break;
-    default:
-      matchClass = "usercard-match-percentage";
-      break;
+const msp = state => {
+  return ({
+    // city: state.entities.users
+  });
+};
+
+const mdp = dispatch => {
+  return ({
+    // fetchUser: (userId) => dispatch(fetchUser(userId)),
+  });
+};
+
+class UserCard extends React.Component {
+
+  componentDidMount() {
+
   }
-  return (
-    <div className="usercard-div">
-      <div className="usercard-thumb">
-        <img src="https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg" />
-      </div>
-      <div className="usercard-text">
-        <span className="usercard-info">0123456789ABC, {randomAge}</span>
-        <span className="usercard-location">Long Location name, ST</span>
-        <div className={matchClass}>{randomMatchPercentage}%</div>
-      </div>
-    </div>
-  )
+
+  render() {
+    const { cardUser } = this.props;
+
+    // const randomAge = Math.floor(Math.random() * (65 - 18 + 1) + 18);
+    const randomMatchPercentage = Math.floor(Math.random() * 100);
+    let matchClass;
+    switch (true) {
+      case (randomMatchPercentage <= 10):
+        matchClass = "usercard-match-percentage-bad";
+        break;
+      case (randomMatchPercentage >= 90):
+        matchClass = "usercard-match-percentage-good";
+        break;
+      default:
+        matchClass = "usercard-match-percentage";
+        break;
+    }
+    return (
+
+      <Link to={`/profiles/${cardUser.id}`}>
+        <div className="usercard-div">
+          <div className="usercard-thumb">
+            <img src="https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg" />
+          </div>
+          <div className="usercard-text">
+            <span className="usercard-info">{cardUser.fname}, {cardUser.age}</span>
+            <span className="usercard-location">{cardUser.city ? cardUser.city : "Loading..."}, {cardUser.state ? cardUser.state : "..."}</span>
+            <div className={matchClass}>{randomMatchPercentage}%</div>
+          </div>
+        </div>
+      </Link>
+    )
+  }
 }
 
-export default UserCard;
+export default connect(msp, mdp)(UserCard);
