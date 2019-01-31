@@ -83,7 +83,12 @@ class LocationForm extends React.Component {
                   revealLocation(this.state.newUser.location)
                     .then(resp => {
 
-                      that.setState({ messages: [`Ahh, ${resp.places[0]["place name"]}`], errors: [], city: resp.places[0]["place name"], state: resp.places[0]["state abbreviation"] });
+                      if (undefined === resp.results[0].address_components[7]) {
+
+                        that.setState({ messages: [`Ahh, ${resp.results[0].address_components[1].long_name}`], errors: [], city: resp.results[0].address_components[1].long_name, state: resp.results[0].address_components[3].short_name });
+                      } else {
+                        that.setState({ errors: ["Please enter an existing zip code"] });
+                      }
                     },
                       errors => {
 

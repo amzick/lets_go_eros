@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchUsers = fetchUsers;
   window.fetchUser = fetchUser;
   window.logout= logout;
+  window.revealLocation = revealLocation;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

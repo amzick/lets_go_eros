@@ -1,5 +1,0 @@
-syntax
-
-user.profile_pictures.attach(io:File.open("...fullpath...jp"), filename: "filename.jpg")
-
-user.profile_pictures.attached?

@@ -1,0 +1,15 @@
+aws
+
+user.profile_pictures.attach(io:File.open("...fullpath...jp"), filename: "filename.jpg")
+user.profile_pictures.attached?
+
+credentials
+(export) EDITOR = "code --wait" bin/rails credentials/edit
+bundle exec rails credentials:edit
+
+keys
+hiding:
+https://github.com/appacademy/curriculum/blob/master/full-stack-project/resources/security/hide_api_keys.md
+
+access: 
+Rails.application.credentials.keyname[:api_key]

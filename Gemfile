@@ -37,6 +37,7 @@ gem 'bootsnap'
 
 gem 'faker'
 gem 'rubystats'
+gem 'geocoder'
 
 
 
