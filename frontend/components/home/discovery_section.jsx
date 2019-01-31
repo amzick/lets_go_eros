@@ -36,10 +36,14 @@ class DiscoverySection extends React.Component {
   render() {
     // todo: fetch actual users
     const { allUsers } = this.props;
+    
     const randomUsers = [];
-    if (this.state.mounted) {
+
+    if (this.state.mounted && Object.keys(allUsers).length > 30) {
       for (let i = 0; i < 30; i++) {
-        const rand = Math.floor(Math.random() * (1917 - 1717 + 1) + 1717);
+        let allUsersLength = Object.keys(allUsers).length;
+        
+        let rand = Math.floor(Math.random() * (parseInt(Object.keys(allUsers)[allUsersLength-1]) - parseInt(Object.keys(allUsers)[0]) + 1) + parseInt(Object.keys(allUsers)[0]));
         randomUsers.push(allUsers[rand]);
       }
     }

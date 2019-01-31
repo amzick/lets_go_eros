@@ -59,7 +59,7 @@ class LocationForm extends React.Component {
       "city": this.state.city,
       "state": this.state.state
     });
-    
+
     this.props.signup(newUser);
   }
 
@@ -82,9 +82,11 @@ class LocationForm extends React.Component {
                   let that = this;
                   revealLocation(this.state.newUser.location)
                     .then(resp => {
+
                       that.setState({ messages: [`Ahh, ${resp.places[0]["place name"]}`], errors: [], city: resp.places[0]["place name"], state: resp.places[0]["state abbreviation"] });
                     },
                       errors => {
+
                         this.setState({ errors: ["Please enter an existing zip code"] });
                       });
                 });
@@ -97,7 +99,7 @@ class LocationForm extends React.Component {
       } else {
         this.setState({ errors: ["Location required"], disabled: "disabled", submitClass: "invalid-submit" });
       }
-      
+
     };
   };
 
