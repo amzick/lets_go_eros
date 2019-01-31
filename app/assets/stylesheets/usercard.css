@@ -3,25 +3,28 @@
   display:flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
   background: transparent;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 10px;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
 }
 
 .usercard-row::-webkit-scrollbar {
   height: 10px;
+  top: -20px;
+
 }
 
 .usercard-row::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px lightgray; 
-  border-radius: 10px;
+  /* box-shadow: inset 0 0 5px lightgray;  */
+  /* border-radius: 10px; */
 }
 
 .usercard-row::-webkit-scrollbar-thumb {
   background: #3260c7;
-  border: solid 1px #3260c7;
+  border: solid 2px #76a8e2;
+  
   border-radius: 10px;
   opacity: 0.5;
 }

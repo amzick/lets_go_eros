@@ -6,6 +6,7 @@ import { fetchUser, fetchGenders, fetchEthncities } from '../../actions/user_act
 import Navigation from '../home/navigation';
 import ProfileHeader from './profile_header';
 import ProfileContent from './profile_content';
+import LoggedInFooter from '../home/logged_in_footer';
 
 
 const msp = (state, ownProps) => {
@@ -65,6 +66,7 @@ class ProfileContainer extends React.Component {
         <Navigation />
         <ProfileHeader currentUser={currentUser} pageUser={pageUser} />
         <ProfileContent currentUser={currentUser} pageUser={pageUser} genders={genders} ethnicities={ethnicities} />
+        <LoggedInFooter />
       </div>
     )
   }

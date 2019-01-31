@@ -5,6 +5,7 @@ import { fetchUsers } from '../../actions/user_actions';
 import Navigation from './navigation';
 import UserCard from './user_card';
 import DiscoverySection from './discovery_section';
+import LoggedInFooter from './logged_in_footer';
 
 
 const msp = state => {
@@ -79,7 +80,7 @@ class HomeContainer extends React.Component {
         <DiscoverySection search={true} header="Hearthstone" queryResult={queryResult1} />
         <DiscoverySection header={"Top Matches"} queryResult={queryResult2} />
         <DiscoverySection header="They're Also Extroverted" queryResult={queryResult3} />
-        <p>Logged in as {this.props.currentUser.fname}.</p>
+        <LoggedInFooter />
       </div>
     )
   }

@@ -99,3 +99,32 @@
   max-height:42px;
   border-radius: 50%;
 }
+
+.logged-in-footer {
+  background-color: #104da1;
+  height: 125px;
+  padding: 0;
+  margin: 0;
+  margin-top: 150px;
+}
+
+.logged-in-footer-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* text-transform: uppercase; */
+  letter-spacing: 1px;
+  font-weight: 600px;
+  font-size: 1.2em;
+  color: white;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.logged-in-footer-div > span {
+  margin: 0 10px;
+  min-height: 50px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SplashFooter = (props) => {
+const LoggedInFooter = (props) => {
   return (
-    <footer className="splash-footer">
-      <div className="splash-footer-div">
+    <footer className="logged-in-footer">
+      <div className="logged-in-footer-div">
         <span>Replica of OKCupid Built By Aaron Zick. Hire me!</span>
         <span><a target="_blank" href="https://www.linkedin.com/in/amzick/"><i className="fab fa-linkedin"></i></a></span>
         <span><a target="_blank" href="https://github.com/amzick"><i className="fab fa-github"></i></a></span>
@@ -13,4 +13,4 @@ const SplashFooter = (props) => {
   );
 }
 
-export default SplashFooter;
+export default LoggedInFooter;

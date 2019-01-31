@@ -279,10 +279,11 @@ body, button, input, textare, p, div {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   letter-spacing: 1px;
   font-weight: 600px;
   font-size: 1.2em;
+  padding-top: 20px;
 }
 
 .splash-footer-div > span {

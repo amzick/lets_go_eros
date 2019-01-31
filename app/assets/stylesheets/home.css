@@ -1,6 +1,11 @@
+html {
+  background-color: #f3f5f9;
+}
+
+
 .base {
   background-color: #f3f5f9;
-  height: auto;
+  min-height: 100vh;
 }
 
 .home-space-div {
@@ -109,3 +114,4 @@
   background-color: red;
   border: solid 1px red;
 } */
+  

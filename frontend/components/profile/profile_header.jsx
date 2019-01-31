@@ -19,6 +19,19 @@ class ProfileHeader extends React.Component {
 
   constructor(props) {
     super(props);
+    this.showUpdatePrompt = this.showUpdatePrompt.bind(this);
+    this.hideUpdatePrompt = this.hideUpdatePrompt.bind(this);
+    this.state = {};
+    this.state.promptClass = "update-picture-hidden";
+  }
+
+  showUpdatePrompt(event) {
+    this.setState({ promptClass: "update-picture-hover" });
+  }
+
+  hideUpdatePrompt(event) {
+    this.setState({ promptClass: "update-picture-hidden" });
+
   }
 
   render() {
@@ -45,8 +58,9 @@ class ProfileHeader extends React.Component {
         <div className="profile-header-spacer" />
         <div className="profile-header-inner">
           <div className="profile-header-left">
-            <div className="profile-picture-thumb">
+            <div className="profile-picture-thumb" onMouseEnter={this.showUpdatePrompt} onMouseLeave={this.hideUpdatePrompt}>
               {/* <img src="https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg" /> */}
+              {currentUser === pageUser ? <div className={this.state.promptClass}><div className="center-text-absolute"><span>Change </span><span>Profile </span><span>Picture </span></div> </div> : null}
               <img src={profilePictureSrc} />
             </div>
             <div className="profile-info-div">
