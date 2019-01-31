@@ -24,6 +24,10 @@ class ProfileContent extends React.Component {
     super(props);
   }
 
+  componentDidUpdate() {
+    
+  }
+
   render() {
 
     const { currentUser, pageUser } = this.props;
@@ -84,7 +88,7 @@ class ProfileContent extends React.Component {
 
             <div className="profile-details">
               <div className="details-icon"><img src="https://cdn.okccdn.com/media/img/icons/details-eyes@3x.png" /></div>
-              <div className="details-text">I've set the max height and max width of these stupid fucking images and their divs and they ignore it, why... </div>
+              <div className="details-text">{eyes}</div>
             </div>
           </div>
           <div className="profile-answered-question">

@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/user_actions';
 
 import DiscoverySearch from './discovery_search';
-import UserCard from './user_card';
+// import UserCard from './user_card';
 
 const msp = state => {
   return ({
-    allUsers: state.entities.users,
+    // allUsers: state.entities.users,
   });
 };
 
 const mdp = dispatch => {
   return ({
-    fetchUsers: () => dispatch(fetchUsers()),
+    // fetchUsers: () => dispatch(fetchUsers()),
   });
 };
 
@@ -26,53 +26,55 @@ class DiscoverySection extends React.Component {
   }
 
   componentDidMount() {
-    
-    this.props.fetchUsers();
-    this.setState({ mounted: true });
+
+    // this.props.fetchUsers();
+    // this.setState({ mounted: true });
     //todo -> get fetch users to get location at same time
 
   }
 
   render() {
     // todo: fetch actual users
-    const { allUsers } = this.props;
-    
-    const randomUsers = [];
+    // const { allUsers} = this.props;
+    const {  header, queryResult } = this.props;
 
-    if (this.state.mounted && Object.keys(allUsers).length > 30) {
-      for (let i = 0; i < 30; i++) {
-        let allUsersLength = Object.keys(allUsers).length;
-        
-        let rand = Math.floor(Math.random() * (parseInt(Object.keys(allUsers)[allUsersLength-1]) - parseInt(Object.keys(allUsers)[0]) + 1) + parseInt(Object.keys(allUsers)[0]));
-        randomUsers.push(allUsers[rand]);
-      }
-    }
+    // const randomUsers = [];
 
-    const queryResult1 = [];
-    const queryResult2 = [];
-    const queryResult3 = [];
+    // if (this.state.mounted && Object.keys(allUsers).length > 30) {
+    //   for (let i = 0; i < 30; i++) {
+    //     let allUsersLength = Object.keys(allUsers).length;
 
-    if (randomUsers.length > 0) {
-      randomUsers.forEach((user, idx) => {
+    //     let rand = Math.floor(Math.random() * (parseInt(Object.keys(allUsers)[allUsersLength - 1]) - parseInt(Object.keys(allUsers)[0]) + 1) + parseInt(Object.keys(allUsers)[0]));
+    //     randomUsers.push(allUsers[rand]);
+    //   }
+    // }
 
-        if (user === undefined) {
-          "do fucking nothing";
-        } else if (idx < 10) {
-          queryResult1.push(<UserCard key={idx} cardUser={user} />)
-        } else if (idx < 20) {
-          queryResult2.push(<UserCard key={idx} cardUser={user} />)
-        } else {
-          queryResult3.push(<UserCard key={idx} cardUser={user} />)
-        }
-      });
-    }
+    // pass in from props instead
+    // const queryResult1 = [];
+    // const queryResult2 = [];
+    // const queryResult3 = [];
+
+    // if (randomUsers.length > 0) {
+    //   randomUsers.forEach((user, idx) => {
+
+    //     if (user === undefined) {
+    //       "do fucking nothing";
+    //     } else if (idx < 10) {
+    //       queryResult1.push(<UserCard key={idx} cardUser={user} />)
+    //     } else if (idx < 20) {
+    //       queryResult2.push(<UserCard key={idx} cardUser={user} />)
+    //     } else {
+    //       queryResult3.push(<UserCard key={idx} cardUser={user} />)
+    //     }
+    //   });
+    // }
 
     return (
       <>
         <div className="discovery-section" >
           {this.props.search ? <DiscoverySearch /> : null}
-          <h1>Get H from props</h1>
-          <div className="usercard-row">{queryResult1}</div>
+          <h1>{header}</h1>
+          <div className="usercard-row">{queryResult}</div>
         </div>
         <div className="discovery-section-fader" />
       </>

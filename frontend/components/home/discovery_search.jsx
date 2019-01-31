@@ -50,11 +50,14 @@ class DiscoverySearch extends React.Component {
   }
 
   render() {
+
+    //todo : change back to "What are you into?"
     return (
       <div className="discover-search-div">
+        <p>They mentioned...</p>
         <form className="discover-search-form" onSubmit={this.handleSearch}>
           <span className={this.state.searchIconClass} onClick={this.clearSearch} />
-          <input type="text" placeholder="What are you into?" onChange={this.handleChange} value={this.state.searchValue} />
+          <input type="text" placeholder="I have no functionality!" onChange={this.handleChange} value={this.state.searchValue} />
 
         </form>
       </div>

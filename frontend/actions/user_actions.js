@@ -11,68 +11,59 @@ export const RECEIVE_ETHNICITIES = 'RECEIVE_ETHNICITIES';
 //thunk action creators
 export const fetchUser = (userId) => {
   return (dispatch) => {
-    UserApiUtil.fetchUser(userId)
-      .then(resp => {
-        // make request using location, add into response
-        revealLocation(resp.location).then((info) => {
-          resp.city = info.places[0]["place name"];
-          resp.state = info.places[0]["state abbreviation"];
-        }).then(() => {
-          return dispatch(receiveUser(resp));
-        });
+    UserApiUtil.fetchUser(userId).then(resp => dispatch(receiveUser(resp)));
+  };
+};
+
+  export const fetchUsers = () => {
+    return (dispatch) => {
+      UserApiUtil.fetchUsers().then(resp => dispatch(receiveUsers(resp)));
+    };
+  };
+
+
+  export const fetchGenders = () => {
+    return (dispatch) => {
+      UserApiUtil.fetchGenders().then(resp => {
+        dispatch(receiveGenders(resp));
       });
+    };
   };
-};
 
-export const fetchUsers = () => {
-  return (dispatch) => {
-    UserApiUtil.fetchUsers().then(resp => dispatch(receiveUsers(resp)));
+  export const fetchEthnicities = () => {
+    return (dispatch) => {
+      UserApiUtil.fetchEthnicities().then(resp => {
+        dispatch(receiveEthnicities(resp));
+      });
+    };
   };
-};
 
+  // actions
 
-export const fetchGenders = () => {
-  return (dispatch) => {
-    UserApiUtil.fetchGenders().then(resp => {
-      dispatch(receiveGenders(resp));
-    });
+  const receiveUser = (user) => {
+    return {
+      type: RECEIVE_USER,
+      user
+    };
   };
-};
 
-export const fetchEthnicities = () => {
-  return (dispatch) => {
-    UserApiUtil.fetchEthnicities().then(resp => {
-      dispatch(receiveEthnicities(resp));
-    });
+  const receiveUsers = (users) => {
+    return {
+      type: RECEIVE_USERS,
+      users
+    };
   };
-};
 
-// actions
-
-const receiveUser = (user) => {
-  return {
-    type: RECEIVE_USER,
-    user
+  const receiveGenders = (genders) => {
+    return {
+      type: RECEIVE_GENDERS,
+      genders,
+    };
   };
-};
 
-const receiveUsers = (users) => {
-  return {
-    type: RECEIVE_USERS,
-    users
+  const receiveEthnicities = (ethnicities) => {
+    return {
+      type: RECEIVE_ETHNICITIES,
+      ethnicities,
+    };
   };
-};
-
-const receiveGenders = (genders) => {
-  return {
-    type: RECEIVE_GENDERS,
-    genders,
-  };
-};
-
-const receiveEthnicities = (ethnicities) => {
-  return {
-    type: RECEIVE_ETHNICITIES,
-    ethnicities,
-  };
-};

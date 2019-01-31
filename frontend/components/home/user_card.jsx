@@ -27,13 +27,13 @@ class UserCard extends React.Component {
     const profilePictureSrc = cardUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
 
     // const randomAge = Math.floor(Math.random() * (65 - 18 + 1) + 18);
-    const randomMatchPercentage = Math.floor(Math.random() * 100);
+    // const randomMatchPercentage = Math.floor(Math.random() * 100);
     let matchClass;
     switch (true) {
-      case (randomMatchPercentage <= 10):
+      case (cardUser.match <= 10):
         matchClass = "usercard-match-percentage-bad";
         break;
-      case (randomMatchPercentage >= 90):
+      case (cardUser.match >= 90):
         matchClass = "usercard-match-percentage-good";
         break;
       default:
@@ -50,7 +50,7 @@ class UserCard extends React.Component {
           <div className="usercard-text">
             <span className="usercard-info">{cardUser.fname}, {cardUser.age}</span>
             <span className="usercard-location">{cardUser.city ? cardUser.city : "No city..."}, {cardUser.state ? cardUser.state : "XX"}</span>
-            <div className={matchClass}>{randomMatchPercentage}%</div>
+            <div className={matchClass}>{cardUser.match}%</div>
           </div>
         </div>
       </Link>

@@ -27,9 +27,9 @@ class ProfileHeader extends React.Component {
 
     const randomAge = Math.floor(Math.random() * (65 - 18 + 1) + 18);
     const randomLocation = Math.floor(Math.random() * (99999 - 10000 + 1) + 10000);
-    const randomMatchPercentage = Math.floor(Math.random() * 100);
+    // const randomMatchPercentage = Math.floor(Math.random() * 100);
 
-    
+
 
     let profilePictureLastIndex;
     let profilePictureSrc;
@@ -57,7 +57,7 @@ class ProfileHeader extends React.Component {
                 <span>{pageUser.city}, {pageUser.state}</span>
                 {/* <span>Super freaking long, {pageUser.state}</span> */}
                 {pageUser.id === currentUser.id ? null : <span>•</span>}
-                {pageUser.id === currentUser.id ? null : <span>{randomMatchPercentage}% Match</span>}
+                {pageUser.id === currentUser.id ? null : <span>{pageUser.match}% Match</span>}
               </div>
             </div>
           </div>

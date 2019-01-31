@@ -10,7 +10,7 @@ import ProfileContent from './profile_content';
 
 const msp = (state, ownProps) => {
   const id = parseInt(ownProps.match.params.id) || state.session.id;
-  
+
   return {
     currentUser: state.entities.users[state.session.id],
     pageUser: state.entities.users[id] || {},
@@ -47,6 +47,7 @@ class ProfileContainer extends React.Component {
       if (this.props.match.path === "/profile") {
         this.props.fetchUser(this.props.currentUser.id);
       } else {
+        console.log("container updating");
         this.props.fetchUser(this.props.match.params.id);
       }
     }
@@ -58,7 +59,7 @@ class ProfileContainer extends React.Component {
 
   render() {
     const { currentUser, pageUser, genders, ethnicities } = this.props;
-    
+
     return (
       <div className="base">
         <Navigation />

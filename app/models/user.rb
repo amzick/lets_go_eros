@@ -55,6 +55,10 @@ class User < ApplicationRecord
     through: :responses,
     source: :question
 
+    # TODO AWS: 
+  has_many_attached :profile_pictures
+  has_one_attached :thing
+
     
   def unanswered_questions
     Question.select(:id)
@@ -101,9 +105,7 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
 =end
 
 
-  # TODO AWS: 
-  has_many_attached :profile_pictures
-  has_one_attached :thing
+  
 
   # https://stackoverflow.com/questions/4804591/rails-activerecord-validate-single-attribute
   def valid_attribute?(attribute_name)
@@ -111,6 +113,10 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
     self.errors[attribute_name].empty?
   end
   
+  # ************   MATCH MATH /////////////////
+  def random_match_percentage
+    rand(0..100)
+  end
 
   # helper function returning an array of the profile_picture URLs? pictures urls?
   # not needed - handled in jbuilder
