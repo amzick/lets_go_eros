@@ -221,6 +221,9 @@ User.create!(
   height_in_inches: 62
 )
 
+def aaron_summary 
+  "29 year old programmer in New York City. This is my app. You found me!"
+end
 #demonstrate email
 User.create!(
   email: "aaron.zick@gmail.com",
@@ -232,9 +235,11 @@ User.create!(
   state: "NY",
   genders: [Gender.find_by(gender:"Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
-  summary: summary_maker,
+  summary: aaron_summary,
   height_in_inches: 70
 )
+
+
 
 # function to return a unique array of valid genders
 def gender_picker
