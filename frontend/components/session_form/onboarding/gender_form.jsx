@@ -34,6 +34,7 @@ class GenderForm extends React.Component {
     this.state.errors = props.errors;
     this.state.submitClass = (this.state.newUser.genders.length < 6 && this.state.newUser.genders.length >= 1 ? "valid-submit" : "invalid-submit");
     this.state.disabled = ((this.state.newUser.genders.length < 6 && this.state.newUser.genders.length >= 1) ? "" : "disabled");
+    this.state.toggled = 0;
     this.handleToggle = this.handleToggle.bind(this);
     this.validateOptions = this.validateOptions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -111,14 +112,15 @@ class GenderForm extends React.Component {
 
     this.checkBoxItems = this.props.options.map(option => {
       const isChecked = this.itemChecked(option.id);
-      return <label onClick={this.handleToggle} key={option.id}>{option.gender}<input type="checkbox" value={option.id} defaultChecked={isChecked} readOnly={false} /></label>
+      return <label className={isChecked ? "checkbox-item-checked" : "checkbox-item-unchecked"} onClick={this.handleToggle} for={option.id} key={option.id}>{option.gender}<input type="checkbox" value={option.id} defaultChecked={isChecked} readOnly={false} id={option.id}  /></label>
     });
     
     return (
       <div className="dynamic-input-div">
-        <h1>Which gender best describes you?</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.checkBoxItems}
+        <h1 className="dynamic-input-message">Which gender best describes you?</h1>
+        <form  className="checkbox-form" onSubmit={this.handleSubmit}>
+          <div className="checkbox-form-div">{this.checkBoxItems}</div>
+          {/* <div className="checkbox-spacing" /> */}
           <RenderDynamicErrors errors={this.state.errors} />
           <button className={this.state.submitClass} disabled={this.state.disabled}>next</button>
         </form>

@@ -10,6 +10,10 @@ import WhoAreYouContainer from '../components/session_form/onboarding/who_are_yo
 import OnboardingContainer from '../components/session_form/onboarding/onboarding_container';
 import HomeContainer from '../components/home/home_container';
 
+//
+import GenderForm from './session_form/onboarding/gender_form';
+
+
 //Testing
 import Logout from '../components/logout/logout';
 import SignupFormContainer from './session_form/__signup_form_container';
@@ -25,6 +29,7 @@ const App = () => {
       <AuthRoute exact path='/login' component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={WhoAreYouContainer} />
       <AuthRoute exact path='/onboarding' component={OnboardingContainer} />
+      <Route exact path = '/css' component={GenderForm} />
       <ProtectedRoute exact path='/home' component={HomeContainer} />
       <ProtectedRoute exact path='/match' component={HomeContainer} />
       <ProtectedRoute exact path ='/profile' component={ProfileContainer} />
