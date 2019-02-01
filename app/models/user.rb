@@ -83,6 +83,7 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
       where users.id = 1295
     );
   
+    
  # def unanswered_questions
     
   #   data = ActiveRecord::Base.connection.execute(<<-SQL, self.id)

@@ -1,5 +1,6 @@
 import React from 'react';
 // import { connect } from 'react-redux';
+import { createPhoto } from '../../util/user_api_util';
 
 import HeartMessageButtons from './heart_message_buttons';
 
@@ -19,10 +20,16 @@ class ProfileHeader extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      promptClass: "update-picture-hidden",
+      newPhoto: null,
+      photoUrl: null,
+    };
     this.showUpdatePrompt = this.showUpdatePrompt.bind(this);
     this.hideUpdatePrompt = this.hideUpdatePrompt.bind(this);
-    this.state = {};
-    this.state.promptClass = "update-picture-hidden";
+    this.handleFile = this.handleFile.bind(this);
+    this.handleProfilePictureClick = this.handleProfilePictureClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   showUpdatePrompt(event) {
@@ -31,18 +38,56 @@ class ProfileHeader extends React.Component {
 
   hideUpdatePrompt(event) {
     this.setState({ promptClass: "update-picture-hidden" });
+  }
 
+  handleProfilePictureClick(event) {
+    $("input[id='upload-image']").click();
+  }
+
+  handleFile(event) {
+    event.preventDefault();
+    const setPhoto = event.target.files[0];
+    const fileReader = new FileReader();
+
+    fileReader.onloadend = () => {
+      this.setState({ newPhoto: setPhoto, photoUrl: fileReader.result }, () => {
+
+        $("input[id='submit-image']").click();
+      });
+    };
+    if (setPhoto) {
+      // for previewing the photo 
+      console.log("file in state");
+
+      fileReader.readAsDataURL(setPhoto);
+    };
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    if (this.state.newPhoto) {
+      // instantiate a new form data object
+      const x = new FormData();
+      // append form data into this object
+      x.append('user[id]', currentUser.id)
+      x.append('user[photo]', this.state.newPhoto);
+      
+      createPhoto(x).then((resp) => {
+        
+        this.setState({ newPhoto: null, photoUrl: null }, () => {
+          window.location.reload();
+        });
+      }, (errors) => {
+        
+      });
+
+    }
   }
 
   render() {
 
     const { currentUser, pageUser } = this.props;
-
-    const randomAge = Math.floor(Math.random() * (65 - 18 + 1) + 18);
-    const randomLocation = Math.floor(Math.random() * (99999 - 10000 + 1) + 10000);
-    // const randomMatchPercentage = Math.floor(Math.random() * 100);
-
-
 
     let profilePictureLastIndex;
     let profilePictureSrc;
@@ -55,12 +100,26 @@ class ProfileHeader extends React.Component {
 
     return (
       <div className="profile-header" >
+        <form onSubmit={this.handleSubmit} style={{ display: "none" }}>
+          <input type="file" accept="image/*" id="upload-image" style={{ display: "none" }} onChange={this.handleFile} />
+          <input type="submit" id="submit-image" style={{ display: "none" }} />
+        </form>
+
         <div className="profile-header-spacer" />
         <div className="profile-header-inner">
           <div className="profile-header-left">
-            <div className="profile-picture-thumb" onMouseEnter={this.showUpdatePrompt} onMouseLeave={this.hideUpdatePrompt}>
-              {/* <img src="https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg" /> */}
-              {currentUser === pageUser ? <div className={this.state.promptClass}><div className="center-text-absolute"><span>Change </span><span>Profile </span><span>Picture </span></div> </div> : null}
+            <div className="profile-picture-thumb" onMouseEnter={this.showUpdatePrompt} onMouseLeave={this.hideUpdatePrompt} onClick={this.handleProfilePictureClick}>
+              {currentUser === pageUser ?
+                <div className={this.state.promptClass}>
+
+
+                  <div className="center-text-absolute">
+                    <span>Change </span><span>Profile </span><span>Picture</span>
+                  </div>
+
+
+                </div>
+                : null}
               <img src={profilePictureSrc} />
             </div>
             <div className="profile-info-div">
