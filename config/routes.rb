@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
 
     get '/first_last', to: 'first_last#show'
+    get '/matches/:id_a/:id_b', to: 'matches#show'
     # this custom route allows me to pass urls / emails with multiple dots
     # as paramters. rails by default only allows one dot
     # so I could verify aaronzick@gmail.com but not aaron.zick@gmail.com

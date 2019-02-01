@@ -33,15 +33,21 @@ class ProfileHeader extends React.Component {
   }
 
   showUpdatePrompt(event) {
-    this.setState({ promptClass: "update-picture-hover" });
+    if (this.props.currentUser === this.props.pageUser) {
+      this.setState({ promptClass: "update-picture-hover" });
+    }
   }
 
   hideUpdatePrompt(event) {
-    this.setState({ promptClass: "update-picture-hidden" });
+    if (this.props.currentUser === this.props.pageUser) {
+      this.setState({ promptClass: "update-picture-hidden" });
+    }
   }
 
   handleProfilePictureClick(event) {
-    $("input[id='upload-image']").click();
+    if (this.props.currentUser === this.props.pageUser) {
+      $("input[id='upload-image']").click();
+    }
   }
 
   handleFile(event) {

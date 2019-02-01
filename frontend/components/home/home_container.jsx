@@ -20,7 +20,7 @@ const msp = state => {
 const mdp = dispatch => {
   return ({
     fetchUsers: () => dispatch(fetchUsers()),
-    fetchUser: () => dispatch(fetchUser()),
+    fetchUser: (userID) => dispatch(fetchUser(userID)),
   });
 };
 
@@ -40,13 +40,19 @@ class HomeContainer extends React.Component {
     // No!!! playing with death
     // this.props.fetchUsers();
     if (this.state.firstID === null || this.state.last === null) {
-      fetchFirstLast().then(resp => this.setState({ firstID: resp.first, lastID: resp.last }));
+      fetchFirstLast().then(resp => this.setState({ firstID: resp.first, lastID: resp.last },
+        () => {
+          // while(Object.entries(this.props.allUsers).length < 40) {
+          for (let n = 0; n < 40; n++) {
+            let rand = Math.floor(Math.random() * (this.state.lastID - this.state.firstID + 1) + this.state.firstID);
+
+            console.log(n, rand);
+            this.props.fetchUser(rand);
+          }
+        }));
     }
 
-    if (Object.entries(this.props.allUsers).length < 40) {
-      let rand = Math.floor(Math.random() * (this.state.last - this.state.first + 1) + this.state.first);
-      this.props.fetchUser(rand);
-    }
+
 
     this.setState({ mounted: true });
   }
@@ -81,7 +87,7 @@ class HomeContainer extends React.Component {
           "do fucking nothing";
         } else if (user.summary !== null && user.summary.includes("Hearthstone")) {
           queryResult1.push(<UserCard key={idx} cardUser={user} />)
-        } else if (user.match >= 90) {
+        } else if (user.match >= 80) {
           queryResult2.push(<UserCard key={idx} cardUser={user} />)
         } else if (queryResult3.length < 9) {
           queryResult3.push(<UserCard key={idx} cardUser={user} />)

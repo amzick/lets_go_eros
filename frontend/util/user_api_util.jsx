@@ -14,7 +14,7 @@ export const fetchUsers = () => {
 };
 
 export const fetchFirstLast = () => {
-  $.ajax({
+  return $.ajax({
     method: "GET",
     url: "api/first_last",
   });

@@ -10,6 +10,7 @@ export const RECEIVE_ETHNICITIES = 'RECEIVE_ETHNICITIES';
 
 //thunk action creators
 export const fetchUser = (userId) => {
+  
   return (dispatch) => {
     UserApiUtil.fetchUser(userId).then(resp => dispatch(receiveUser(resp)));
   };
