@@ -12,7 +12,8 @@
 
 class Response < ApplicationRecord
 
-  validates :user, :question, :response, presence:true
+  validates :user, :question, presence:true
+  validates :response, presence:true, inclusion: (0..4)
   validates :question_id, uniqueness: {scope: :user_id}
 
   belongs_to :user

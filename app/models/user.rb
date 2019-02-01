@@ -61,11 +61,12 @@ class User < ApplicationRecord
   has_one_attached :thing
 
     
-  def unanswered_questions
-    Question.select(:id)
-    .left_outer_joins(:responses)
-    .where("responses.user_id != ? OR responses.user_id IS NULL", self.id)
-    .group(:id)
+    # ************   MATCH MATH /////////////////
+    
+    # during dev phase
+
+  def random_match_percentage
+    rand(0..100)
   end
 
 =begin
@@ -74,17 +75,7 @@ select questions.id from questions left join responses on responses
 WHERE responses.user_id !=  1295 OR responses.user_id IS NULL group by questions.id;
 
 via https://stackoverflow.com/questions/19682816/sql-statement-select-the-inverse-of-this-query
-    select *
-    from questions
-    where id NOT IN (
-      select questions.id
-      from questions
-      left outer join responses on responses.question_id = questions.id
-      join users on responses.user_id = users.id
-      where users.id = 1295
-    );
-  
-    
+
  # def unanswered_questions
     
   #   data = ActiveRecord::Base.connection.execute(<<-SQL, self.id)
@@ -106,7 +97,89 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
   # end
 =end
 
+  # todo fix
+  def unanswered_questions
+    Question.select(:id)
+    .left_outer_joins(:responses)
+    .where("responses.user_id != ? OR responses.user_id IS NULL", self.id)
+    .group(:id)
+  end
 
+  def answer_n_questions(n = 1)
+    return nil if self.unanswered_questions.empty?
+    n.times do
+      Response.create(question_id:self.unanswered_questions.reload.sample.id,user:self,response:rand(0..4))
+    end
+  end
+
+  def reset_questions!
+    self.responses.destroy_all
+  end
+
+=begin  # in order to compare questions that aren't mutually answered by two users, this funciton
+  assigns a general score to each category, mapped 0 to 1. we can then compare these general scores to other users
+=end
+
+
+  def category_scores
+    questions_hash = Hash.new
+    Category.all.each {|category| questions_hash[category.category] = Array.new}
+    results = Hash.new
+    self.responses.each do |response|
+      questions_hash[response.category.category] << response.response
+    end
+    questions_hash.each do |category, responses|
+      if responses.empty?
+        results[category] = 0.5
+      else
+        results[category] = responses.inject(&:+).to_f/(responses.length * 4).to_f
+      end
+    end
+    results
+  end
+
+  def category_diffs(match)
+    user_scores = self.category_scores
+    match_scores = match.category_scores
+    result = []
+    Category.all.each do |category|
+      result << (user_scores[category.category] - match_scores[category.category]).abs
+    end
+    result
+  end
+
+=begin
+  now we will weigh the mutually answered responses equally (tbd) with the answered questions
+=end
+
+  # mutually answered questions difference
+  def maq_diffs(match)
+    maqs = self.answered_questions.select {|question| match.answered_questions.include?(question)}
+    result = []
+    maqs.each do |question|
+      result << ( Response.find_by(question:question,user:self).response - Response.find_by(question:question, user: match).response).abs
+    end
+    result
+  end
+
+  def match_percentage(match)
+    category_comparison = 100.0
+    category_array = self.category_diffs(match)
+    category_array.each {|el| category_comparison -= ((100.0/category_array.length)*el)}
+    
+    
+    maq_array = self.maq_diffs(match)
+    if maq_array.length.zero?
+      maq_comparison = 0.5
+    else
+      maq_comparison = 100.0 - ( (100.0/maq_array.length) * (1.0/(Category.all.length)) * maq_array.inject(&:+).to_f)
+    end
+    
+    #if more weighted comparisons added (ie love languages) don't forget to update the scales!
+    scale = 0.5
+    (scale * (category_comparison + maq_comparison)).floor
+    
+  end
   
 
   # https://stackoverflow.com/questions/4804591/rails-activerecord-validate-single-attribute
@@ -115,10 +188,7 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
     self.errors[attribute_name].empty?
   end
   
-  # ************   MATCH MATH /////////////////
-  def random_match_percentage
-    rand(0..100)
-  end
+
 
   # helper function returning an array of the profile_picture URLs? pictures urls?
   # not needed - handled in jbuilder
