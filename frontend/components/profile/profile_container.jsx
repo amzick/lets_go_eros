@@ -48,7 +48,7 @@ class ProfileContainer extends React.Component {
       if (this.props.match.path === "/profile") {
         this.props.fetchUser(this.props.currentUser.id);
       } else {
-        console.log("container updating");
+        
         this.props.fetchUser(this.props.match.params.id);
       }
     }

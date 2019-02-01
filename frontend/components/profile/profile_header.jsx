@@ -57,7 +57,7 @@ class ProfileHeader extends React.Component {
     };
     if (setPhoto) {
       // for previewing the photo 
-      console.log("file in state");
+      
 
       fileReader.readAsDataURL(setPhoto);
     };
