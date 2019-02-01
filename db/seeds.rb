@@ -318,3 +318,44 @@ end
   )
 end
 
+User.all.each do |user|
+  user.answer_n_questions(rand(10..40))
+end
+
+User.create!(
+  email: "aaron_zick@yahoo.com",
+  password: "password"
+  fname: "You...",
+  birthday: Date.new(1989,9,12),
+  location: "07663",
+  city: "Saddle Brook",
+  state: "NJ",
+  genders: [Gender.find_by(gender:"Man")],
+  ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
+  summary: "Compare me to my enemy 'That Guy' she tells you not to worry about!",
+  height_in_inches: 70,
+  bot_img_src: "https://s3-us-west-2.amazonaws.com/aa-progress-tracker/students/avatars/000/003/223/medium/DSC00356.JPG?1543343086"
+  )
+
+Question.all.each do |question|
+  Response.create(question_id:question.id, user_id: User.last.id, response:0)
+end
+
+User.create!(
+  email: "that_guy@aol.com",
+  password:"password",
+  fname: "...That Guy",
+  birthday: Date.new(1989,9,12),
+  location: "02912",
+  city: "Providence",
+  state: "RI",
+  genders: [Gender.find_by(gender:"Man")],
+  ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
+  summary: "There's a bizarro version of me floating around here somewhere...",
+  height_in_inches: 70,
+  bot_img_src: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/32802194_10211994145797503_7284711747485696000_n.jpg?_nc_cat=107&_nc_ht=scontent-lga3-1.xx&oh=ce8b1070a9420b50b17d51a85386686f&oe=5CBBD356"
+)
+
+Question.all.each do |question|
+  Response.create(question_id:question.id, user_id: User.last.id, response:4)
+end
