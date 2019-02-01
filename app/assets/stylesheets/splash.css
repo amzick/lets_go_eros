@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Comic Zine';
   src: url(./fonts/comic_zine_ot-webfont.woff) format('woff');
+  /* src: url(https://s3.amazonaws.com/letsgoeros-pro/comic_zine_ot-webfont.woff) format('woff'); */
 }
 	/* headers */
 h1, h2, h3, h4, h5, h6 {
@@ -17,16 +18,31 @@ body, button, input, textare, p, div {
 /* https://fonts.google.com/specimen/Londrina+Outline?selection.family=Londrina+Outline */
 .logo-full {
   
-  font-family: 'Comic Zine', 'Londrinda Outline', cursive;
+  font-family: 'Luckiest Guy', 'Comic Zine', 'Londrinda Outline', cursive;
   font-size: 3em;
+  -webkit-text-stroke: 3px black;
+  -webkit-text-fill-color: transparent;
 }
 .logo-short {
-  font-family: 'Comic Zine', 'Londrinda Outline', cursive;
-  font-size: 3em;
+  font-family: 'Luckiest Guy', 'Comic Zine', 'Londrinda Outline', cursive;
+  font-size: 2em;
   font-weight: 200;
   color:white;
-  /* -webkit-text-stroke: 0.5px white;
-  -webkit-text-fill-color: white; */
+  -webkit-text-stroke: 3px #76a8e2;
+  -webkit-text-fill-color: white;
+  transform: translate(0, 5px);
+
+}
+
+.sign-up-logo {
+  font-family: 'Luckiest Guy', 'Comic Zine', 'Londrinda Outline', cursive;
+
+  font-size: 2em;
+  /* position: absolute; */
+  transform: rotate(-20deg) translate(5px, 0);
+  -webkit-text-stroke: 2px white;
+  -webkit-text-fill-color: transparent;
+  /* top: -5px; */
 }
 /* splash page */
 
@@ -230,14 +246,7 @@ body, button, input, textare, p, div {
   width: 10px;
 }
 
-.sign-up-logo {
-  font-family: 'Comic Zine', 'Londrinda Outline', cursive;
 
-  font-size: 2em;
-  /* position: absolute; */
-  transform: rotate(-10deg) translate(5px, -8px);
-  /* top: -5px; */
-}
 
 .splash-content-bottom {
   height: 96px;

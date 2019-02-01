@@ -87,12 +87,12 @@ class LocationForm extends React.Component {
 
                         that.setState({ messages: [`Ahh, ${resp.results[0].address_components[1].long_name}`], errors: [], city: resp.results[0].address_components[1].long_name, state: resp.results[0].address_components[3].short_name });
                       } else {
-                        that.setState({ errors: ["Please enter an existing zip code"] });
+                        that.setState({ errors: ["Please enter an existing zip code"], submitClass: "invalid-submit" });
                       }
                     },
                       errors => {
 
-                        this.setState({ errors: ["Please enter an existing zip code"] });
+                        this.setState({ errors: ["Please enter an existing zip code"], submitClass: "invalid-submit" });
                       });
                 });
             },
