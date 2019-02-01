@@ -76,7 +76,7 @@ class ProfileHeader extends React.Component {
       // instantiate a new form data object
       const x = new FormData();
       // append form data into this object
-      x.append('user[id]', currentUser.id)
+      x.append('user[id]', currentUser.id);
       x.append('user[photo]', this.state.newPhoto);
 
       createPhoto(x).then((resp) => {
