@@ -46,7 +46,7 @@ class HomeContainer extends React.Component {
           for (let n = 0; n < 40; n++) {
             let rand = Math.floor(Math.random() * (this.state.lastID - this.state.firstID + 1) + this.state.firstID);
 
-            console.log(n, rand);
+            
             this.props.fetchUser(rand);
           }
         }));
