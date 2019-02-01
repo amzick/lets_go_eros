@@ -218,7 +218,8 @@ User.create!(
   genders: [Gender.find_by(gender:"Agender"),Gender.find_by(gender:"Two Spirit")],
   ethnicities: [Ethnicity.find_by(ethnicity:"Asian"),Ethnicity.find_by(ethnicity:"Indian")],
   summary: demi_summary,
-  height_in_inches: 62
+  height_in_inches: 62,
+  bot_img_src: "https://images-na.ssl-images-amazon.com/images/I/51iKj+F0qkL.jpg"
 )
 
 def aaron_summary 
@@ -236,7 +237,8 @@ User.create!(
   genders: [Gender.find_by(gender:"Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
   summary: aaron_summary,
-  height_in_inches: 70
+  height_in_inches: 70,
+  bot_img_src: "https://s3.amazonaws.com/letsgoeros-dev/vfs_ID.jpg"
 )
 
 
@@ -311,7 +313,8 @@ end
     city: city,
     state: state,
     summary: summary_maker,
-    height_in_inches: height_gaussian.rng
+    height_in_inches: height_gaussian.rng,
+    bot_img_src: BOT_IMAGES.sample
   )
 end
 

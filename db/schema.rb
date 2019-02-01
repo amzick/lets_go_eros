@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_31_045616) do
+ActiveRecord::Schema.define(version: 2019_02_01_043852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2019_01_31_045616) do
     t.datetime "updated_at", null: false
     t.string "city"
     t.string "state"
+    t.string "bot_img_src"
     t.index ["email", "fname", "location"], name: "index_users_on_email_and_fname_and_location"
   end
 

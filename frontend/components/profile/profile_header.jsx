@@ -57,7 +57,7 @@ class ProfileHeader extends React.Component {
     };
     if (setPhoto) {
       // for previewing the photo 
-      
+
 
       fileReader.readAsDataURL(setPhoto);
     };
@@ -72,14 +72,14 @@ class ProfileHeader extends React.Component {
       // append form data into this object
       x.append('user[id]', currentUser.id)
       x.append('user[photo]', this.state.newPhoto);
-      
+
       createPhoto(x).then((resp) => {
-        
+
         this.setState({ newPhoto: null, photoUrl: null }, () => {
           window.location.reload();
         });
       }, (errors) => {
-        
+
       });
 
     }
@@ -93,8 +93,12 @@ class ProfileHeader extends React.Component {
     let profilePictureSrc;
 
     if (pageUser.id) {
-      profilePictureLastIndex = pageUser.profile_pictures.length - 1;
-      profilePictureSrc = pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+      if (pageUser.bot_img_src) {
+        profilePictureSrc = pageUser.bot_img_src;
+      } else {
+        profilePictureLastIndex = pageUser.profile_pictures.length - 1;
+        profilePictureSrc = pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+      }
     }
 
 

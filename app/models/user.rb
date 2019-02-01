@@ -16,6 +16,7 @@
 #  updated_at       :datetime         not null
 #  city             :string
 #  state            :string
+#  bot_img_src      :string
 #
 
 class User < ApplicationRecord

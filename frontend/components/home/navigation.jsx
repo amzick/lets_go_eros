@@ -17,9 +17,16 @@ const mdp = dispatch => {
 
 class Navigation extends React.Component {
   render() {
-    // <img src="https://www.logolynx.com/images/logolynx/6a/6ae1e4dd5837d09a8cd998dbc4ae9c26.jpeg" />
-    const profilePictureLastIndex = this.props.currentUser.profile_pictures.length - 1;
-    const profilePictureSrc = this.props.currentUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+    const { currentUser } = this.props;
+    let profilePictureSrc;
+
+    if (currentUser.bot_img_src) {
+      
+      profilePictureSrc = currentUser.bot_img_src;
+    } else {
+      const profilePictureLastIndex = currentUser.profile_pictures.length - 1;
+      profilePictureSrc = currentUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+    }
 
     return (
       <header className="navigation-header">
