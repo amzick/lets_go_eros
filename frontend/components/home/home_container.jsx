@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../../actions/user_actions';
+import { fetchUsers, fetchUser } from '../../actions/user_actions';
+import { fetchFirstLast } from '../../util/user_api_util';
 
 import Navigation from './navigation';
 import UserCard from './user_card';
@@ -19,6 +20,7 @@ const msp = state => {
 const mdp = dispatch => {
   return ({
     fetchUsers: () => dispatch(fetchUsers()),
+    fetchUser: () => dispatch(fetchUser()),
   });
 };
 
@@ -28,10 +30,24 @@ class HomeContainer extends React.Component {
     super(props);
     this.state = {};
     this.state.mounted = false;
+    this.state.firstID = null;
+    this.state.lastID = null;
   }
 
+
+
   componentDidMount() {
-    this.props.fetchUsers();
+    // No!!! playing with death
+    // this.props.fetchUsers();
+    if (this.state.firstID === null || this.state.last === null) {
+      fetchFirstLast().then(resp => this.setState({ firstID: resp.first, lastID: resp.last }));
+    }
+
+    if (Object.entries(this.props.allUsers).length < 40) {
+      let rand = Math.floor(Math.random() * (this.state.last - this.state.first + 1) + this.state.first);
+      this.props.fetchUser(rand);
+    }
+
     this.setState({ mounted: true });
   }
 
@@ -67,7 +83,7 @@ class HomeContainer extends React.Component {
           queryResult1.push(<UserCard key={idx} cardUser={user} />)
         } else if (user.match >= 90) {
           queryResult2.push(<UserCard key={idx} cardUser={user} />)
-        } else  if (queryResult3.length < 9) {
+        } else if (queryResult3.length < 9) {
           queryResult3.push(<UserCard key={idx} cardUser={user} />)
         }
       });

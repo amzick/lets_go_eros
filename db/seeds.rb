@@ -285,14 +285,14 @@ BOT_IMAGES = ["https://tinyfac.es/data/avatars/FBEBF655-4886-455A-A4A4-D62B77DD4
 end
 
 
-# 50 in new york, 50 in la, 100 random
-200.times do |idx|
+# 25 in new york, 25 in la, 50 random
+100.times do |idx|
 
-  if idx < 100 && idx.even?
+  if idx < 50 && idx.even?
     zip_code = NEW_YORK_ZIPS.sample
     city = ["New York City", "Manhattan", "Bronx", "Brooklyn", "Staten Island"].sample
     state = "NY"
-  elsif idx < 100
+  elsif idx < 50
     zip_code = LA_ZIPS.sample
     city = "Los Angeles"
     state = "CA"
@@ -324,7 +324,7 @@ end
 
 User.create!(
   email: "aaron_zick@yahoo.com",
-  password: "password"
+  password: "password",
   fname: "You...",
   birthday: Date.new(1989,9,12),
   location: "07663",

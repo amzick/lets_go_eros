@@ -13,6 +13,13 @@ export const fetchUsers = () => {
   });
 };
 
+export const fetchFirstLast = () => {
+  $.ajax({
+    method: "GET",
+    url: "api/first_last",
+  });
+};
+
 export const fetchGenders = () => {
   return $.ajax({
     method: "GET",
@@ -28,7 +35,7 @@ export const fetchEthnicities = () => {
 };
 
 export const createPhoto = (formData) => {
-      // last two two fields let ajax method know that we shouldn't be trying to format for rails backend, let rails handle it
+  // last two two fields let ajax method know that we shouldn't be trying to format for rails backend, let rails handle it
   return $.ajax({
     method: "POST",
     url: `/api/users/${currentUser.id}/profile_pictures`,
