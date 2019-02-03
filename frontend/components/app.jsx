@@ -11,7 +11,7 @@ import OnboardingContainer from '../components/session_form/onboarding/onboardin
 import HomeContainer from '../components/home/home_container';
 
 //
-import GenderForm from './session_form/onboarding/gender_form';
+import BirthdayForm from './session_form/onboarding/birthday_form';
 
 
 //Testing
@@ -29,7 +29,7 @@ const App = () => {
       <AuthRoute exact path='/login' component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={WhoAreYouContainer} />
       <AuthRoute exact path='/onboarding' component={OnboardingContainer} />
-      <Route exact path = '/css' component={GenderForm} />
+      <Route exact path = '/css' component={BirthdayForm} />
       <ProtectedRoute exact path='/home' component={HomeContainer} />
       <ProtectedRoute exact path='/match' component={HomeContainer} />
       <ProtectedRoute exact path ='/profile' component={ProfileContainer} />

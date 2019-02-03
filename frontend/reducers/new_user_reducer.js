@@ -22,6 +22,7 @@ export const newUserReducer = (state = _newUser, action) => {
 
   switch (action.type) {
     case RECEIVE_DATUM:
+    
       newState = { [action.field]: action.value };
 
       return merge({}, state, newState);

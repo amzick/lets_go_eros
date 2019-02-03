@@ -10,19 +10,9 @@ import RenderDynamicMessages from '../../errors/render_dynamic_messages';
 
 
 const msp = state => {
-  const possibleYears = [];
-  const mostRecentValidYear = new Date().getFullYear() - 18;
-  for (let i = mostRecentValidYear; i >= 1900; i--) {
-    possibleYears.push(i);
-  }
-  const yearsArray = possibleYears.map((year) => {
-    return <option value={year.toString()} key={year}>{year}</option>;
-  });
-
   return ({
     errors: state.errors.ui,
     newUser: state.ui.newUser,
-    yearsArray
   });
 };
 
@@ -41,31 +31,36 @@ class BirthdayForm extends React.Component {
     this.state = {};
     this.state.newUser = props.newUser;
     this.state.errors = props.errors;
-    this.state.year = "";
-    this.state.month = "";
-    this.state.day = "";
+
+    this.state.year = (props.newUser.birthday.toDateString() === new Date().toDateString() ? "" : props.newUser.birthday.getFullYear());
+    this.state.month = (props.newUser.birthday.toDateString() === new Date().toDateString() ? "" : props.newUser.birthday.getMonth() + 1);
+    this.state.day = (props.newUser.birthday.toDateString() === new Date().toDateString() ? "" : props.newUser.birthday.getDate());
+
     this.state.messages = [];
     // fix
     this.state.submitClass = "invalid-submit";
     this.state.disabled = "disabled";
     //
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBirthday = this.handleBirthday.bind(this);
   }
 
   handleBirthday(field) {
     return (event) => {
+      console.log(event.target.value);
       this.setState({
         [field]: event.target.value
       }, () => {
         if (this.state.year !== "" && this.state.month !== "" && this.state.day !== "") {
-          const date = (`${this.state.year}-${this.state.month}-${this.state.day}`);
 
-          validateField("birthday", date)
+          const newDate = (`${this.state.year}-${this.state.month}-${this.state.day}`);
+
+          validateField("birthday", newDate)
             .then((resp) => {
               this.setState({ errors: [], disabled: "", submitClass: "valid-submit", messages: [`Oooh, a ${resp.sign}!`] },
                 () => {
 
-                  this.props.updateNewUser({ field: resp.field, value: (new Date(resp.value)) })
+                  this.props.updateNewUser({ field: resp.field, value: (new Date(newDate)) });
                 });
             },
               (bad) => {
@@ -81,7 +76,7 @@ class BirthdayForm extends React.Component {
     event.preventDefault();
     this.props.handler("location");
     this.props.updateField("location");
-    this.props.updateNewUser({ field: "birthday", value: this.state.newUser.birthday })
+    this.props.updateNewUser({ field: "birthday", value: this.state.newUser.birthday });
   }
 
   componentWillUnmount() {
@@ -90,9 +85,15 @@ class BirthdayForm extends React.Component {
 
   render() {
 
+    const possibleYears = [];
+    const mostRecentValidYear = new Date().getFullYear() - 18;
+    for (let i = mostRecentValidYear; i >= 1900; i--) {
+      possibleYears.push(i);
+    }
+    const yearsArray = possibleYears.map((year) => {
+      return <option value={year.toString()} key={year} >{year}</option>;
+    });
 
-
-    const { yearsArray } = this.props;
     let daysInMonth = 0;
 
     switch (this.state.month) {
@@ -129,43 +130,53 @@ class BirthdayForm extends React.Component {
     const daysArray = [];
     if (daysInMonth !== 0) {
       for (let i = 1; i <= daysInMonth; i++) {
-        daysArray[i - 1] = <option key={i} value={i.toString()}>{i}</option>;
+        daysArray[i - 1] = <option key={i} value={i.toString()}  >{i}</option>;
       }
+    }
+
+    const fuckThisShit = [];
+    for (let i = 0; i < 31; i++) {
+      fuckThisShit[i] = <option key={i} value={(i + 1).toString()}>{i + 1}</option>;
     }
 
 
     return (
-      <div>
-        BirthdayForm
-        <form onSubmit={this.handleSubmit}>
-          <label>Birthday:
-            <select onChange={this.handleBirthday("year")} value={this.state.year}>Year
+      <div className="dynamic-input-div">
+        <h1 className="dynamic-input-message">When were you born?</h1>
+        <form className="birthday-form" onSubmit={this.handleSubmit}>
+          <div className="birthday-form-div">
+            <select className="birthday-select" onChange={this.handleBirthday("year")} value={this.state.year === "" ? "" : this.state.year}>Year
               <option value="" disabled>Year</option>
               {yearsArray}
             </select>
 
-            <select onChange={this.handleBirthday("month")} value={this.state.month}>Month
-              <option value="" disabled>Month</option>
-              <option value="1">January</option>
-              <option value="2">February</option>
-              <option value="3">March</option>
-              <option value="4">April</option>
-              <option value="5">May</option>
-              <option value="6">June</option>
-              <option value="7">July</option>
-              <option value="8">August</option>
-              <option value="9">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
+            <div className="birthday-MD-div">
+              <div className="MD">
+                <select className="birthday-select" onChange={this.handleBirthday("month")} value={this.state.month.toString()}>Month
+                  <option value="" disabled >Month</option>
+                  <option value="1" >January</option>
+                  <option value="2" >February</option>
+                  <option value="3" >March</option>
+                  <option value="4" >April</option>
+                  <option value="5" >May</option>
+                  <option value="6" >June</option>
+                  <option value="7" >July</option>
+                  <option value="8" >August</option>
+                  <option value="9" >September</option>
+                  <option value="10" >October</option>
+                  <option value="11" >November</option>
+                  <option value="12" >December</option>
+                </select>
+              </div>
 
-            <select onChange={this.handleBirthday("day")} value={this.state.day}>Day
-              <option value="" disabled>Day</option>
-              {daysArray}
-            </select>
-
-          </label>
+              <div className="MD">
+                <select className="birthday-select" onChange={this.handleBirthday("day")} value={this.state.day.toString()}>Day
+                   <option value="" disabled>Day</option>
+                  {fuckThisShit}
+                </select>
+              </div>
+            </div>
+          </div>
           {this.state.errors.length === 0 ? <RenderDynamicMessages messages={this.state.messages} /> : <RenderDynamicErrors errors={this.state.errors} />}
           <button className={this.state.submitClass} disabled={this.state.disabled}>next</button>
 

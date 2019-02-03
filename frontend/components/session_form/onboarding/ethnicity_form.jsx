@@ -88,11 +88,11 @@ class EthnicityForm extends React.Component {
 
     return (
       <div className="dynamic-input-div">
-        <h1>Which ethnicity best describes you?</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.checkBoxItems}
+        <h1 className="dynamic-input-message">Which ethnicity best describes you?</h1>
+        <form className="checkbox-form" onSubmit={this.handleSubmit}>
+          <div className="checkbox-form-div">{this.checkBoxItems}</div>
           <RenderDynamicErrors errors={this.state.errors} />
-          <button className={this.state.submitClass} disabled={this.state.disabled}>next</button>
+          <input type="submit" className={this.state.submitClass} disabled={this.state.disabled} value="next" />
         </form>
       </div >
     );

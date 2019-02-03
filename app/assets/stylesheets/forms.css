@@ -1,4 +1,4 @@
-input, label, form {
+input, label, form, select {
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
 
 }
@@ -76,6 +76,7 @@ input, label, form {
 }
 
 
+
 .checkbox-form-div {
   display: flex;
   flex-direction: row;
@@ -86,6 +87,7 @@ input, label, form {
   height: auto;
   max-width: 650px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .checkbox-item-unchecked {
@@ -154,6 +156,60 @@ input, label, form {
 
 ::placeholder {
   color: #aaacae;
+}
+
+.birthday-form {
+  /* border: solid 1px black; */
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-form-div {
+  /* border: solid 1px red; */
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  height: 200px;
+  max-width: 650px;
+  margin: 0 auto;
+  box-sizing: border-box; 
+}
+
+.birthday-select {
+  /* border: solid 1px green; */
+  background-color: white;
+  width: 100%;
+  height: 60px;
+  box-shadow: 1px 1px 0 0  rgba(0,0,0,.25);
+  font-size: 1.2em;
+  padding: 0 5px;
+}
+
+/* tried 50 different ways to change text color of month / year, nothing */
+option[disabled="disabled"] {
+  opacity: 0.5;
+  color: red;
+}
+
+option[disabled="disabled"]::-ms-value {
+  opacity: 0.5;
+  color: red;
+}
+
+
+.birthday-MD-div {
+  /* border: solid 1px purple; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.MD {
+  width: 48%;
 }
 
 .back-arrow:hover {

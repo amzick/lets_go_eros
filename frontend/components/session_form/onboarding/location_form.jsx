@@ -52,7 +52,7 @@ class LocationForm extends React.Component {
       "email": this.state.newUser.email,
       "password": this.state.newUser.password,
       "fname": this.state.newUser.fname,
-      "birthday": new Date(this.state.newUser.birthday),
+      "birthday": this.state.newUser.birthday,
       "gender_ids": Array.from(this.state.newUser.genders),
       "ethnicity_ids": Array.from(this.state.newUser.ethnicities),
       "location": this.state.newUser.location,

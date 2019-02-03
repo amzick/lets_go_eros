@@ -7,9 +7,16 @@ import * as UiAPI from '../util/ui_util';
 
 //thunk action creators
 export const updateNewUser = (datum) => dispatch => {
-  //eventually this will make a validity check ajax request to a custom route (from handle change)
-  UiAPI.validateField(datum.field, datum.value).then(
-    resp => dispatch(receiveDatum(resp)),
+  
+  UiAPI.validateField(datum.field, datum.value).then((resp) => {
+    
+    if (resp.field === "birthday") {
+      
+      dispatch(receiveDatum({field:resp.field, value: new Date(resp.value)}));
+    } else {
+    dispatch(receiveDatum({field:resp.field, value: resp.value}));
+    }
+  },
     (errors) => dispatch(receiveErrors(errors.responseJSON))
   );
 };
@@ -50,7 +57,7 @@ export const receiveErrors = (array) => {
 };
 
 const receiveOptions = (options) => {
-  
+
   return ({
     type: RECEIVE_OPTIONS,
     options,
