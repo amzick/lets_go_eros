@@ -77,12 +77,19 @@ class OnboardingContainer extends React.Component {
     let backArrow = <i onClick={this.backFunction} className="fas fa-angle-left"></i>;
     let aboutYou = <h2>About You</h2>;
     let ComponentToBeRendered;
+    let DynamicSpanContainerDiv = (
+      <div className="dynamic-span-container-div" display={field === "landing" ? "none" : ""} >
+        {backArrow ? <span className="back-arrow">{backArrow}</span> : null}
+        {aboutYou ? aboutYou : null}
+      </div>
+    )
 
     switch (field) {
       case "landing":
 
         ComponentToBeRendered = <Landing handler={this.handler} />;
         // don't render  a back button from the landing
+        DynamicSpanContainerDiv = null;
         backArrow = null;
         aboutYou = null;
         break;
@@ -105,11 +112,9 @@ class OnboardingContainer extends React.Component {
     return (
       <div className="login-div">
         <SessionNavBar />
+
         <span className="center-form-span">
-          <div className="dynamic-span-container-div">
-            {backArrow ? <span className="back-arrow">{backArrow}</span> : null}
-            {aboutYou ? aboutYou : null}
-          </div>
+          {DynamicSpanContainerDiv}
           {ComponentToBeRendered}
           {/* <h2>Tell us about yourself</h2> */}
           {/* <p>So we can find people who like you for you.</p> */}

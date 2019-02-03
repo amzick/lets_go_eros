@@ -33,14 +33,17 @@ class Landing extends React.Component {
 
     return (
       <div>
-        <span>
+        <div className="landing-speech-bubble">
           <h2>Tell us about yourself</h2>
           <p>So we can find people who like you for you.</p>
-        </span>
-        <span>
-          <img src="https://s3.amazonaws.com/letsgoeros-dev/01_img.png" />
-          <button onClick={this.handleSubmit} className="valid-submit">Next</button>
-        </span>
+          <div className="landing-speech-bubble-point" >""</div>
+        </div>
+        <img className="landing-img" src="https://s3.amazonaws.com/letsgoeros-dev/01_img.png" />
+        <div>
+          <div className="landing-bottom-div">
+            <button onClick={this.handleSubmit} className="valid-submit">Next</button>
+          </div>
+        </div>
       </div>
     )
   }
