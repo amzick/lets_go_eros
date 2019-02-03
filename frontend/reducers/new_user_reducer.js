@@ -1,13 +1,13 @@
 import { RECEIVE_DATUM } from '../actions/ui_actions';
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import { merge } from 'lodash';
 
 const _newUser = {
   email: "",
   password: "",
   fname: "",
-  genders: [],
-  ethnicities: [],
+  genders: new Set(),
+  ethnicities: new Set(),
   birthday: new Date(),
   location: undefined
 };
@@ -26,6 +26,7 @@ export const newUserReducer = (state = _newUser, action) => {
 
       return merge({}, state, newState);
     case RECEIVE_CURRENT_USER:
+    case LOGOUT_CURRENT_USER:
       return _newUser;
     default:
       return state;

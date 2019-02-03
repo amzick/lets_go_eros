@@ -53,12 +53,22 @@ class LocationForm extends React.Component {
       "password": this.state.newUser.password,
       "fname": this.state.newUser.fname,
       "birthday": new Date(this.state.newUser.birthday),
-      "gender_ids": this.state.newUser.genders,
-      "ethnicity_ids": this.state.newUser.ethnicities,
+      "gender_ids": Array.from(this.state.newUser.genders),
+      "ethnicity_ids": Array.from(this.state.newUser.ethnicities),
       "location": this.state.newUser.location,
       "city": this.state.city,
       "state": this.state.state
     });
+
+    const _newUser = {
+      email: "",
+      password: "",
+      fname: "",
+      genders: new Set(),
+      ethnicities: new Set(),
+      birthday: new Date(),
+      location: undefined
+    };
 
     this.props.signup(newUser);
   }
@@ -69,7 +79,7 @@ class LocationForm extends React.Component {
       const setUser = merge({}, this.state.newUser);
 
       setUser[field] = event.target.value;
-
+      console.log(setUser);
       this.setState({ newUser: setUser });
 
       if (event.target.value !== "") {
@@ -83,15 +93,13 @@ class LocationForm extends React.Component {
                   revealLocation(this.state.newUser.location)
                     .then(resp => {
 
-                      if (undefined === resp.results[0].address_components[7]) {
-
+                      if (resp.status !== "ZERO_RESULTS") {
                         that.setState({ messages: [`Ahh, ${resp.results[0].address_components[1].long_name}`], errors: [], city: resp.results[0].address_components[1].long_name, state: resp.results[0].address_components[3].short_name });
                       } else {
                         that.setState({ errors: ["Please enter an existing zip code"], submitClass: "invalid-submit" });
                       }
                     },
                       errors => {
-
                         this.setState({ errors: ["Please enter an existing zip code"], submitClass: "invalid-submit" });
                       });
                 });
@@ -114,7 +122,7 @@ class LocationForm extends React.Component {
 
   componentWillUnmount() {
     this.props.clearErrors();
-    this.setState({ errors: [] });
+    this.setState({ errors: []});
   }
 
   render() {

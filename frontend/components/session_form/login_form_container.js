@@ -70,6 +70,14 @@ class LoginForm extends React.Component {
     };
   }
 
+  componentDidMount() {
+    // inexplicably, after changing css / functionality of checkboxes, logging out the user would maintain that new user info 
+    // when trying to immediately create a new user. and then clearing the new user , which 
+    // has nothing to do with the sign in page, inexplicably would render the 'no current user' error
+    // on the sign in page. so here we  are.
+    this.props.clearErrors();
+  }
+
   componentWillUnmount() {
     this.props.clearErrors();
   }
