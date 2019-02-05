@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format:'json'} do
     resources :users, only: [:index, :create, :show, :update] do
       resources :profile_pictures, only: [:create, :destroy]
+      resources :messages, only: [:index]
     end
     resource :session, only: [:create, :destroy]
 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
 
     resources :genders, only: [:index]
     resources :ethnicities, only: [:index]
+    resources :messages, only: [:create, :show, :update]
   end
   
   #  was testing aws picture retrieval

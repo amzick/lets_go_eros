@@ -56,9 +56,32 @@ class User < ApplicationRecord
     through: :responses,
     source: :question
 
-    # TODO AWS: 
+  has_many :sent_messages,
+    foreign_key: :sender_id,
+    class_name: :Message
+
+  has_many :received_messages,
+    foreign_key: :recipient_id,
+    class_name: :Message
+    
+  # return an array of all users user is messaging with
+  def is_messaging_with
+    result = Array.new
+    Message.select(:sender_id,:recipient_id)
+    .where("messages.sender_id = ? OR messages.recipient_id = ?", self.id, self.id)
+    .map do |message|
+      result << message.sender_id if message.sender_id != self.id
+      result << message.recipient_id if message.recipient_id != self.id
+    end    
+    .uniq.flatten
+  end
+
+  def all_messages_with(user)
+    Message.where("messages.sender_id = ? OR messages.recipient_id = ?", user.id, user.id)
+  end
+    # aws
   has_many_attached :profile_pictures
-  has_one_attached :thing
+  
 
     
     # ************   MATCH MATH /////////////////
