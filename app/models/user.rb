@@ -78,7 +78,8 @@ class User < ApplicationRecord
   end
 
   def all_messages_with(user)
-    Message.where("messages.sender_id = ? OR messages.recipient_id = ?", user.id, user.id)
+    Message.select(:id)
+    .where("messages.sender_id = ? OR messages.recipient_id = ?", user.id, user.id)
     .order('messages.created_at DESC')
   end
     # aws

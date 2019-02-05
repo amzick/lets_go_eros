@@ -1,0 +1,1 @@
+json.messages_between @user.all_messages_with(@other_user).map {|el| el.id}

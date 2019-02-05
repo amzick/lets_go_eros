@@ -1,8 +1,19 @@
 import React from 'react';
-import { connet } from 'react-redux';
-import { fetchUser } from '../../actions/user_actions';
+import { connect } from 'react-redux';
+import { fetchMessagesBetween } from '../../util/message_api_util';
+
+const msp = state => {
+  return({
+    currentUser: state.session.id,
+  });
+};
 
 class MessageCard extends React.Component {
+
+  componentDidMount() {
+    
+    fetchMessagesBetween(this.props.currentUser.id,this.props.cardUser.id);
+  }
 
   render() {
     const { cardUser } = this.props;
@@ -36,4 +47,4 @@ class MessageCard extends React.Component {
   }
 }
 
-export default MessageCard;
+export default connect(msp)(MessageCard);

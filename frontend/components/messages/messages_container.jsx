@@ -5,6 +5,7 @@ import LoggedInFooter from '../home/logged_in_footer';
 import MessageCard from './message_card';
 
 import { fetchUser } from '../../actions/user_actions';
+import { fetchUserMessages } from '../../actions/message_actions';
 
 const msp = state => {
   return ({
@@ -17,6 +18,7 @@ const mdp = dispatch => {
   
   return ({
     fetchUser: (userID) => dispatch(fetchUser(userID)),
+    fetchUserMessages: (userID) => dispatch(fetchUserMessages(userID)),
   });
 };
 

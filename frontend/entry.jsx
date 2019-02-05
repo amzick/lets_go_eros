@@ -9,6 +9,8 @@ import configureStore from './store/store';
 // import { revealLocation } from './util/ui_util';
 // import * as UserApiUtil from './util/user_api_util';
 // import { fetchGenders, fetchEthnicities, fetchUsers, fetchUser } from './actions/user_actions';
+import { fetchMessagesBetween } from './util/message_api_util';
+
 import { signup, logout} from './util/session_api_util';
 // end
 
@@ -36,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.fetchUsers = fetchUsers;
   // window.fetchUser = fetchUser;
   window.logout= logout;
+  window.fetchMessagesBetween = fetchMessagesBetween;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

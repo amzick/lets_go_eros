@@ -15,6 +15,12 @@ class Api::MessagesController < ApplicationController
     render :show
   end
 
+  def between
+    @user = User.find(params[:user_id])
+    @other_user = User.find(params[:other_user])
+    render :between
+  end
+
   # nested in users
   def index
     @user = User.find(params[:user_id])
