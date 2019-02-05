@@ -79,7 +79,6 @@ class LocationForm extends React.Component {
       const setUser = merge({}, this.state.newUser);
 
       setUser[field] = event.target.value;
-      console.log(setUser);
       this.setState({ newUser: setUser });
 
       if (event.target.value !== "") {

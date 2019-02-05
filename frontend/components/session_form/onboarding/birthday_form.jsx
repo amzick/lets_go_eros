@@ -80,7 +80,6 @@ class BirthdayForm extends React.Component {
 
     this.state.daysArray = initialDaysArray;
 
-    console.log("daysArray:", this.state.daysArray);
 
     this.state.messages = [];
 
@@ -96,7 +95,6 @@ class BirthdayForm extends React.Component {
     const that = this;
 
     return (event) => {
-      console.log(event.target.value);
       this.setState({
         [field]: event.target.value
       }, () => {
@@ -108,10 +106,8 @@ class BirthdayForm extends React.Component {
 
           validateField("birthday", newDate)
             .then((resp) => {
-              console.log("validateField resp:", resp);
               this.setState({ errors: [], disabled: "", submitClass: "valid-submit", messages: [`Oooh, a ${resp.sign}!`] },
                 () => {
-                  console.log(resp);
                   let setUser = merge({}, this.state.newUser);
                   // why...
                   // 
