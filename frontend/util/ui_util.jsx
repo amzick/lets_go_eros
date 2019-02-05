@@ -1,6 +1,11 @@
 // custom routes to make ajax requests
 
 export const validateField = (field, value) => {
+  
+  if (value instanceof Date) {
+    value = `${value.getFullYear()}-${value.getMonth()+1}-${value.getDate()}`;
+  }
+  
   return $.ajax({
     method: "GET",
     url: `/api/validity/${field}/${value}`,

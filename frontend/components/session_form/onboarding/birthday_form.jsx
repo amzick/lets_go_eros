@@ -36,37 +36,95 @@ class BirthdayForm extends React.Component {
     this.state.month = (props.newUser.birthday.toDateString() === new Date().toDateString() ? "" : props.newUser.birthday.getMonth() + 1);
     this.state.day = (props.newUser.birthday.toDateString() === new Date().toDateString() ? "" : props.newUser.birthday.getDate());
 
+
+    let initialDaysArray = [];
+    let daysInMonth = 0;
+
+
+    switch (this.state.month) {
+      case 2:
+        daysInMonth = 28;
+        if (this.state.year && (
+          (parseInt(this.state.year) % 4 === 0)) &&
+          !(parseInt(this.state.year) % 100 === 0) ||
+          (parseInt(this.state.year) % 400 === 0)
+        ) {
+          daysInMonth++;
+        }
+        break;
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        daysInMonth = 31;
+        break;
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+        daysInMonth = 30;
+        break;
+      default:
+        daysInMonth = 0;
+        break;
+    }
+
+    if (daysInMonth !== 0) {
+      for (let i = 1; i <= daysInMonth; i++) {
+        initialDaysArray[i - 1] = <option key={i} value={i.toString()}  >{i}</option>;
+      }
+    }
+
+    this.state.daysArray = initialDaysArray;
+
+    console.log("daysArray:", this.state.daysArray);
+
     this.state.messages = [];
-    // fix
-    this.state.submitClass = "invalid-submit";
-    this.state.disabled = "disabled";
-    //
+
+    this.state.submitClass = (props.newUser.birthday.toDateString() === new Date().toDateString() ? "invalid-submit" : "valid-submit");
+    this.state.disabled = (props.newUser.birthday.toDateString() === new Date().toDateString() ? "disabled" : "");
+
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleBirthday = this.handleBirthday.bind(this);
+    // this.handleBirthday = this.handleBirthday.bind(this);
+    this.updateDaysArray = this.updateDaysArray.bind(this);
   }
 
   handleBirthday(field) {
+    const that = this;
+
     return (event) => {
       console.log(event.target.value);
       this.setState({
         [field]: event.target.value
       }, () => {
+
+        this.updateDaysArray();
         if (this.state.year !== "" && this.state.month !== "" && this.state.day !== "") {
 
-          const newDate = (`${this.state.year}-${this.state.month}-${this.state.day}`);
+          const newDate = (`${this.state.month}-${this.state.day}-${this.state.year}`);
 
           validateField("birthday", newDate)
             .then((resp) => {
+              console.log("validateField resp:", resp);
               this.setState({ errors: [], disabled: "", submitClass: "valid-submit", messages: [`Oooh, a ${resp.sign}!`] },
                 () => {
-
-                  this.props.updateNewUser({ field: resp.field, value: (new Date(newDate)) });
+                  console.log(resp);
+                  let setUser = merge({}, this.state.newUser);
+                  // why...
+                  // 
+                  setUser.birthday = new Date(newDate);
+                  this.setState({ newUser: setUser }, () => {
+                    this.props.updateNewUser({ field: resp.field, value: (new Date(newDate)) });
+                  });
                 });
             },
               (bad) => {
 
                 this.setState({ errors: bad.responseJSON, disabled: "disabled", submitClass: "invalid-submit", messages: [] });
-              })
+              });
         }
       });
     };
@@ -76,26 +134,23 @@ class BirthdayForm extends React.Component {
     event.preventDefault();
     this.props.handler("location");
     this.props.updateField("location");
+
     this.props.updateNewUser({ field: "birthday", value: this.state.newUser.birthday });
+  }
+
+  componentDidMount() {
+    this.props.clearErrors();
   }
 
   componentWillUnmount() {
     this.props.clearErrors();
   }
 
-  render() {
-
-    const possibleYears = [];
-    const mostRecentValidYear = new Date().getFullYear() - 18;
-    for (let i = mostRecentValidYear; i >= 1900; i--) {
-      possibleYears.push(i);
-    }
-    const yearsArray = possibleYears.map((year) => {
-      return <option value={year.toString()} key={year} >{year}</option>;
-    });
-
+  updateDaysArray() {
     let daysInMonth = 0;
 
+
+    // this.state.month is a string at this point, handled differently in constructor. code could be dryer; will refactor later, will just be happy when this works
     switch (this.state.month) {
       case "2":
         daysInMonth = 28;
@@ -127,17 +182,28 @@ class BirthdayForm extends React.Component {
         break;
     }
 
-    const daysArray = [];
+    const newDaysArray = [];
     if (daysInMonth !== 0) {
       for (let i = 1; i <= daysInMonth; i++) {
-        daysArray[i - 1] = <option key={i} value={i.toString()}  >{i}</option>;
+        newDaysArray[i - 1] = <option key={i} value={i.toString()}  >{i}</option>;
       }
     }
 
-    const fuckThisShit = [];
-    for (let i = 0; i < 31; i++) {
-      fuckThisShit[i] = <option key={i} value={(i + 1).toString()}>{i + 1}</option>;
+
+    this.setState({ daysArray: newDaysArray });
+  }
+
+  render() {
+
+    const possibleYears = [];
+    const mostRecentValidYear = new Date().getFullYear() - 18;
+    for (let i = mostRecentValidYear; i >= 1900; i--) {
+      possibleYears.push(i);
     }
+    const yearsArray = possibleYears.map((year) => {
+      return <option value={year.toString()} key={year} >{year}</option>;
+    });
+
 
 
     return (
@@ -172,13 +238,13 @@ class BirthdayForm extends React.Component {
               <div className="MD">
                 <select className="birthday-select" onChange={this.handleBirthday("day")} value={this.state.day.toString()}>Day
                    <option value="" disabled>Day</option>
-                  {fuckThisShit}
+                  {this.state.daysArray}
                 </select>
               </div>
             </div>
           </div>
           {this.state.errors.length === 0 ? <RenderDynamicMessages messages={this.state.messages} /> : <RenderDynamicErrors errors={this.state.errors} />}
-          <button className={this.state.submitClass} disabled={this.state.disabled}>next</button>
+          <input type="submit" className={this.state.submitClass} disabled={this.state.disabled} value="next" />
 
         </form>
       </div>
