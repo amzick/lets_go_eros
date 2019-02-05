@@ -73,11 +73,13 @@ class User < ApplicationRecord
       result << message.sender_id if message.sender_id != self.id
       result << message.recipient_id if message.recipient_id != self.id
     end    
-    .uniq.flatten
+    
+    result.uniq.flatten
   end
 
   def all_messages_with(user)
     Message.where("messages.sender_id = ? OR messages.recipient_id = ?", user.id, user.id)
+    .order('messages.created_at DESC')
   end
     # aws
   has_many_attached :profile_pictures

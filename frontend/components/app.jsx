@@ -9,22 +9,13 @@ import ProfileContainer from '../components/profile/profile_container';
 import WhoAreYouContainer from '../components/session_form/onboarding/who_are_you_container';
 import OnboardingContainer from '../components/session_form/onboarding/onboarding_container';
 import HomeContainer from '../components/home/home_container';
-
-//
-import BirthdayForm from './session_form/onboarding/birthday_form';
-
-
-//Testing
-import Logout from '../components/logout/logout';
-import SignupFormContainer from './session_form/__signup_form_container';
+import MessagesContainer from '../components/messages/messages_container';
 
 
 
-// todo: change users route to profiles , add components, etc
 const App = () => {
   return (
     <Switch>
-      <ProtectedRoute exact path='/logout' component={Logout} />
       <AuthRoute exact path="/" component={SplashContainer} />
       <AuthRoute exact path='/login' component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={WhoAreYouContainer} />
@@ -33,6 +24,7 @@ const App = () => {
       <ProtectedRoute exact path='/match' component={HomeContainer} />
       <ProtectedRoute exact path='/profile' component={ProfileContainer} />
       <ProtectedRoute path={`/profiles/:id`} component={ProfileContainer} />
+      <ProtectedRoute path='/messages' component={MessagesContainer} />
     </Switch>
   );
 };

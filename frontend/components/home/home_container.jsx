@@ -73,7 +73,7 @@ class HomeContainer extends React.Component {
       }
     }
 
-    // radiohead
+    // hearthstone. will be searchable
     const queryResult1 = [];
     // match > 90
     const queryResult2 = [];

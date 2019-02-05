@@ -1,5 +1,5 @@
 import * as UserApiUtil from '../util/user_api_util';
-import { revealLocation } from '../util/ui_util';
+// import { revealLocation } from '../util/ui_util';
 
 
 export const RECEIVE_USER = "RECEIVE_USER";
@@ -9,10 +9,9 @@ export const RECEIVE_ETHNICITIES = 'RECEIVE_ETHNICITIES';
 
 
 //thunk action creators
-export const fetchUser = (userId) => {
-  
+export const fetchUser = (userID) => {
   return (dispatch) => {
-    UserApiUtil.fetchUser(userId).then(resp => dispatch(receiveUser(resp)));
+    return UserApiUtil.fetchUser(userID).then(resp => dispatch(receiveUser(resp)));
   };
 };
 
