@@ -104,7 +104,7 @@ class BirthdayForm extends React.Component {
         this.updateDaysArray();
         if (this.state.year !== "" && this.state.month !== "" && this.state.day !== "") {
 
-          const newDate = (`${this.state.month}-${this.state.day}-${this.state.year}`);
+          const newDate = (`${this.state.year}-${this.state.month}-${this.state.day}`);
 
           validateField("birthday", newDate)
             .then((resp) => {

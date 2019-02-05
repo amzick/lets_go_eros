@@ -9,10 +9,11 @@ import * as UiAPI from '../util/ui_util';
 export const updateNewUser = (datum) => dispatch => {
   
   UiAPI.validateField(datum.field, datum.value).then((resp) => {
-    
     if (resp.field === "birthday") {
-      
-      dispatch(receiveDatum({field:resp.field, value: new Date(resp.value)}));
+      // inexplicably, the date conversion here (not anywhere else, using the exact same syntax) results in the date being  a day earlier
+      // unless i use slash notation for the date declaration... that was fun to debug
+      // https://code.i-harness.com/en/q/734def
+      dispatch(receiveDatum({ field: resp.field, value: new Date(resp.value.replace(/-/g, '\/'))}));
     } else {
     dispatch(receiveDatum({field:resp.field, value: resp.value}));
     }
