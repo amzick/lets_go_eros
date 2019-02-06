@@ -56,10 +56,10 @@ class MessagesContainer extends React.Component {
       <>
         <div className="base">
           <Navigation />
-          <div className="messages-content">
+          <div className="messages-section">
             <h1>Messages</h1>
             <div className="threads-div">
-              {allThreads}
+              {allThreads.length > 0 ? allThreads : <p>You don't have any messages yet! Get Out there and start talking to people!</p>}
             </div>
           </div>
         </div>

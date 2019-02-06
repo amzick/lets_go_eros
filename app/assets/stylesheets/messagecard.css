@@ -1,0 +1,77 @@
+.messages-section {
+  /* border: solid 1px blue; */
+  height: auto;
+  background-color: #f3f5f9;
+  /* border: solid 1px red;   */
+  width: 952px;
+  margin: 50px auto 0;
+  padding-bottom: 60px;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
+  /* position: relative; */
+}
+
+.messages-section > h1 {
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.messagecard-div {
+  /* border: solid 1px orange; */
+  background-color:#ffffff;
+  max-width: 886px;
+  height: 150px;
+  max-height: 150px;
+  margin: 20px 10px;
+  box-shadow: 2px 5px 8px #888888;
+  border: solid 1px lightgray;
+  border-radius: 4px;
+  position: relative;
+  top: 0px;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.messagecard-div:hover {
+  cursor: pointer;
+  top: -2px;
+  box-shadow: 5px 10px 10px #3260c7;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+}
+
+.messagecard-div:hover .messagecard-thumb > img {
+  transform: scale(1.2);
+  transition-duration: 0.5s;
+  -webkit-transform: scale(1.2);
+  -webkit-transition-duration: 0.5s;
+}
+
+.messagecard-div .messagecard-thumb > img {
+  transform: scale(1);
+  transition-duration: 0.5s;
+  -webkit-transform: scale(1);
+  -webkit-transition-duration: 0.5s;
+}
+
+
+.messagecard-thumb {
+  border: solid 1px #76a8e2;
+  max-height: 110px;
+  min-width: 110px;
+  max-width: 110px;
+  overflow: hidden;
+  border-radius: 50%;
+  /* margin: 0px 20px -65px; */
+  /* position: absolute;
+  top: -40px;
+  left: -185px; */
+  /* cursor: pointer; */
+}

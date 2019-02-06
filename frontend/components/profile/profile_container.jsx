@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchUser, fetchGenders, fetchEthncities } from '../../actions/user_actions';
+import { fetchUser, fetchGenders, fetchEthnicities } from '../../actions/user_actions';
 
 import Navigation from '../home/navigation';
 import ProfileHeader from './profile_header';
