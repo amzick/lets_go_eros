@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :genders, only: [:index]
     resources :ethnicities, only: [:index]
     resources :messages, only: [:create, :show, :update]
+    get 'messages/limited/:message_ids', to: 'messages#limited'
 
   end
   

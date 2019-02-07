@@ -11,6 +11,7 @@ const msp = state => {
   return ({
     currentUser: state.entities.users[state.session.id],
     allUsers: state.entities.users,
+    allMessages: state.entities.messages
   });
 };
 
@@ -47,7 +48,7 @@ class MessagesContainer extends React.Component {
     if (currentUser.is_messaging_with.length !== 0 && this.state.users_loaded === currentUser.is_messaging_with.length) {
       currentUser.is_messaging_with.forEach((userID) => {
         allThreads.push(
-          <MessageCard key={userID} cardUser={this.props.allUsers[userID]} />
+          <MessageCard key={userID} cardUser={this.props.allUsers[userID]} allMessages={this.props.allMessages} />
         );
       });
     };

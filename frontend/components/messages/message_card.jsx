@@ -1,18 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchMessagesBetween } from '../../util/message_api_util';
+import { fetchMessages } from '../../actions/message_actions';
 
 const msp = state => {
   return({
     currentUser: state.session.id,
+    
+  });
+};
+
+const mdp = dispatch => {
+  return({
+    fetchMessages: (array) => dispatch(fetchMessages(array)),
   });
 };
 
 class MessageCard extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      messageIDsWithCurrentUser: [],
+      messagesWithCurrentUser: [],
+    };
+  }
+
   componentDidMount() {
-    
-    fetchMessagesBetween(this.props.currentUser.id,this.props.cardUser.id);
+    const that = this;
+    fetchMessagesBetween(this.props.currentUser,this.props.cardUser.id).then((resp) => {
+      that.setState({messageIDsWithCurrentUser: resp.messages_between}, () => {
+        that.props.fetchMessages(that.state.messageIDsWithCurrentUser).then( () => {
+          const setMessages = [];
+          that.state.messageIDsWithCurrentUser.forEach(id => {
+            setMessages.push(this.props.allMessages[id]);
+          });
+          that.setState({messagesWithCurrentUser: setMessages});
+        });
+      });
+    });
   }
 
   render() {
@@ -25,6 +51,14 @@ class MessageCard extends React.Component {
       profilePictureSrc = cardUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
     }
 
+    let cardMessages;
+    if (this.state.messagesWithCurrentUser.length > 0) {
+      
+      cardMessages = this.state.messagesWithCurrentUser;
+    } else {
+      cardMessages = ["Loading"];
+    }
+
     return (
 
       <div className="messagecard-div">
@@ -34,10 +68,10 @@ class MessageCard extends React.Component {
         <div className="messagecard-text">
           <div className="messagecard-text-header">
             <h2>{cardUser.fname}, {cardUser.age}</h2>
-            <p>Time of creation</p>
+            <p>{cardMessages[0] === "Loading" ? "Loading" : cardMessages[0].sent_at}</p>
           </div>
           <div>
-            Most recent message content!
+            {cardMessages[0] === "Loading" ? cardMessages[0] : cardMessages[0].message}
           </div>
         </div>
       </div>
@@ -47,4 +81,4 @@ class MessageCard extends React.Component {
   }
 }
 
-export default connect(msp)(MessageCard);
+export default connect(msp,mdp)(MessageCard);

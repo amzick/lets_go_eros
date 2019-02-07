@@ -21,6 +21,12 @@ class Api::MessagesController < ApplicationController
     render :between
   end
 
+  def limited
+    message_ids = params[:message_ids].split(",")
+    @messages = message_ids.map {|id| Message.find(id) }
+    render :index
+  end
+
   # nested in users
   def index
     @user = User.find(params[:user_id])

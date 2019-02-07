@@ -5,6 +5,13 @@ export const fetchUserMessages = (userID) => {
   });
 };
 
+export const fetchMessages = (array) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/messages/limited/${array}`
+  });
+};
+
 export const fetchMessagesBetween = (userID1, userID2) => {
   return $.ajax({
     method: "GET",
