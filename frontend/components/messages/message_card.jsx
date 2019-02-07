@@ -70,7 +70,7 @@ class MessageCard extends React.Component {
             <h2>{cardUser.fname}, {cardUser.age}</h2>
             <p>{cardMessages[0] === "Loading" ? "Loading" : cardMessages[0].sent_at}</p>
           </div>
-          <div>
+          <div className="messagecard-text-content">
             {cardMessages[0] === "Loading" ? cardMessages[0] : cardMessages[0].message}
           </div>
         </div>

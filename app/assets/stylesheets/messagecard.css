@@ -26,6 +26,7 @@
   height: 150px;
   max-height: 150px;
   margin: 20px 10px;
+  padding: 0 20px;
   box-shadow: 2px 5px 8px #888888;
   border: solid 1px lightgray;
   border-radius: 4px;
@@ -36,7 +37,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: space-between; */
+  justify-content: space-around;
 }
 
 .messagecard-div:hover {
@@ -69,9 +70,50 @@
   max-width: 110px;
   overflow: hidden;
   border-radius: 50%;
+  margin-right: 25px;
   /* margin: 0px 20px -65px; */
   /* position: absolute;
   top: -40px;
   left: -185px; */
   /* cursor: pointer; */
 }
+
+.messagecard-text {
+  width: 95%;
+  /* border: solid 1px green; */
+}
+
+.messagecard-text-header {
+  /* border: solid 1px red; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.messagecard-text-header > h2 {
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.messagecard-text-header > p {
+  color: #d3d3d3;
+}
+
+/* multiline text overflow */
+/* http://hackingui.com/front-end/a-pure-css-solution-for-multiline-text-truncation/ */
+.messagecard-text-content {
+  /* border: solid 1px orange; */
+  height: 60px;
+  width: 750px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  /* white-space: normal; */
+  overflow: hidden;
+  /* text-overflow: ellipsis; */
+  /* position: relative; */
+}
+
