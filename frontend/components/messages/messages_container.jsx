@@ -34,12 +34,16 @@ class MessagesContainer extends React.Component {
 
   componentDidMount() {
     const that = this;
-    currentUser.is_messaging_with.forEach(userID => {
+    this.props.currentUser.is_messaging_with.forEach(userID => {
       
       that.props.fetchUser(userID).then(() => {
         that.setState({ users_loaded: this.state.users_loaded+1 });
       });
     });
+  }
+
+  componentDidUpdate() {
+    
   }
 
   render() {
