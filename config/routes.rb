@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format:'json'} do
     resources :users, only: [:index, :create, :show, :update] do
       resources :profile_pictures, only: [:create, :destroy]
-      resources :messages, only: [:index]
+      resources :messages, only: [:create, :index]
       get '/messages_with/:other_user', to: 'messages#between'
     end
     resource :session, only: [:create, :destroy]
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
     resources :genders, only: [:index]
     resources :ethnicities, only: [:index]
-    resources :messages, only: [:create, :show, :update]
+    resources :messages, only: [:show, :update]
     get 'messages/limited/:message_ids', to: 'messages#limited'
 
   end

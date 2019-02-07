@@ -11,7 +11,7 @@ const msp = state => {
 
 const mdp = dispatch => {
   return ({
-    openModal: () => dispatch(openModal("messageUser")),
+    openModal: (modalData) => () => dispatch(openModal("messageUser", modalData)),
   });
 };
 
@@ -19,17 +19,21 @@ class HeartMessageButtons extends React.Component {
 
   constructor(props) {
     super(props);
+
   }
+
+
+
 
   render() {
     return (
-      
 
-        <div className='heart-message-buttons'>
-          <button ><i className="fas fa-heart"></i><span>Heart</span></button>
-          <button onClick={this.props.openModal}><i className="fas fa-envelope"></i><span>Message</span></button>
-        </div>
-      
+
+      <div className='heart-message-buttons'>
+        <button ><i className="fas fa-heart"></i><span>Heart</span></button>
+        <button onClick={this.props.openModal({recipient: this.props.pageUser})}><i className="fas fa-envelope"></i><span>Message</span></button>
+      </div>
+
     )
   }
 }

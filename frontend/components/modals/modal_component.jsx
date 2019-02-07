@@ -2,9 +2,12 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 
+import NewMessage from '../messages/new_message';
+
 const msp = state => {
   return ({
     modal: state.ui.modal,
+    modalData: state.ui.modalData,
   });
 };
 
@@ -23,23 +26,27 @@ class Modal extends React.Component {
 
 
   render() {
- 
-    let modalRender = null;
-    let component;
 
-    switch (this.props.modal) {
-      case null:
-        component = null;
-        break;
-      case "messageUser":
-        component = ["Hi Mark!"];
-        
-        break;
-      default:
-        component = null;
-        break;
+    let modalRender = null;
+    let component = null;
+
+
+    if (this.props.modal !== null) {
+      const { modal, modalData } = this.props.modal;
+
+      switch (modal) {
+        case null:
+          component = null;
+          break;
+        case "messageUser":
+          component = <NewMessage recipient={modalData.recipient} />;
+          break;
+        default:
+          component = null;
+          break;
+      }
     }
-    
+
     if (component !== null) {
       modalRender = (
         <div className="modal-background" onClick={this.props.closeModal}>
@@ -50,7 +57,7 @@ class Modal extends React.Component {
       )
     }
 
-    
+
     return (
       <>{modalRender}</>
     )

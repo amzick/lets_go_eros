@@ -146,7 +146,7 @@ class ProfileHeader extends React.Component {
           </div>
 
           <div className="profile-header-right">
-            {pageUser.id === currentUser.id ? null : <HeartMessageButtons />}
+            {pageUser.id === currentUser.id ? null : <HeartMessageButtons pageUser={pageUser} />}
           </div>
         </div>
       </div>

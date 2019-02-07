@@ -17,7 +17,15 @@ export const fetchMessages = (array) => {
       dispatch(receiveMessages(resp));
     });
   };
-}
+};
+
+export const createMessage = (message) => {
+  return (dispatch) => {
+    return MessageApiUtil.createMessage(message).then(resp => {
+      dispatch(receiveMessage(resp));
+    });
+  };
+};
 
 // the util is just returning an array directly. use fetchUserMessages to get the messages
 // export const fetchMessagesBetween = (userID1, userID2) => {
@@ -32,5 +40,12 @@ const receiveMessages = (messages) => {
   return {
     type: RECEIVE_MESSAGES,
     messages,
+  };
+};
+
+const receiveMessage = (message) => {
+  return {
+    type: RECEIVE_MESSAGE,
+    message
   };
 };

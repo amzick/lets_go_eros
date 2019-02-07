@@ -2,8 +2,11 @@ class Api::MessagesController < ApplicationController
   before_action :ensure_logged_in
 
   def create
+    @user = User.find(params[:user_id])
     @message = Message.new(message_params)
-    if @message.save
+    @message.sender = @user
+    
+    if @user == current_user && @message.save
       render :show
     else
       render json: @message.errors.full_messages, status: 400
@@ -41,6 +44,6 @@ class Api::MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:sender_id, :recipient_id, :message, :unread)
+    params.require(:message).permit(:recipient_id, :message, :unread)
   end
 end
