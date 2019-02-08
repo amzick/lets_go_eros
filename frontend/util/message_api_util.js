@@ -19,6 +19,13 @@ export const fetchMessagesBetween = (userID1, userID2) => {
   });
 };
 
+export const fetchMessage = (messageID) => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/messages/${messageID}`,
+  });
+};
+
 export const createMessage = (message) => {
   return $.ajax({
     method: "POST",

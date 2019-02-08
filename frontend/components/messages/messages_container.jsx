@@ -29,6 +29,7 @@ class MessagesContainer extends React.Component {
     super(props);
     this.state = {
       users_loaded: 0,
+      allMessages: props.allMessages
     };
   }
 
@@ -42,8 +43,10 @@ class MessagesContainer extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.allMessages !== this.props.allMessages) {
+      this.setState({allMessages: this.props.allMessages});
+    }
   }
 
   render() {
@@ -52,7 +55,7 @@ class MessagesContainer extends React.Component {
     if (currentUser.is_messaging_with.length !== 0 && this.state.users_loaded === currentUser.is_messaging_with.length) {
       currentUser.is_messaging_with.forEach((userID) => {
         allThreads.push(
-          <MessageCard key={userID} cardUser={this.props.allUsers[userID]} allMessages={this.props.allMessages} />
+          <MessageCard key={userID} cardUser={this.props.allUsers[userID]} allMessages={this.state.allMessages} />
         );
       });
     };

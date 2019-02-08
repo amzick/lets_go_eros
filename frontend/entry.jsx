@@ -5,6 +5,7 @@ import configureStore from './store/store';
 
 
 // window testing
+import { createMessage } from './actions/message_actions';
 
 
 import { signup, logout} from './util/session_api_util';
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //window testing functions
   window.getState = store.getState;
   window.dispatch = store.dispatch;
+  window.createMessage = createMessage;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

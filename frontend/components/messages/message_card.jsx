@@ -8,14 +8,13 @@ import { openModal } from '../../actions/modal_actions';
 
 
 const msp = state => {
-  return({
+  return ({
     currentUser: state.session.id,
-    
   });
 };
 
 const mdp = dispatch => {
-  return({
+  return ({
     fetchMessages: (array) => dispatch(fetchMessages(array)),
     openModal: (modalData) => () => dispatch(openModal("messagesThread", modalData))
   });
@@ -28,22 +27,32 @@ class MessageCard extends React.Component {
     this.state = {
       messageIDsWithCurrentUser: [],
       messagesWithCurrentUser: [],
+      cardMessages: ["Loading"],
+      counter: 0,
+      allMessages: props.allMessages,
     };
   }
 
   componentDidMount() {
     const that = this;
-    fetchMessagesBetween(this.props.currentUser,this.props.cardUser.id).then((resp) => {
-      that.setState({messageIDsWithCurrentUser: resp.messages_between}, () => {
-        that.props.fetchMessages(that.state.messageIDsWithCurrentUser).then( () => {
+    fetchMessagesBetween(this.props.currentUser, this.props.cardUser.id).then((resp) => {
+      that.setState({ messageIDsWithCurrentUser: resp.messages_between }, () => {
+        that.props.fetchMessages(that.state.messageIDsWithCurrentUser).then(() => {
           const setMessages = [];
           that.state.messageIDsWithCurrentUser.forEach(id => {
-            setMessages.push(this.props.allMessages[id]);
+            setMessages.push(this.state.allMessages[id]);
           });
-          that.setState({messagesWithCurrentUser: setMessages});
+          that.setState({ messagesWithCurrentUser: setMessages });
         });
       });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.allMessages !== this.props.allMessages) {
+      debugger
+      this.setState({ allMessages: this.props.allMessages });
+    }
   }
 
   render() {
@@ -56,30 +65,30 @@ class MessageCard extends React.Component {
       profilePictureSrc = cardUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
     }
 
-    let cardMessages;
+    // let cardMessages;
     if (this.state.messagesWithCurrentUser.length > 0) {
-      
-      cardMessages = this.state.messagesWithCurrentUser;
+
+      this.state.cardMessages = this.state.messagesWithCurrentUser;
     } else {
-      cardMessages = ["Loading"];
+      this.state.cardMessages = ["Loading"];
     }
 
-    
+
     return (
 
-      <div className="messagecard-div" onClick={this.props.openModal({messages: cardMessages, userPicture: profilePictureSrc, cardUser: cardUser})} >
-      <Link onClick={(event) => event.stopPropagation()} to={`/profiles/${cardUser.id}`}>
-        <div className="messagecard-thumb">
-          <img src={profilePictureSrc} />
-        </div>
+      <div className="messagecard-div" onClick={this.props.openModal({ messages: this.state.cardMessages, userPicture: profilePictureSrc, cardUser: cardUser })} >
+        <Link onClick={(event) => event.stopPropagation()} to={`/profiles/${cardUser.id}`}>
+          <div className="messagecard-thumb">
+            <img src={profilePictureSrc} />
+          </div>
         </Link>
         <div className="messagecard-text">
           <div className="messagecard-text-header">
             <h2>{cardUser.fname}, {cardUser.age}</h2>
-            <p>{cardMessages[0] === "Loading" ? "Loading" : cardMessages[0].sent_at}</p>
+            <p>{this.state.cardMessages[0] === "Loading" ? "Loading" : this.state.cardMessages[0].sent_at}</p>
           </div>
           <div className="messagecard-text-content">
-            {cardMessages[0] === "Loading" ? cardMessages[0] : cardMessages[0].message}
+            {this.state.cardMessages[0] === "Loading" ? this.state.cardMessages[0] : this.state.cardMessages[0].message}
           </div>
         </div>
       </div>
@@ -89,4 +98,4 @@ class MessageCard extends React.Component {
   }
 }
 
-export default connect(msp,mdp)(MessageCard);
+export default connect(msp, mdp)(MessageCard);

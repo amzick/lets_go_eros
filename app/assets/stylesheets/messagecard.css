@@ -152,6 +152,16 @@
   border-radius: 10px;
 }
 
+.messages-thread > textarea {
+  background-color: #faffbd;
+  border-radius: 2px;
+  width: 400px;
+  /* margin: 15px 0; */
+  /* border-radius: 16px; */
+  padding: 5px 5px;
+  margin-right: 10px;
+}
+
 .message-index-item {
   /* border: solid 1px yellow; */
   background: white;

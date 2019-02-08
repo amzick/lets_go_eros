@@ -273,6 +273,22 @@ option[disabled="disabled"]::-ms-value {
   margin: 25px auto;
 }
 
+.mini-valid-submit {
+  /* border: solid 5px #4c7bd9; */
+  /* border: solid 5px purple; */
+  background-color: #4c7bd9;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  margin: 5px 5px;
+}
+
 .invalid-submit {
   /* border: solid 5px #4c7bd9; */
   /* border: solid 5px purple; */
@@ -288,6 +304,23 @@ option[disabled="disabled"]::-ms-value {
   width: 300px;
   height: 60px;
   margin: 25px auto;
+}
+
+.mini-invalid-submit {
+  /* border: solid 5px #4c7bd9; */
+  /* border: solid 5px purple; */
+  /* TODO CSS get real color here, OKC down */
+  background-color: rgb(155,155,155);
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  margin: 5px 5px;
 }
 
 .processing-submit {
@@ -306,11 +339,35 @@ option[disabled="disabled"]::-ms-value {
   margin: 25px auto;
 }
 
+.mini-processing-submit {
+  /* border: solid 5px #4c7bd9; */
+  /* border: solid 5px purple; */
+  background-color: transparent;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  margin: 5px 5px;
+}
+
 .invalid-submit:hover {
   cursor: inherit;
 }
 
+.mini-invalid-submit:hover {
+  cursor: inherit;
+}
+
 .processing-submit:hover {
+  cursor: inherit;
+}
+
+.mini-processing-submit:hover {
   cursor: inherit;
 }
 
