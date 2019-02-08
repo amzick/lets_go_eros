@@ -7,9 +7,11 @@ import { fetchMessages } from '../../actions/message_actions';
 import { openModal } from '../../actions/modal_actions';
 
 
-const msp = state => {
+const msp = (state, ownProps) => {
   return ({
     currentUser: state.session.id,
+    cardUser: ownProps.cardUser,
+    allMessages: ownProps.allMessages,
   });
 };
 
@@ -29,7 +31,6 @@ class MessageCard extends React.Component {
       messagesWithCurrentUser: [],
       cardMessages: ["Loading"],
       counter: 0,
-      allMessages: props.allMessages,
     };
   }
 
@@ -40,7 +41,7 @@ class MessageCard extends React.Component {
         that.props.fetchMessages(that.state.messageIDsWithCurrentUser).then(() => {
           const setMessages = [];
           that.state.messageIDsWithCurrentUser.forEach(id => {
-            setMessages.push(this.state.allMessages[id]);
+            setMessages.push(this.props.allMessages[id]);
           });
           that.setState({ messagesWithCurrentUser: setMessages });
         });
