@@ -3,6 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 
 import NewMessage from '../messages/new_message';
+import MessagesThread from '../messages/messages_thread';
 
 const msp = state => {
   return ({
@@ -40,6 +41,9 @@ class Modal extends React.Component {
           break;
         case "messageUser":
           component = <NewMessage recipient={modalData.recipient} />;
+          break;
+        case "messagesThread":
+          component = <MessagesThread messages={modalData.messages} userPicture={modalData.userPicture} />;
           break;
         default:
           component = null;

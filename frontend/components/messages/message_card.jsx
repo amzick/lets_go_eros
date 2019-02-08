@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { fetchMessagesBetween } from '../../util/message_api_util';
 import { fetchMessages } from '../../actions/message_actions';
+import { openModal } from '../../actions/modal_actions';
+
 
 const msp = state => {
   return({
@@ -13,6 +17,7 @@ const msp = state => {
 const mdp = dispatch => {
   return({
     fetchMessages: (array) => dispatch(fetchMessages(array)),
+    openModal: (modalData) => () => dispatch(openModal("messagesThread", modalData))
   });
 };
 
@@ -59,12 +64,15 @@ class MessageCard extends React.Component {
       cardMessages = ["Loading"];
     }
 
+    
     return (
 
-      <div className="messagecard-div">
+      <div className="messagecard-div" onClick={this.props.openModal({messages: cardMessages, userPicture: profilePictureSrc})} >
+      <Link onClick={(event) => event.stopPropagation()} to={`/profiles/${cardUser.id}`}>
         <div className="messagecard-thumb">
           <img src={profilePictureSrc} />
         </div>
+        </Link>
         <div className="messagecard-text">
           <div className="messagecard-text-header">
             <h2>{cardUser.fname}, {cardUser.age}</h2>
