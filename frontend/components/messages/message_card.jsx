@@ -51,8 +51,11 @@ class MessageCard extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.allMessages !== this.props.allMessages) {
-      debugger
-      this.setState({ allMessages: this.props.allMessages });
+
+      this.setState({ allMessages: this.props.allMessages }, () => {
+
+        this.forceUpdate();
+      });
     }
   }
 
