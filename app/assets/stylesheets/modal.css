@@ -15,13 +15,33 @@
   transform: translate(-50%, -50%);
   /* z-index: 20; */
 
-  border: solid 5px yellow;
-  background: white;
+  /* border: solid 5px yellow; */
+  /* background: white; */
+  background: #104da1;
   width: 460px;
-  min-height: 514px;
+  /* min-height: 514px; */
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 25px
+  padding: 25px;
+  border-radius: 3px;
+}
+
+.modal-exit-bar {
+  /* border: solid 1px green; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.modal-exit-bar > i {
+  color:#aaacae;
+  font-size: 2em;
+}
+
+.modal-exit-bar > i:hover {
+  color: red;
 }

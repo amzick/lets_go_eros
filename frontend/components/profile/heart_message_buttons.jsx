@@ -19,7 +19,6 @@ class HeartMessageButtons extends React.Component {
 
   constructor(props) {
     super(props);
-
   }
 
 
@@ -29,9 +28,9 @@ class HeartMessageButtons extends React.Component {
     return (
 
 
-      <div className='heart-message-buttons'>
-        <button ><i className="fas fa-heart"></i><span>Heart</span></button>
-        <button onClick={this.props.openModal({recipient: this.props.pageUser})}><i className="fas fa-envelope"></i><span>Message</span></button>
+      <div className='heart-message-buttons-div'>
+        <button className="heart-message-button" ><i className="fas fa-heart"></i><span>Heart</span></button>
+        <button className="heart-message-button" onClick={this.props.openModal({recipient: this.props.pageUser})}><i className="fas fa-envelope"></i><span>Message</span></button>
       </div>
 
     )

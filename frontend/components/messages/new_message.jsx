@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { createMessage } from '../../actions/message_actions';
+import { closeModal } from '../../actions/modal_actions';
+
 const msp = state => {
   return ({
-    // modalData: state.ui.modalData,
+    
   });
 };
 
 const mdp = dispatch => {
   return({
-
+    createMessage: (message) => dispatch(createMessage(message)),
+    closeModal: () => dispatch(closeModal())
   });
 };
 
@@ -20,22 +24,48 @@ class NewMessage extends React.Component {
     this.state = {
       message: "",
       recipient_id: props.recipient.id,
+      submitClass: "invalid-submit",
+      disabled: "disabled",
+      submitValue: "Send!"
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({message: event.target.value});
+    this.setState({message: event.target.value}, () => {
+      if (this.state.message !== "") {
+        this.setState({submitClass:"valid-submit", disabled:""});
+      } else {
+        this.setState({submitClass: "invalid-submit", disabled:"disabled"});
+      }
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const that = this;
+    this.setState({submitValue: "Sending...", disabled:"disabled", submitClass: "processing-submit"}, () => {
+      this.props.createMessage({
+        recipient_id: this.state.recipient_id,
+        message: this.state.message
+      }).then(resp => {
+        this.setState({submitValue:"Sent!"}, () => {
+          
+          setTimeout(that.props.closeModal, 500);
+        });
+      });
+    });
   }
 
   render() {
     
     return (
-      <div>
+      <div className="new-message-div">
         <h2>Send {this.props.recipient.fname} a message:</h2>
         <textarea placeholder="Be Nice..." value={this.state.message} onChange={this.handleChange}/>
-        <input type="submit" />
+        <input type="submit" onClick={this.handleSubmit} className={this.state.submitClass} disabled={this.state.disabled} value={this.state.submitValue} />
       </div>
     )
   }

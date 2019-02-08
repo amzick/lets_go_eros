@@ -51,6 +51,7 @@ class Modal extends React.Component {
       modalRender = (
         <div className="modal-background" onClick={this.props.closeModal}>
           <div className="modal-div" onClick={event => event.stopPropagation()}>
+            <div className="modal-exit-bar" onClick={this.props.closeModal}><i className="fas fa-times-circle"></i></div>
             {component}
           </div>
         </div>

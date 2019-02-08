@@ -164,7 +164,7 @@
   height: auto;
 }
 
-.heart-message-buttons {
+.heart-message-buttons-div {
   /* border: solid 1px purple; */
   width: auto;
   display: flex;
@@ -173,7 +173,7 @@
   align-items: flex-end;
 }
 
-.heart-message-buttons > button {
+.heart-message-button {
   border: solid 1px #f5f8fb;
   display: flex;
   flex-direction: row;
@@ -191,13 +191,16 @@
   margin: 0 8px;
 }
 
-.heart-message-buttons > button * {
+.heart-message-button * {
   padding: 0 5px;
 }
 
-.heart-message-buttons > button:hover {
-  color: pink;
-  border: solid 1px white;
+.heart-message-button:hover {
+  border: solid 1px lightpink;
+}
+.heart-message-button:hover * {
+  color: lightpink;
+  /* border: solid 1px white; */
 }
 
 .profile-content {
