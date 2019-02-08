@@ -43,7 +43,7 @@ class Modal extends React.Component {
           component = <NewMessage recipient={modalData.recipient} />;
           break;
         case "messagesThread":
-          component = <MessagesThread messages={modalData.messages} userPicture={modalData.userPicture} />;
+          component = <MessagesThread messages={modalData.messages} userPicture={modalData.userPicture} cardUser={modalData.cardUser} />;
           break;
         default:
           component = null;

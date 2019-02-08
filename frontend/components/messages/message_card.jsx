@@ -67,7 +67,7 @@ class MessageCard extends React.Component {
     
     return (
 
-      <div className="messagecard-div" onClick={this.props.openModal({messages: cardMessages, userPicture: profilePictureSrc})} >
+      <div className="messagecard-div" onClick={this.props.openModal({messages: cardMessages, userPicture: profilePictureSrc, cardUser: cardUser})} >
       <Link onClick={(event) => event.stopPropagation()} to={`/profiles/${cardUser.id}`}>
         <div className="messagecard-thumb">
           <img src={profilePictureSrc} />

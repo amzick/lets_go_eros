@@ -117,3 +117,78 @@
   /* position: relative; */
 }
 
+.messages-thread-div > h2 {
+  font-weight: 700;
+  font-size: 2em;
+  margin-bottom: 25px;
+  color: white;
+}
+
+.messages-thread {
+  /* border: solid 5px red; */
+  max-height: 450px;
+  overflow-y: auto;
+  /* background: #f3f5f9; */
+  background: transparent;
+  margin-top: 15px;
+}
+
+.messages-thread::-webkit-scrollbar {
+  width: 10px;
+  /* top: -20px; */
+}
+
+.messages-thread::-webkit-scrollbar-thumb {
+  background: #3260c7;
+  border: solid 2px #76a8e2;
+  
+  border-radius: 10px;
+  opacity: 0.5;
+}
+
+.messages-thread::-webkit-scrollbar-thumb:hover {
+  background: #104da1;
+  border: solid 1px #104da1;
+  border-radius: 10px;
+}
+
+.message-index-item {
+  /* border: solid 1px yellow; */
+  background: white;
+  min-height: 52px;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  margin: 15px 0;
+  border-radius: 16px;
+  margin-right: 10px;
+}
+
+.message-index-item-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.message-index-item-thumb {
+  min-height: 42px;
+  min-width: 42px;
+  max-height: 42px;
+  max-width: 42px;
+  padding: 5px 5px;
+  overflow: hidden;
+}
+
+.message-index-item-thumb > img {
+  min-height: 42px;
+  min-width: 42px;
+  max-height: 42px;
+  max-width: 42px;
+  border-radius: 50%;
+}
+
+.message-index-item-message-sent-at {
+  color: gray;
+  font-size: 0.8em;
+  margin: 5px 0;
+}

@@ -37,13 +37,14 @@ class MessagesThread extends React.Component {
 
 
     const messages = this.props.messages.map((message) => {
-      return <MessageIndexItem key={message.id} message={message.message} sender_id={message.sender_id} userPicture={this.props.userPicture} currentUserPicture={profilePictureSrc} />;
+      return <MessageIndexItem key={message.id} message={message.message} sender_id={message.sender_id} userPicture={this.props.userPicture} currentUser={this.props.currentUser} currentUserPicture={profilePictureSrc} sent_at={message.sent_at} />;
     });
 
-
+    
     return (
-      <div>
-        <ul>
+      <div className="messages-thread-div">
+        <h2>Messages with {this.props.cardUser.fname}:</h2>
+        <ul className="messages-thread">
           {messages}
         </ul>
       </div>
