@@ -63,7 +63,25 @@ class User < ApplicationRecord
   has_many :received_messages,
     foreign_key: :recipient_id,
     class_name: :Message
-    
+
+  # logic is inverted here. if someone admirers a user, the user is the crush
+  #  if the user has a crush on someone the user is the admirer
+  has_many :received_hearts,
+    foreign_key: :crush_id,
+    class_name: :Heart
+
+  has_many :sent_hearts,
+    foreign_key: :admirer_id,
+    class_name: :Heart
+
+  has_many :admirers,
+    through: :received_hearts,
+    source: :admirer
+
+  has_many :crushes,
+    through: :sent_hearts,
+    source: :crush
+
   # return an array of all users user is messaging with
   def is_messaging_with
     result = Array.new
