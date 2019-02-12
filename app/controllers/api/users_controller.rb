@@ -21,7 +21,11 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    unless params[:ids_array].empty?
+      @users = params[:ids_array].map {|user_id| User.find(user_id)}
+    else
+      @users = User.all
+    end
     render :index
   end
 

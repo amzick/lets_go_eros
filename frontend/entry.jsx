@@ -6,9 +6,9 @@ import configureStore from './store/store';
 
 // window testing
 // import { createMessage } from './actions/message_actions';
-import { createHeart, deleteHeart } from './actions/heart_actions';
 
 import { signup, logout} from './util/session_api_util';
+import { fetchUsers} from './actions/user_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,8 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //window testing functions
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.createHeart = createHeart;
-  window.deleteHeart = deleteHeart;
+  window.fetchUsers = fetchUsers;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

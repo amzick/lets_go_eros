@@ -6,10 +6,11 @@ export const fetchUser = (userId) => {
   });
 };
 
-export const fetchUsers = () => {
+export const fetchUsers = (idsArray = null) => {
   return $.ajax({
     method: "GET",
     url: 'api/users/',
+    data: {ids_array: idsArray}
   });
 };
 

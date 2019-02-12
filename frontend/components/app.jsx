@@ -12,6 +12,7 @@ import WhoAreYouContainer from '../components/session_form/onboarding/who_are_yo
 import OnboardingContainer from '../components/session_form/onboarding/onboarding_container';
 import HomeContainer from '../components/home/home_container';
 import MessagesContainer from '../components/messages/messages_container';
+import HeartsContainer from './hearts/hearts_container';
 
 //testing
 
@@ -30,6 +31,7 @@ const App = () => {
         <ProtectedRoute exact path='/profile' component={ProfileContainer} />
         <ProtectedRoute path={`/profiles/:id`} component={ProfileContainer} />
         <ProtectedRoute path='/messages' component={MessagesContainer} />
+        <ProtectedRoute path='/hearts' component={HeartsContainer} />
       </Switch>
       <Modal />
 

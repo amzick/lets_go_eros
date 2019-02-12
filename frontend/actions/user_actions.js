@@ -15,11 +15,13 @@ export const fetchUser = (userID) => {
   };
 };
 
-  export const fetchUsers = () => {
+  export const fetchUsers = (idsArray = null) => {
     return (dispatch) => {
-      UserApiUtil.fetchUsers().then(resp => dispatch(receiveUsers(resp)));
+      UserApiUtil.fetchUsers(idsArray).then(resp => dispatch(receiveUsers(resp)));
     };
   };
+
+  
 
 
   export const fetchGenders = () => {

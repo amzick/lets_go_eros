@@ -21,9 +21,9 @@ class HeartMessageButtons extends React.Component {
   constructor(props) {
     super(props);
     this.pageUser = props.pageUser;
-    this.state = {
-      is_crush: this.pageUser.is_crush,
-    };
+    // this.state = {
+    //   is_crush: this.pageUser.is_crush,
+    // };
 
     this.toggleHeart = this.toggleHeart.bind(this);
   }
@@ -39,13 +39,12 @@ class HeartMessageButtons extends React.Component {
     const { pageUser, createHeart, deleteHeart } = this.props;
     
     if (this.pageUser.is_crush) {
-      deleteHeart(pageUser.id).then(() => this.setState({is_crush: false}));
+      deleteHeart(pageUser.id).then(() => this.props.fetchUser(this.props.pageUser.id));
     } else {
       createHeart(pageUser.id).then(() => {
-        this.setState({is_crush: true});
+        this.props.fetchUser(this.props.pageUser.id);
       });
     }
-    this.props.fetchUser(this.props.pageUser.id);
   }
 
 
@@ -53,7 +52,7 @@ class HeartMessageButtons extends React.Component {
   render() {
     return (
       <div className='heart-message-buttons-div'>
-        <button className={(this.state.is_crush ? "heart-message-button-hearted" : "heart-message-button")} onClick={this.toggleHeart} ><i className="fas fa-heart"></i><span>Heart</span></button>
+        <button className={(this.props.pageUser.is_crush ? "heart-message-button-hearted" : "heart-message-button")} onClick={this.toggleHeart} ><i className="fas fa-heart"></i><span>Heart</span></button>
         <button className="heart-message-button" onClick={this.props.openModal({ recipient: this.props.pageUser })}><i className="fas fa-envelope"></i><span>Message</span></button>
       </div>
 
