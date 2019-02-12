@@ -5,8 +5,8 @@ import configureStore from './store/store';
 
 
 // window testing
-import { createMessage } from './actions/message_actions';
-
+// import { createMessage } from './actions/message_actions';
+import { createHeart, deleteHeart } from './actions/heart_actions';
 
 import { signup, logout} from './util/session_api_util';
 // end
@@ -29,7 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //window testing functions
   window.getState = store.getState;
   window.dispatch = store.dispatch;
-  window.createMessage = createMessage;
+  window.createHeart = createHeart;
+  window.deleteHeart = deleteHeart;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

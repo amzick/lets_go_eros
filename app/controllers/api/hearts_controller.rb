@@ -20,7 +20,13 @@ class Api::HeartsController < ApplicationController
     @crush = User.find(params[:user_id])
     @admirer = current_user
     @heart = Heart.find_by(crush:@crush,admirer:@admirer)
-    @heart.destroy
+    if @heart
+      @heart.destroy
+      # I'm rendering the response here so that I can remove the heart from state
+      render :show
+    else
+      render json: ["No such heart relation exists"], status: 400
+    end
   end
 
 end
