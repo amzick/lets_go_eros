@@ -191,11 +191,35 @@
   margin: 0 8px;
 }
 
+.heart-message-button-hearted {
+  border: solid 1px red;
+  background: lightpink;
+  display: flex;
+  flex-direction: row;
+  
+  min-width: 150px;
+  min-height: 46px;
+  font-size: 20px;
+  /* letter-spacing: 1px; */
+  font-weight: 100px;
+  font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
+  -webkit-font-smoothing: antialiased;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8px;
+}
+
 .heart-message-button * {
   padding: 0 5px;
 }
 
-.heart-message-button:hover {
+.heart-message-button-hearted * {
+  padding: 0 5px;
+  color: red;
+  background: lightpink;
+}
+
+.heart-message-button:hover, .heart-message-button-hearted:hover {
   border: solid 1px lightpink;
 }
 .heart-message-button:hover * {
