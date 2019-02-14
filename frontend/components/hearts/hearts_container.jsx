@@ -69,8 +69,8 @@ class HeartsContainer extends React.Component {
     const componentsToRender = (
       <div>
         {Object.entries(this.state.matches).length > 0 ? <DiscoverySection header="Matches" queryResult={Object.values(this.state.matches)} /> : <div className="discovery-section"><h1>No Matches</h1></div>}
-        {Object.entries(this.state.crushes).length > 0 ? <DiscoverySection header="Crushes" queryResult={Object.values(this.state.crushes)} /> : <div className="discovery-section"><h1>No Crushes</h1> :-(</div>}
-        {Object.entries(this.state.admirers).length > 0 ? <DiscoverySection header="Admirers" queryResult={Object.values(this.state.admirers)} /> : <div className="discovery-section"><h1>No Admirers</h1></div>}
+        {Object.entries(this.state.crushes).length > 0 ? <DiscoverySection header="Crushes" queryResult={Object.values(this.state.crushes)} /> : <div className="discovery-section"><h1>No Crushes</h1> </div>}
+        {Object.entries(this.state.admirers).length > 0 ? <DiscoverySection header="Admirers" queryResult={Object.values(this.state.admirers)} /> : <div className="discovery-section"><h1>No Admirers</h1>:-(</div>}
       </div>
     )
 
