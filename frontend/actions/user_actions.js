@@ -17,7 +17,7 @@ export const fetchUser = (userID) => {
 
   export const fetchUsers = (idsArray = null) => {
     return (dispatch) => {
-      UserApiUtil.fetchUsers(idsArray).then(resp => dispatch(receiveUsers(resp)));
+      return UserApiUtil.fetchUsers(idsArray).then(resp => dispatch(receiveUsers(resp)));
     };
   };
 

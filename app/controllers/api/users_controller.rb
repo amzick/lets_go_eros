@@ -21,12 +21,20 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    unless params[:ids_array].empty?
+    if params[:ids_array].nil?
+      # for some reason passing in an empty array turns into nil.. and I get a lot of errors if @users is nothing
+      # @users = [current_user]
+      # render :index
+      render json: "No users found"
+    elsif !params[:ids_array].empty?
       @users = params[:ids_array].map {|user_id| User.find(user_id)}
+      render :index
     else
+      # sending no argument still works here since for some reason the default value of idsArray (null) is an empty string, which is not nil
+      # makes perfect sense....
       @users = User.all
+      render :index
     end
-    render :index
   end
 
  

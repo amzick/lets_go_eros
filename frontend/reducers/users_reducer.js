@@ -5,13 +5,16 @@ import { merge } from 'lodash';
 
 export const usersReducer = (state = {}, action) => {
   Object.freeze(state);
+
+  let newState;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return merge({}, state, { [action.user.id]: action.user });
     case RECEIVE_USER:
       return merge({}, state, { [action.user.id]: action.user });
     case RECEIVE_USERS:
-      return merge({}, action.users);
+      newState = merge({}, state);
+      return merge(newState, action.users);
     default:
       return state;
   }

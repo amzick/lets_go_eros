@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :profile_pictures, only: [:create, :destroy]
       resources :messages, only: [:create, :index]
       get '/messages_with/:other_user', to: 'messages#between'
-      resources :hearts, only: [:create]
+      resources :hearts, only: [:create, :index]
       delete '/hearts', to: 'hearts#destroy'
     end
     resource :session, only: [:create, :destroy]

@@ -1,0 +1,1 @@
+json.hearts @user.crush_ids + @user.admirer_ids

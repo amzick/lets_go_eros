@@ -1,6 +1,11 @@
 class Api::HeartsController < ApplicationController
   before_action :ensure_logged_in
 
+  def index
+    @user = User.find(params[:user_id])
+    render :index
+  end
+
   def show
     @heart = Heart.find(params[:id])
     render :show

@@ -5,6 +5,13 @@ export const fetchHeart = (heartID) => {
   });
 };
 
+export const fetchUserHeartsArray = (userID) => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/users/${userID}/hearts`
+  });
+};
+
 export const createHeart = (crushID) => {
   return $.ajax({
     method: "POST",
