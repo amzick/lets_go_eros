@@ -40,6 +40,14 @@ export const fetchUser = (userID) => {
     };
   };
 
+  export const updateUser = (user) => {
+    return (dispatch) => {
+      UserApiUtil.updateUser(user).then(resp => {
+        dispatch(receiveUser(resp));
+      });
+    };
+  };
+
   // actions
 
   const receiveUser = (user) => {

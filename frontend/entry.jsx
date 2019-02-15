@@ -8,7 +8,7 @@ import configureStore from './store/store';
 // import { createMessage } from './actions/message_actions';
 
 import { signup, logout} from './util/session_api_util';
-import { updateUser } from './util/user_api_util';
+import { updateUser } from './actions/user_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
