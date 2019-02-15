@@ -9,7 +9,7 @@ class ProfileTextCard extends React.Component {
       <div className="profile-text-card">
         <div className="profile-text-card-header">
           <h2>{header}:</h2>
-          {pageUser.id === currentUser.id ? <i class="fas fa-pencil-alt"></i> : null}
+          {pageUser.id === currentUser.id ? <i className="fas fa-pencil-alt"></i> : null}
         </div>
         <p>{text ? text : <i className="null-info">{`${pageUser.fname} hasn't filled this out yet!`}</i>}</p>
       </div>

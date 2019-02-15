@@ -41,6 +41,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    debugger
     if @user.update(user_params)
       # render json response
       render :show
@@ -52,7 +53,7 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :fname, :password, :birthday, :location, :city, :state, {gender_ids: []}, {ethnicity_ids: []})
+    params.require(:user).permit(:email, :fname, :password, :birthday, :location, :city, :state, {gender_ids: []}, {ethnicity_ids: []}, :summary)
   end
 
 end
