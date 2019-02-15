@@ -229,7 +229,8 @@
 
 .profile-content {
   /* border: solid 1px red; */
-  height: auto;
+  /* height: auto; */
+  min-height: 400px;
   width: 1000px;
   margin: 40px auto 0;
   padding: 20px 60px;
@@ -271,10 +272,20 @@
   margin-bottom: 15px;
 }
 
-.profile-text-card > h2 {
+.profile-text-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile-text-card-header > h2 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
+}
+
+.profile-text-card-header > i {
+  color: #104da1;
 }
 
 .null-info {

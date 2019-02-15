@@ -69,7 +69,7 @@ class ProfileContent extends React.Component {
       <div className="profile-content">
         <div className="profile-content-2-3">
           <div className="profile-summary">
-            <ProfileTextCard pageUser={pageUser} header="Summary" text={pageUser.summary} />
+            <ProfileTextCard currentUser={currentUser} pageUser={pageUser} header="Summary" text={pageUser.summary} />
           </div>
           {pageUser.id === currentUser.id ? null : <YouAndThem pageUser={pageUser} />}
         </div>
