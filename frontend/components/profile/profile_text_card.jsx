@@ -16,7 +16,7 @@ class ProfileTextCard extends React.Component {
 
 
   render() {
-    const { pageUser, header, text } = this.props;
+    const { currentUser, pageUser, header, text } = this.props;
     
     return (
       <div className="profile-text-card">
