@@ -288,6 +288,10 @@
   color: #104da1;
 }
 
+.profile-text-card-header > i:hover {
+  cursor: pointer;
+}
+
 .null-info {
   font-size: 18px;
   font-weight: 100px;

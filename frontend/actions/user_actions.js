@@ -42,7 +42,7 @@ export const fetchUser = (userID) => {
 
   export const updateUser = (user) => {
     return (dispatch) => {
-      UserApiUtil.updateUser(user).then(resp => {
+      return UserApiUtil.updateUser(user).then(resp => {
         dispatch(receiveUser(resp));
       });
     };

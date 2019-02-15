@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import NewMessage from '../messages/new_message';
 import MessagesThread from '../messages/messages_thread';
+import UpdateField from './update_field';
 
 const msp = state => {
   return ({
@@ -31,7 +32,6 @@ class Modal extends React.Component {
     let modalRender = null;
     let component = null;
 
-
     if (this.props.modal !== null) {
       const { modal, modalData } = this.props.modal;
 
@@ -44,6 +44,9 @@ class Modal extends React.Component {
           break;
         case "messagesThread":
           component = <MessagesThread messages={modalData.messages} userPicture={modalData.userPicture} cardUser={modalData.cardUser} />;
+          break;
+        case "updateUser":
+          component = <UpdateField  user={modalData.user} field={modalData.field} />
           break;
         default:
           component = null;
