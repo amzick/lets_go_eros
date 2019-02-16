@@ -106,22 +106,18 @@ class User < ApplicationRecord
 
     
     # ************   MATCH MATH /////////////////
-    
-    # during dev phase
-
-  def random_match_percentage
-    rand(0..100)
-  end
 
 =begin
 select questions.id from questions left join responses on responses
 .question_id = questions.id 
 WHERE responses.user_id !=  1295 OR responses.user_id IS NULL group by questions.id;
-
 via https://stackoverflow.com/questions/19682816/sql-statement-select-the-inverse-of-this-query
 
+using active record to nest queries:
+https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
+
  # def unanswered_questions
-    
+    the original sql method that doesn't work in rails because execute doesn't like nested queries
   #   data = ActiveRecord::Base.connection.execute(<<-SQL, self.id)
   #     select 
   #       *
@@ -141,18 +137,20 @@ via https://stackoverflow.com/questions/19682816/sql-statement-select-the-invers
   # end
 =end
 
-  # todo fix
   def unanswered_questions
-    Question.select(:id)
-    .left_outer_joins(:responses)
-    .where("responses.user_id != ? OR responses.user_id IS NULL", self.id)
-    .group(:id)
+    # this ended up not working
+    # Question.select(:id)
+    # .left_outer_joins(:responses)
+    # .where("responses.user_id != ? OR responses.user_id IS NULL", self.id)
+    # .group(:id)
+    # was looking into nested sql queries using active record, and just realized the solution was super simple:
+    Question.select("*").where.not(id: self.answered_questions)
   end
 
   def answer_n_questions(n = 1)
     return nil if self.unanswered_questions.empty?
     n.times do
-      Response.create(question_id:self.unanswered_questions.reload.sample.id,user:self,response:rand(0..4))
+      Response.create(question:self.unanswered_questions.sample,user:self,response:rand(0..4))
     end
   end
 
