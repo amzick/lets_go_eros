@@ -8,7 +8,7 @@ import configureStore from './store/store';
 // import { createMessage } from './actions/message_actions';
 
 import { signup, logout} from './util/session_api_util';
-import { updateUser } from './actions/user_actions';
+import { fetchUsers, updateUser } from './actions/user_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //window testing functions
   window.getState = store.getState;
   window.dispatch = store.dispatch;
+  window.fetchUsers = fetchUsers;
   window.updateUser = updateUser;
   //end 
 

@@ -25,7 +25,7 @@ class Api::UsersController < ApplicationController
       # for some reason passing in an empty array turns into nil.. and I get a lot of errors if @users is nothing
       # @users = [current_user]
       # render :index
-      render json: "No users found"
+      render json: [], status: 200
     elsif !params[:ids_array].empty?
       @users = params[:ids_array].map {|user_id| User.find(user_id)}
       render :index

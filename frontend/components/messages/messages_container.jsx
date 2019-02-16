@@ -4,21 +4,22 @@ import Navigation from '../home/navigation';
 import LoggedInFooter from '../home/logged_in_footer';
 import MessageCard from './message_card';
 
-import { fetchUser } from '../../actions/user_actions';
+import { fetchUser, fetchUsers } from '../../actions/user_actions';
 import { fetchUserMessages } from '../../actions/message_actions';
 
 const msp = state => {
   return ({
     currentUser: state.entities.users[state.session.id],
     allUsers: state.entities.users,
-    allMessages: state.entities.messages
+    messages: state.entities.messages
   });
 };
 
 const mdp = dispatch => {
-  
+
   return ({
     fetchUser: (userID) => dispatch(fetchUser(userID)),
+    fetchUsers: (idsArray) => dispatch(fetchUsers(idsArray)),
     fetchUserMessages: (userID) => dispatch(fetchUserMessages(userID)),
   });
 };
@@ -28,36 +29,42 @@ class MessagesContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users_loaded: 0,
+      usersLoaded: false,
+      allThreads: [],
     };
   }
 
   componentDidMount() {
-    const that = this;
-    this.props.currentUser.is_messaging_with.forEach(userID => {
-      
-      that.props.fetchUser(userID).then(() => {
-        that.setState({ users_loaded: this.state.users_loaded+1 });
+    this.props.fetchUserMessages(this.props.currentUser.id).then(() => {
+      this.props.fetchUsers(this.props.currentUser.is_messaging_with).then(() => {
+        this.setState({ usersLoaded: true });
       });
     });
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // if (prevProps.allMessages !== this.props.allMessages) {
-      
-    //   this.setState({allMessages: this.props.allMessages});
-    // }
+    if (prevProps.messages !== this.props.messages) {
+      console.log("messages container props changed");
+    }
   }
 
   render() {
 
+    let componentToRender;
     let allThreads = [];
-    if (currentUser.is_messaging_with.length !== 0 && this.state.users_loaded === currentUser.is_messaging_with.length) {
-      currentUser.is_messaging_with.forEach((userID) => {
-        allThreads.push(
-          <MessageCard key={userID} cardUser={this.props.allUsers[userID]} allMessages={this.props.allMessages} />
-        );
-      });
+    if (this.state.usersLoaded) {
+      if (currentUser.is_messaging_with.length > 0) {
+        currentUser.is_messaging_with.forEach((userID) => {
+          allThreads.push(
+            <MessageCard key={userID} cardUser={this.props.allUsers[userID]} messages={this.props.messages} />
+          );
+        });
+        componentToRender = allThreads;
+      } else {
+        console.log("Here");
+        console.log(currentUser.is_messaging_with);
+        componentToRender = <p>You don&#39;t have any messages yet! Get Out there and start talking to people!</p>
+      };
     };
 
     return (
@@ -67,7 +74,7 @@ class MessagesContainer extends React.Component {
           <div className="messages-section">
             <h1>Messages</h1>
             <div className="threads-div">
-              {allThreads.length > 0 ? allThreads : <p>You don't have any messages yet! Get Out there and start talking to people!</p>}
+              {this.state.usersLoaded ? componentToRender : <p>Loading...</p>}
             </div>
           </div>
         </div>

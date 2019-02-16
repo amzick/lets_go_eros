@@ -9,9 +9,9 @@ import { openModal } from '../../actions/modal_actions';
 
 const msp = (state, ownProps) => {
   return ({
-    currentUser: state.session.id,
+    currentUser: state.entities.users[state.session.id],
     cardUser: ownProps.cardUser,
-    allMessages: ownProps.allMessages,
+    messages: ownProps.messages,
   });
 };
 
@@ -28,34 +28,42 @@ class MessageCard extends React.Component {
     super(props);
     this.state = {
       messageIDsWithCurrentUser: [],
-      messagesWithCurrentUser: [],
-      cardMessages: ["Loading"],
+      messagesWithCurrentUser: ["Loading"],
       counter: 0,
     };
+    
   }
 
   componentDidMount() {
+    
+    const {currentUser, cardUser} = this.props;
     const that = this;
-    fetchMessagesBetween(this.props.currentUser, this.props.cardUser.id).then((resp) => {
-      that.setState({ messageIDsWithCurrentUser: resp.messages_between }, () => {
-        that.props.fetchMessages(that.state.messageIDsWithCurrentUser).then(() => {
-          const setMessages = [];
-          that.state.messageIDsWithCurrentUser.forEach(id => {
-            setMessages.push(this.props.allMessages[id]);
-          });
-          that.setState({ messagesWithCurrentUser: setMessages });
+    fetchMessagesBetween(currentUser.id,cardUser.id).then(resp => {
+      this.setState({messageIDsWithCurrentUser: resp.messages_between}, () => {
+        const setMessages = [];
+        that.state.messageIDsWithCurrentUser.forEach(id => {
+          setMessages.push(that.props.messages[id]);
         });
+        that.setState({messagesWithCurrentUser: setMessages });
       });
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.allMessages !== this.props.allMessages) {
-
-      this.setState({ allMessages: this.props.allMessages }, () => {
-
-        this.forceUpdate();
+  componentDidUpdate(prevProps) {
+    if (prevProps.messages !== this.props.messages) {
+      console.log("message card props did update");
+    //   this.setState({ messages: this.props.messages }, () => {
+      // debugger
+      const {currentUser, cardUser } = this.props;
+      const that = this;
+      fetchMessagesBetween(currentUser.id, cardUser.id).then(resp => {
+        that.setState({messageIDsWithCurrentUser: resp.messages_between}, () => {
+          const newMessage = that.props.messages[resp.messages_between[0]];
+           that.setState({messagesWithCurrentUser: [newMessage].concat(this.state.messagesWithCurrentUser)});
+        });
       });
+    //     this.forceUpdate();
+    //   });
     }
   }
 
@@ -69,18 +77,10 @@ class MessageCard extends React.Component {
       profilePictureSrc = cardUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
     }
 
-    // let cardMessages;
-    if (this.state.messagesWithCurrentUser.length > 0) {
-
-      this.state.cardMessages = this.state.messagesWithCurrentUser;
-    } else {
-      this.state.cardMessages = ["Loading"];
-    }
-
-
+    
     return (
 
-      <div className="messagecard-div" onClick={this.props.openModal({ messages: this.state.cardMessages, userPicture: profilePictureSrc, cardUser: cardUser })} >
+      <div className="messagecard-div" onClick={this.props.openModal({ messages: this.state.messagesWithCurrentUser, userPicture: profilePictureSrc, cardUser: cardUser })} >
         <Link onClick={(event) => event.stopPropagation()} to={`/profiles/${cardUser.id}`}>
           <div className="messagecard-thumb">
             <img src={profilePictureSrc} />
@@ -89,10 +89,10 @@ class MessageCard extends React.Component {
         <div className="messagecard-text">
           <div className="messagecard-text-header">
             <h2>{cardUser.fname}, {cardUser.age}</h2>
-            <p>{this.state.cardMessages[0] === "Loading" ? "Loading" : this.state.cardMessages[0].sent_at}</p>
+            <p>{this.state.messagesWithCurrentUser[0] === "Loading" ? "Loading" : this.state.messagesWithCurrentUser[0].sent_at}</p>
           </div>
           <div className="messagecard-text-content">
-            {this.state.cardMessages[0] === "Loading" ? this.state.cardMessages[0] : this.state.cardMessages[0].message}
+            {this.state.messagesWithCurrentUser[0] === "Loading" ? this.state.messagesWithCurrentUser[0] : this.state.messagesWithCurrentUser[0].message}
           </div>
         </div>
       </div>
