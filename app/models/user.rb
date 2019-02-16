@@ -167,7 +167,8 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
     questions_hash = Hash.new
     Category.all.each {|category| questions_hash[category.category] = Array.new}
     results = Hash.new
-    self.responses.each do |response|
+
+    self.responses.includes(:category).each do |response|
       questions_hash[response.category.category] << response.response
     end
     questions_hash.each do |category, responses|
@@ -196,10 +197,17 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
 
   # mutually answered questions difference
   def maq_diffs(match)
-    maqs = self.answered_questions.select {|question| match.answered_questions.include?(question)}
+    # avoiding n+1 queries. increases spacial complexity with the hashes, but there will be way more total responses on the database than one user could have
     result = []
-    maqs.each do |question|
-      result << ( Response.find_by(question:question,user:self).response - Response.find_by(question:question, user: match).response).abs
+    maqs = Question.select(:id).where(id: self.answered_questions).where(id: match.answered_questions).includes(:responses)
+    user_responses = Hash.new
+    Response.select(:question_id, :response).where(id: self.responses).map{|response| user_responses[response.question_id] = response.response}
+    match_responses = Hash.new
+    Response.select(:question_id, :response).where(id: match.responses).map{|response| match_responses[response.question_id] = response.response}
+    maqs.each do |question|    
+      # p leaving this in case I ever want to measure time difference
+      # result << ( Response.find_by(question:question,user:self).response - Response.find_by(question:question, user: match).response).abs
+      result << (user_responses[question.id] - match_responses[question.id]).abs
     end
     result
   end
