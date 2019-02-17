@@ -82,6 +82,13 @@ class User < ApplicationRecord
     through: :sent_hearts,
     source: :crush
 
+  has_many :match_percentages
+
+  # the inverse
+  has_many :matchee_percentages,
+    foreign_key: :match,
+    class_name: :MatchPercentage
+
   # return an array of all users user is messaging with
   def is_messaging_with
     result = Array.new
@@ -231,10 +238,25 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
     
   end
   
-  def match_percentage
+  def match_percentage(match)
+
     # 1. check the database if the relation already exists, save as a variable.
-    # 2. if that variable exists, return it
-    # 3. if not, calculate it, and store it
+    match_percentage = MatchPercentage.find_by(user:self,match:match)
+    if match_percentage.nil?
+      # 3. if not, calculate it, store it, return it
+      percentage = self.calculate_match_percentage(match)
+      match_percentage = MatchPercentage.create!({user:self,match:match,percentage: percentage})
+      match_percentage.percentage
+    else
+      # if either user has a response less than a day old, recalculate
+      if self.responses.last.created_at >= Date.today || match.responses.last.created_at >= Date.today
+        percentage = self.calculate_match_percentage(match)
+        match_percentage.update!({user:self, match:match, percentage: percentage})
+        match_percentage.percentage
+      else
+        match_percentage.percentage
+      end
+    end
   end
 
  

@@ -1,7 +1,7 @@
 
 json.extract! user, :id, :fname, :gender_ids, :ethnicity_ids, :birthday, :astrology_sign, :age, :location, :city, :state, :summary, :height, :bot_img_src, :is_messaging_with
 json.profile_pictures user.profile_pictures.map {|pic| polymorphic_url(pic)}
-json.match current_user.calculate_match_percentage(user)
+json.match current_user.match_percentage(user)
 json.is_crush current_user.crushes.include?(user)
 json.is_admirer current_user.admirers.include?(user)
 
