@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers, fetchUser } from '../../actions/user_actions';
-import { fetchFirstLast } from '../../util/user_api_util';
+import { fetchUsers, fetchUser, fetchLocalUsers } from '../../actions/user_actions';
+// import { fetchFirstLast } from '../../util/user_api_util';
 
 import Navigation from './navigation';
 import UserCard from './user_card';
@@ -13,14 +13,15 @@ const msp = state => {
 
   return ({
     currentUser: state.entities.users[state.session.id],
-    allUsers: state.entities.users,
+    users: state.entities.users,
   });
 };
 
 const mdp = dispatch => {
   return ({
-    fetchUsers: (idsArray) => dispatch(fetchUsers(idsArray)),
-    fetchUser: (userID) => dispatch(fetchUser(userID)),
+    // fetchUsers: (idsArray) => dispatch(fetchUsers(idsArray)),
+    // fetchUser: (userID) => dispatch(fetchUser(userID)),
+    fetchLocalUsers: (userID, maxResultSize = 40, radius = 500) => dispatch(fetchLocalUsers(userID, maxResultSize, radius)),
   });
 };
 
@@ -29,7 +30,7 @@ class HomeContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.state.mounted = false;
+    this.state.usersLoaded = false;
     this.state.firstID = null;
     this.state.lastID = null;
   }
@@ -37,40 +38,40 @@ class HomeContainer extends React.Component {
 
 
   componentDidMount() {
-    // No!!! playing with death
-    // this.props.fetchUsers();
+    const { currentUser, fetchLocalUsers } = this.props;
+    fetchLocalUsers(currentUser.id).then( () => {
+      this.setState({usersLoaded: true});
+    });
 
     // refactoring
-    if (this.state.firstID === null || this.state.last === null) {
-      fetchFirstLast().then(resp => this.setState({ firstID: resp.first, lastID: resp.last },
-        () => {
-          // while(Object.entries(this.props.allUsers).length < 40) {
-          for (let n = 0; n < 40; n++) {
-            let rand = Math.floor(Math.random() * (this.state.lastID - this.state.firstID + 1) + this.state.firstID);
+    // if (this.state.firstID === null || this.state.last === null) {
+    //   fetchFirstLast().then(resp => this.setState({ firstID: resp.first, lastID: resp.last },
+    //     () => {
+    //       // while(Object.entries(this.props.users).length < 40) {
+    //       for (let n = 0; n < 40; n++) {
+    //         let rand = Math.floor(Math.random() * (this.state.lastID - this.state.firstID + 1) + this.state.firstID);
 
             
-            this.props.fetchUser(rand);
-          }
-        }));
-    }
-
-
-
-    this.setState({ mounted: true });
+    //         this.props.fetchUser(rand);
+    //       }
+    //     }));
+    // }
+    // this.setState({ usersLoaded: true });
   }
 
   render() {
 
-    const { allUsers } = this.props;
+    const { users } = this.props;
     //TODO: search queries
     const randomUsers = [];
 
-    if (this.state.mounted && Object.keys(allUsers).length > 30) {
+    // refactoring
+    if (this.state.usersLoaded && Object.keys(users).length > 30) {
       for (let i = 0; i < 30; i++) {
-        let allUsersLength = Object.keys(allUsers).length;
-        let rand = Math.floor(Math.random() * (parseInt(Object.keys(allUsers)[allUsersLength - 1]) - parseInt(Object.keys(allUsers)[0]) + 1) + parseInt(Object.keys(allUsers)[0]));
+        let usersLength = Object.keys(users).length;
+        let rand = Math.floor(Math.random() * (parseInt(Object.keys(users)[usersLength - 1]) - parseInt(Object.keys(users)[0]) + 1) + parseInt(Object.keys(users)[0]));
         if (rand !== this.props.currentUser) {
-          randomUsers.push(allUsers[rand]);
+          randomUsers.push(users[rand]);
         }
       }
     }
