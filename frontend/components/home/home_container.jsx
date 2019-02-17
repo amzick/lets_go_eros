@@ -39,6 +39,8 @@ class HomeContainer extends React.Component {
   componentDidMount() {
     // No!!! playing with death
     // this.props.fetchUsers();
+
+    // refactoring
     if (this.state.firstID === null || this.state.last === null) {
       fetchFirstLast().then(resp => this.setState({ firstID: resp.first, lastID: resp.last },
         () => {

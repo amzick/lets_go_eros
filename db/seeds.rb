@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Heart.destroy_all
+Message.destroy_all
 User.destroy_all
 Gender.destroy_all
 Ethnicity.destroy_all
@@ -212,9 +214,9 @@ User.create!(
   password: "pa$$word",
   fname: "Demi",
   birthday: Date.new(1954,10,17),
-  location: 44111,
-  city: "Cleveland",
-  state: "OH",
+  location: 10013,
+  city: "Manhattan",
+  state: "NY",
   genders: [Gender.find_by(gender:"Agender"),Gender.find_by(gender:"Two Spirit")],
   ethnicities: [Ethnicity.find_by(ethnicity:"Asian"),Ethnicity.find_by(ethnicity:"Indian")],
   summary: demi_summary,
@@ -285,8 +287,8 @@ BOT_IMAGES = ["https://tinyfac.es/data/avatars/FBEBF655-4886-455A-A4A4-D62B77DD4
 end
 
 
-# 25 in new york, 25 in la, 50 random
-100.times do |idx|
+# 100 in new york, 100 in la
+200.times do |idx|
 
   if idx < 50 && idx.even?
     zip_code = NEW_YORK_ZIPS.sample
@@ -296,10 +298,11 @@ end
     zip_code = LA_ZIPS.sample
     city = "Los Angeles"
     state = "CA"
-  else
-    zip_code = Faker::Address.zip[0..4]
-    city = Faker::Address.city
-    state = Faker::Address.state_abbr  
+  # I took this out because now that I'm trying to selecively show results from nearby users, there wasn't much point in doing this
+  # else
+  #   zip_code = Faker::Address.zip[0..4]
+  #   city = Faker::Address.city
+  #   state = Faker::Address.state_abbr  
   end
 
   User.create!(
@@ -346,9 +349,9 @@ User.create!(
   password:"password",
   fname: "...That Guy",
   birthday: Date.new(1989,9,12),
-  location: "02912",
-  city: "Providence",
-  state: "RI",
+  location: "11201",
+  city: "Brooklyn",
+  state: "NY",
   genders: [Gender.find_by(gender:"Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
   summary: "There's a bizarro version of me floating around here somewhere...",

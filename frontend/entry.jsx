@@ -8,7 +8,8 @@ import configureStore from './store/store';
 // import { createMessage } from './actions/message_actions';
 
 import { signup, logout} from './util/session_api_util';
-import { fetchUsers, updateUser } from './actions/user_actions';
+import {revealLocation} from './util/ui_util';
+import { fetchUser, fetchUsers, updateUser } from './actions/user_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,7 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.fetchUsers = fetchUsers;
+  window.fetchUser = fetchUser;
   window.updateUser = updateUser;
+  window.revealLocation = revealLocation;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

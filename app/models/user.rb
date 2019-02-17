@@ -212,7 +212,7 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
     result
   end
 
-  def match_percentage(match)
+  def calculate_match_percentage(match)
     category_comparison = 100.0
     category_array = self.category_diffs(match)
     category_array.each {|el| category_comparison -= ((100.0/category_array.length)*el)}
@@ -231,7 +231,28 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
     
   end
   
+  def match_percentage
+    # 1. check the database if the relation already exists, save as a variable.
+    # 2. if that variable exists, return it
+    # 3. if not, calculate it, and store it
+  end
 
+ 
+  # radius is the difference of zip codes to include. so as a user with a zip of 11516, this would return users from
+  #  11016 to 12016
+  def nearby_user_ids(max_result_size = 40, radius = 500)
+    # selecting IDs using active record was giving me an error, so I mapped it
+    User.where(location: ( (self.location.to_i-radius)..(self.location.to_i+radius) ) ).limit(max_result_size).shuffle.map {|user| user.id }
+    # zip = self.location.to_i
+    # result = User.where(location: zip)
+    # i = 1
+    # until  result.length == max_result_size || i == max_radius
+    #   result = result.or(User.where(location: zip+i)).or(User.where(location:zip-i))
+    #   i += 1;
+    #   p i
+    # end
+    # result
+  end
   # https://stackoverflow.com/questions/4804591/rails-activerecord-validate-single-attribute
   def valid_attribute?(attribute_name)
     self.valid?
