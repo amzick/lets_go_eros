@@ -276,7 +276,9 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
     upper = (self.location.to_i+radius).to_s
     upper.prepend("0") if upper.length < 5
     # selecting IDs using active record was giving me an error, so I mapped it
-    User.where(location: (lower..upper) ).limit(max_result_size).shuffle.map {|user| user.id }
+    User.where(location: (lower..upper) )
+    .order("RANDOM()")
+    .limit(max_result_size).map {|user| user.id }
   end
   # https://stackoverflow.com/questions/4804591/rails-activerecord-validate-single-attribute
   def valid_attribute?(attribute_name)

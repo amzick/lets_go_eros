@@ -29,82 +29,100 @@ class HomeContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
-    this.state.usersLoaded = false;
-    this.state.firstID = null;
-    this.state.lastID = null;
+    this.state = {
+      usersLoaded: false,
+      queryOne: new Set(),
+      queryTwo: new Set(),
+      queryThree: new Set(),
+    };
+    // this.state.firstID = null;
+    // this.state.lastID = null;
   }
 
 
 
   componentDidMount() {
+    this.setState({usersLoaded: false});
     const { currentUser, fetchLocalUsers } = this.props;
-    fetchLocalUsers(currentUser.id).then( () => {
-      this.setState({usersLoaded: true});
-    });
+    fetchLocalUsers(currentUser.id, 25);
+  }
 
-    // refactoring
-    // if (this.state.firstID === null || this.state.last === null) {
-    //   fetchFirstLast().then(resp => this.setState({ firstID: resp.first, lastID: resp.last },
-    //     () => {
-    //       // while(Object.entries(this.props.users).length < 40) {
-    //       for (let n = 0; n < 40; n++) {
-    //         let rand = Math.floor(Math.random() * (this.state.lastID - this.state.firstID + 1) + this.state.firstID);
+  componentDidUpdate(prevProps) {
+    if (prevProps.users !== this.props.users) {
+      console.log("New Props");
+      const { users } = this.props;
+      let queryOne = new Set();
+      let queryTwo = new Set();
+      let queryThree = new Set();
+      Object.values(users).forEach(user => {
+        if (user !== this.props.currentUser) {
+          switch (true) {
+            case (user.match < 70):
+              queryOne.add(<UserCard key={user.id} cardUser={user} />);
+              break;
+            case (user.match < 90):
+              queryThree.add(<UserCard key={user.id} cardUser={user} />);
+              break;
+            case (user.match >= 90):
+              queryTwo.add(<UserCard key={user.id} cardUser={user} />);
+              break;
+            default:
+              break;
+          }
+        }
+      });
+      this.setState({ usersLoaded: true, queryOne, queryTwo, queryThree });
+    }
 
-            
-    //         this.props.fetchUser(rand);
-    //       }
-    //     }));
-    // }
-    // this.setState({ usersLoaded: true });
   }
 
   render() {
 
-    const { users } = this.props;
-    //TODO: search queries
-    const randomUsers = [];
+    // const { users } = this.props;
+    // //TODO: search queries
+    // const randomUsers = [];
 
-    // refactoring
-    if (this.state.usersLoaded && Object.keys(users).length > 30) {
-      for (let i = 0; i < 30; i++) {
-        let usersLength = Object.keys(users).length;
-        let rand = Math.floor(Math.random() * (parseInt(Object.keys(users)[usersLength - 1]) - parseInt(Object.keys(users)[0]) + 1) + parseInt(Object.keys(users)[0]));
-        if (rand !== this.props.currentUser) {
-          randomUsers.push(users[rand]);
-        }
-      }
-    }
+    // // refactoring
+    // if (this.state.usersLoaded && Object.keys(users).length > 30) {
+    //   for (let i = 0; i < 30; i++) {
+    //     let usersLength = Object.keys(users).length;
+    //     let rand = Math.floor(Math.random() * (parseInt(Object.keys(users)[usersLength - 1]) - parseInt(Object.keys(users)[0]) + 1) + parseInt(Object.keys(users)[0]));
+    //     if (rand !== this.props.currentUser) {
+    //       randomUsers.push(users[rand]);
+    //     }
+    //   }
+    // }
 
-    // hearthstone. will be searchable
-    const queryResult1 = [];
-    // match > 90
-    const queryResult2 = [];
-    // random
-    const queryResult3 = [];
+    // // hearthstone. will be searchable
+    // const queryResult1 = [];
+    // // match > 90
+    // const queryResult2 = [];
+    // // random
+    // const queryResult3 = [];
 
-    if (randomUsers.length > 0) {
-      randomUsers.forEach((user, idx) => {
+    // // refactoring
+    // if (randomUsers.length > 0) {
+    //   randomUsers.forEach((user, idx) => {
 
-        if (user === undefined) {
-          "do fucking nothing";
-        } else if (user.summary !== null && user.summary.includes("Hearthstone")) {
-          queryResult1.push(<UserCard key={idx} cardUser={user} />)
-        } else if (user.match >= 80) {
-          queryResult2.push(<UserCard key={idx} cardUser={user} />)
-        } else if (queryResult3.length < 9) {
-          queryResult3.push(<UserCard key={idx} cardUser={user} />)
-        }
-      });
-    }
+    //     if (user === undefined) {
+    //       "do fucking nothing";
+    //     } else if (user.summary !== null && user.summary.includes("Hearthstone")) {
+    //       queryResult1.push(<UserCard key={idx} cardUser={user} />)
+    //     } else if (user.match >= 80) {
+    //       queryResult2.push(<UserCard key={idx} cardUser={user} />)
+    //     } else if (queryResult3.length < 9) {
+    //       queryResult3.push(<UserCard key={idx} cardUser={user} />)
+    //     }
+    //   });
+    // }
 
     return (
       <div className="base">
         <Navigation />
         <div className="home-space-div" />
-        <DiscoverySection search={true} header="Hearthstone" queryResult={queryResult1} />
-        <DiscoverySection header={"Top Matches"} queryResult={queryResult2} />
-        <DiscoverySection header="They're Also Extroverted" queryResult={queryResult3} />
+        <DiscoverySection search={true} header="Hearthstone" queryResult={this.state.queryOne} />
+        <DiscoverySection header={"Top Matches"} queryResult={this.state.queryTwo} />
+        <DiscoverySection header="They're Also Extroverted" queryResult={this.state.queryThree} />
         <LoggedInFooter />
       </div>
     )
