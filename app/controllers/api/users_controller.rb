@@ -21,6 +21,7 @@ class Api::UsersController < ApplicationController
   end
 
   def index
+    
     if params[:ids_array].nil?
       # for some reason passing in an empty array turns into nil.. and I get a lot of errors if @users is nothing
       # @users = [current_user]
@@ -40,12 +41,26 @@ class Api::UsersController < ApplicationController
  
 
   def update
+    
     @user = User.find(params[:id])
     if @user.update(user_params)
       # render json response
       render :show
     else
       render json: @user.errors.full_messages, status: 400
+    end
+  end
+
+  def nearby
+    
+    @user = User.find(params[:user_id])
+
+    
+    if @user
+      
+      render json: @user.nearby_user_ids(params[:max_result_size].to_i,params[:radius].to_i)
+    else
+      render json: ["User not found"], status: 404
     end
   end
 

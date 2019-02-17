@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format:'json'} do
     resources :users, only: [:index, :create, :show, :update] do
+      get '/nearby', to: 'users#nearby'
+
       resources :profile_pictures, only: [:create, :destroy]
       resources :messages, only: [:create, :index]
       get '/messages_with/:other_user', to: 'messages#between'

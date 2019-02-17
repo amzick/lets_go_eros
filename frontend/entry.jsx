@@ -9,7 +9,7 @@ import configureStore from './store/store';
 
 import { signup, logout} from './util/session_api_util';
 import {revealLocation} from './util/ui_util';
-import { fetchUser, fetchUsers, updateUser } from './actions/user_actions';
+import { fetchUser, fetchUsers, updateUser, fetchLocalUsers } from './actions/user_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchUser = fetchUser;
   window.updateUser = updateUser;
   window.revealLocation = revealLocation;
+  window.fetchLocalUsers = fetchLocalUsers;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

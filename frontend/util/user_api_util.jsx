@@ -14,6 +14,15 @@ export const fetchUsers = (idsArray = null) => {
   });
 };
 
+export const fetchLocalUsers = (userID, maxResultSize = 40, radius = 500) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/users/${userID}/nearby`,
+    data: { max_result_size: maxResultSize, radius: radius}
+  });
+};
+
+// originally used to generate random users before implementing the local users API
 export const fetchFirstLast = () => {
   return $.ajax({
     method: "GET",
