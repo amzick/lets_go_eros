@@ -246,15 +246,22 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
       # 3. if not, calculate it, store it, return it
       percentage = self.calculate_match_percentage(match)
       match_percentage = MatchPercentage.create!({user:self,match:match,percentage: percentage})
-      match_percentage.percentage
+      match_percentage.percentage   
     else
-      # if either user has a response less than a day old, recalculate
-      if self.responses.last.created_at >= Date.today || match.responses.last.created_at >= Date.today
-        percentage = self.calculate_match_percentage(match)
-        match_percentage.update!({user:self, match:match, percentage: percentage})
+      # could be that neither user has responded to a problem
+      if self.responses.empty? || match.responses.empty?
+        # don't recalculate
         match_percentage.percentage
       else
-        match_percentage.percentage
+        # if either user has a response less than a day old, recalculate
+        # I added the second condition so that if a user is active and answering a lot of questions, its not going to recalculate the response that frequently; only after 5 minutes
+        if (match_percentage.updated_at < (Time.now.utc - (5*60))) && (self.responses.last.updated_at >= Date.today || match.responses.last.updated_at >= Date.today) 
+          percentage = self.calculate_match_percentage(match)
+          match_percentage.update!({user:self, match:match, percentage: percentage})
+          match_percentage.percentage
+        else
+          match_percentage.percentage
+        end
       end
     end
   end
