@@ -350,7 +350,7 @@ User.create!(
   fname: "...That Guy",
   birthday: Date.new(1989,9,12),
   location: "11201",
-  city: "Brooklyn",
+  city: "Brooklyn",z
   state: "NY",
   genders: [Gender.find_by(gender:"Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
@@ -362,3 +362,8 @@ User.create!(
 Question.all.each do |question|
   Response.create(question_id:question.id, user_id: User.last.id, response:4)
 end
+
+Heart.create({admirer: User.second, crush: User.third})
+Heart.create({admirer: User.first, crush: User.second})
+Heart.create({admirer: User.second_to_last, crush: User.first})
+Heart.create({admirer: User.first, crush: User.last})

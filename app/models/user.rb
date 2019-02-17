@@ -241,17 +241,13 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
   # radius is the difference of zip codes to include. so as a user with a zip of 11516, this would return users from
   #  11016 to 12016
   def nearby_user_ids(max_result_size = 40, radius = 500)
+    # since the numbers are saved as strings in the DB, had to be a little creative to compare them
+    lower = (self.location.to_i-radius).to_s
+    lower.prepend("0") if lower.length < 5
+    upper = (self.location.to_i+radius).to_s
+    upper.prepend("0") if upper.length < 5
     # selecting IDs using active record was giving me an error, so I mapped it
-    User.where(location: ( (self.location.to_i-radius)..(self.location.to_i+radius) ) ).limit(max_result_size).shuffle.map {|user| user.id }
-    # zip = self.location.to_i
-    # result = User.where(location: zip)
-    # i = 1
-    # until  result.length == max_result_size || i == max_radius
-    #   result = result.or(User.where(location: zip+i)).or(User.where(location:zip-i))
-    #   i += 1;
-    #   p i
-    # end
-    # result
+    User.where(location: (lower..upper) ).limit(max_result_size).shuffle.map {|user| user.id }
   end
   # https://stackoverflow.com/questions/4804591/rails-activerecord-validate-single-attribute
   def valid_attribute?(attribute_name)
