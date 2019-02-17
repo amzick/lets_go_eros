@@ -33,7 +33,8 @@ class LoginForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state.submitClass = "invalid-submit";
     this.state.disabled = "disabled";
-    this.demo = this.demo.bind(this);
+    this.nyDemo = this.nyDemo.bind(this);
+    this.laDemo = this.laDemo.bind(this);
   }
 
 
@@ -43,11 +44,18 @@ class LoginForm extends React.Component {
     this.props.login(this.state.newUser).then(this.props.clearErrors);
   }
 
-  demo(event) {
+  nyDemo(event) {
     event.preventDefault();
     // todo : not me!!!
-    const demoUser = {email: "demoUser", password: "pa$$word" };
+    const demoUser = {email: "nyDemoUser", password: "pa$$word" };
     this.setState({ newUser: demoUser });
+    this.props.login(demoUser).then(this.props.clearErrors);
+  }
+
+  laDemo(event) {
+    event.preventDefault();
+    const demoUser = {email: "laDemoUser", password: "pa$$word"};
+    this.setState({newUser: demoUser});
     this.props.login(demoUser).then(this.props.clearErrors);
   }
 
@@ -110,7 +118,8 @@ class LoginForm extends React.Component {
 
             <RenderErrors errors={this.props.errors} />
             <input className={this.state.submitClass} type="submit" value={formType} disabled={this.state.disabled} />
-            <button className="demo-signin" onClick={this.demo}>Sign in with a demo user</button>
+            <button className="demo-signin" onClick={this.nyDemo}>Sign in with demo NY user</button>
+            <button className="demo-signin" onClick={this.laDemo}>Sign in with a demo LA user</button>
 
 
 

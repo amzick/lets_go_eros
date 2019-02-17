@@ -35,6 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
   window.updateUser = updateUser;
   window.revealLocation = revealLocation;
   window.fetchLocalUsers = fetchLocalUsers;
+  window.crownLat = 40.6788319;
+  window.crownLng = -73.9506774;
+  window.manLat = 40.7217861;
+  window.manLng = -74.0094471;
+  window.logout = logout;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

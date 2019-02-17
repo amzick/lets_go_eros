@@ -44,7 +44,7 @@ class HomeContainer extends React.Component {
   componentDidMount() {
     this.setState({usersLoaded: false});
     const { currentUser, fetchLocalUsers } = this.props;
-    fetchLocalUsers(currentUser.id, 25);
+    fetchLocalUsers(currentUser.id, 18);
   }
 
   componentDidUpdate(prevProps) {

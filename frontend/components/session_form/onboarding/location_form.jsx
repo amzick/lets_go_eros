@@ -36,6 +36,8 @@ class LocationForm extends React.Component {
     this.state.newUser = props.newUser;
     this.state.city = "";
     this.state.state = "";
+    this.state.lat = 0;
+    this.long = 0;
     this.state.errors = props.errors;
     this.state.submitClass = (props.newUser.location === "" ? "invalid-submit" : "valid-submit");
     this.state.disabled = (props.newUser.location === "" ? "disabled" : "");
@@ -57,18 +59,20 @@ class LocationForm extends React.Component {
       "ethnicity_ids": Array.from(this.state.newUser.ethnicities),
       "location": this.state.newUser.location,
       "city": this.state.city,
-      "state": this.state.state
+      "state": this.state.state,
+      "lat": this.state.lat,
+      "lng": this.state.lng
     });
 
-    const _newUser = {
-      email: "",
-      password: "",
-      fname: "",
-      genders: new Set(),
-      ethnicities: new Set(),
-      birthday: new Date(),
-      location: undefined
-    };
+    // const _newUser = {
+    //   email: "",
+    //   password: "",
+    //   fname: "",
+    //   genders: new Set(),
+    //   ethnicities: new Set(),
+    //   birthday: new Date(),
+    //   location: undefined
+    // };
 
     this.props.signup(newUser);
   }
@@ -93,7 +97,14 @@ class LocationForm extends React.Component {
                     .then(resp => {
 
                       if (resp.status !== "ZERO_RESULTS") {
-                        that.setState({ messages: [`Ahh, ${resp.results[0].address_components[1].long_name}`], errors: [], city: resp.results[0].address_components[1].long_name, state: resp.results[0].address_components[3].short_name });
+                        that.setState({
+                          messages: [`Ahh, ${resp.results[0].address_components[1].long_name}`],
+                          errors: [],
+                          city: resp.results[0].address_components[1].long_name,
+                          state: resp.results[0].address_components[3].short_name,
+                          lat: resp.results[0].geometry.location.lat,
+                          lng: resp.results[0].geometry.location.lng,
+                        });
                       } else {
                         that.setState({ errors: ["Please enter an existing zip code"], submitClass: "invalid-submit" });
                       }
@@ -121,7 +132,7 @@ class LocationForm extends React.Component {
 
   componentWillUnmount() {
     this.props.clearErrors();
-    this.setState({ errors: []});
+    this.setState({ errors: [] });
   }
 
   render() {

@@ -206,22 +206,47 @@ OPENNESS_QUESTIONS.each.with_index do |question,idx|
   end
 end
 
-demi_summary = "Hey! This is the demo account for Aaron Zick's full stack project. My name is Demi. Please click around and enjoy the site. You can contact Aaron with the links at the bottom of the page for more information or to hire him. Please feel free to edit anything after this part of the text! //////////////////////////////////////////////////"
+jay_summary = "Hey! This is the New York demo account for Aaron Zick's full stack project. My name is Jay. Please click around and enjoy the site. You can contact Aaron with the links at the bottom of the page for more information or to hire him. Please feel free to edit anything after this part of the text! //////////////////////////////////////////////////"
 
 # Demo User
 User.create!(
-  email: "demoUser",
+  email: "nyDemoUser",
   password: "pa$$word",
-  fname: "Demi",
+  fname: "Jay",
   birthday: Date.new(1954,10,17),
   location: 10013,
   city: "Manhattan",
   state: "NY",
-  genders: [Gender.find_by(gender:"Agender"),Gender.find_by(gender:"Two Spirit")],
-  ethnicities: [Ethnicity.find_by(ethnicity:"Asian"),Ethnicity.find_by(ethnicity:"Indian")],
-  summary: demi_summary,
-  height_in_inches: 62,
-  bot_img_src: "https://images-na.ssl-images-amazon.com/images/I/51iKj+F0qkL.jpg"
+  lat: 40.7217861,
+  lng: -74.0094471,
+  genders: [Gender.find_by(gender:"Man"),Gender.find_by(gender:"Cis Man")],
+  ethnicities: [Ethnicity.find_by(ethnicity:"Black")],
+  summary: jay_summary,
+  interests: "Hearthstone Cake"
+  height_in_inches: 67,
+  # bot_img_src: "https://images-na.ssl-images-amazon.com/images/I/51iKj+F0qkL.jpg"
+  bot_img_src: "http://static6.bornrichimages.com/cdn2/500/500/91/c/wp-content/uploads/s3/1/2012/06/28/1340866592_300x300.jpg"
+)
+
+mar_summary = "Hey! This is the Los Angeles demo account for Aaron Zick's full stack project. My name is Al. Please click around and enjoy the site. You can contact Aaron with the links at the bottom of the page for more information or to hire him. Please feel free to edit anything after this part of the text! //////////////////////////////////////////////////"
+
+
+User.create!(
+  email: "laDemoUser",
+  password: "pa$$word",
+  fname: "Marilyn",
+  birthday: Date.new(1955,3,3),
+  location: 90028,
+  city: "Hollywood",
+  state: "CA",
+  lat: 34.096305,
+  lng: -118.327509,
+  genders: [Gender.find_by(gender:"Woman"),Gender.find_by(gender:"Cis Woman")],
+  ethnicities: [Ethnicity.find_by(ethnicity:"White")],
+  summary: mar_summary,
+  interests: "Overwatch Pie",
+  height_in_inches: 65,
+  bot_img_src: "https://s3.amazonaws.com/letsgoeros-dev/mary.jpeg"
 )
 
 def aaron_summary 
@@ -236,7 +261,9 @@ User.create!(
   location: 11216,
   city: "Brooklyn",
   state: "NY",
-  genders: [Gender.find_by(gender:"Man")],
+  lat: 40.6788319,
+  lng: -73.9506774,
+  genders: [Gender.find_by(gender:"Man"), Gender.find_by(gender:"Cis Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
   summary: aaron_summary,
   height_in_inches: 70,
@@ -270,7 +297,11 @@ NEW_YORK_ZIPS=(10001..10041).to_a+(10301..10314).to_a+(10451..10475).to_a+(11101
 LA_ZIPS=(90001..90021).to_a+(90026..90039).to_a+(90052..90072).to_a
 
 def summary_maker
-  (Faker::BojackHorseman.quote + " " + Faker::Book.title + " " +  Faker::BojackHorseman.tongue_twister +  " " +  Faker::Company.industry +  " " +  Faker::Company.profession +  " " +  Faker::Dessert.variety +  " " +  Faker::Educator.university +  " " +  Faker::Educator.course +  " " +  Faker::Esport.game +  " " +  Faker::Hipster.paragraph +  " " +  Faker::Music.band +  " " +  Faker::Music.album)
+  (Faker::BojackHorseman.quote + " " +   Faker::BojackHorseman.tongue_twister +  " " +  Faker::Company.industry +  " " +  Faker::Company.profession +  " " +  Faker::Educator.university +  " " +  Faker::Educator.course +  " " +  Faker::Hipster.paragraph)
+end
+
+def interests_maker
+  (Faker::Book.title + " " + Faker::Dessert.variety +  " " + Faker::Esport.game + " " + Faker::Music.band +  " " +  Faker::Music.album + " " + Faker::Color.color_name + " " + Faker::Food.dish)
 end
 
 # height along a gaussian curve using ruby stats
@@ -294,15 +325,21 @@ end
     zip_code = NEW_YORK_ZIPS.sample
     city = ["New York City", "Manhattan", "Bronx", "Brooklyn", "Staten Island"].sample
     state = "NY"
+    lat = (rand * (40.725449 - 40.693567) + 40.693567).truncate(6)
+    lng = (rand * (-73.918897 - -73.962757) + -73.962757).truncate(6)
   else
     zip_code = LA_ZIPS.sample
     city = "Los Angeles"
     state = "CA"
+    lat = (rand * (34.235016 - 33.972911) + 33.972911).truncate(6)
+    lng = (rand * (-118.111020 - - 118.642484) + -118.642484).truncate(6)
   # I took this out because now that I'm trying to selecively show results from nearby users, there wasn't much point in doing this
   # else
   #   zip_code = Faker::Address.zip[0..4]
   #   city = Faker::Address.city
   #   state = Faker::Address.state_abbr  
+  #   lat
+  #   lng
   end
 
   User.create!(
@@ -315,7 +352,10 @@ end
     location: zip_code,
     city: city,
     state: state,
+    lat: lat,
+    lng: lng,
     summary: summary_maker,
+    interest: interests_maker,
     height_in_inches: height_gaussian.rng,
     bot_img_src: BOT_IMAGES.sample
   )
@@ -328,14 +368,17 @@ end
 User.create!(
   email: "aaron_zick@yahoo.com",
   password: "password",
-  fname: "You...",
+  fname: "Bizarro You",
   birthday: Date.new(1989,9,12),
-  location: "07663",
-  city: "Saddle Brook",
+  location: "07030",
+  city: "Hoboken",
   state: "NJ",
+  lat: 40.738701,
+  lng: -74.041960,
   genders: [Gender.find_by(gender:"Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
-  summary: "Compare me to my enemy 'That Guy' she tells you not to worry about!",
+  summary: "Compare me to my enemy... if you can find him",
+  interests: "League of Legends Sundae",
   height_in_inches: 70,
   bot_img_src: "https://s3-us-west-2.amazonaws.com/aa-progress-tracker/students/avatars/000/003/223/medium/DSC00356.JPG?1543343086"
   )
@@ -345,16 +388,19 @@ Question.all.each do |question|
 end
 
 User.create!(
-  email: "that_guy@aol.com",
+  email: "you@aol.com",
   password:"password",
-  fname: "...That Guy",
+  fname: "You",
   birthday: Date.new(1989,9,12),
   location: "11201",
-  city: "Brooklyn",z
+  city: "Brooklyn",
   state: "NY",
+  lat: 40.692772,
+  lng: -73.986187,
   genders: [Gender.find_by(gender:"Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
   summary: "There's a bizarro version of me floating around here somewhere...",
+  interests: "Starcraft Brownie",
   height_in_inches: 70,
   bot_img_src: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/32802194_10211994145797503_7284711747485696000_n.jpg?_nc_cat=107&_nc_ht=scontent-lga3-1.xx&oh=ce8b1070a9420b50b17d51a85386686f&oe=5CBBD356"
 )
@@ -363,7 +409,9 @@ Question.all.each do |question|
   Response.create(question_id:question.id, user_id: User.last.id, response:4)
 end
 
-Heart.create({admirer: User.second, crush: User.third})
 Heart.create({admirer: User.first, crush: User.second})
-Heart.create({admirer: User.second_to_last, crush: User.first})
+Heart.create({admirer: User.second, crush: User.first})
 Heart.create({admirer: User.first, crush: User.last})
+Heart.create({admirer: User.second, crush: User.last})
+Heart.create({admirer: User.second_to_last, crush: User.first})
+Heart.create({admirer: User.second_to_last, crush: User.second})

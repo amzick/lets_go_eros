@@ -17,6 +17,9 @@
 #  city             :string
 #  state            :string
 #  bot_img_src      :string
+#  lat              :float
+#  lng              :float
+#  interests        :text
 #
 
 class User < ApplicationRecord
