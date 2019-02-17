@@ -31,7 +31,7 @@ class HomeContainer extends React.Component {
     super(props);
     this.state = {
       usersLoaded: false,
-      randomInterest: "",
+      interestQuery: "",
       queryOne: new Set(),
       queryTwo: new Set(),
       queryThree: new Set(),
@@ -54,17 +54,17 @@ class HomeContainer extends React.Component {
       let queryOne = new Set();
       let queryTwo = new Set();
       let queryThree = new Set();
-      debugger
+      const randomInterest = currentUser.interests.split(" ")[Math.floor(Math.random() * (currentUser.interests.split(" ").length))];
       Object.values(users).forEach(user => {
         if (user !== this.props.currentUser) {
           switch (true) {
-            case (user.match < 70):
+            case (user.interests.includes(randomInterest)):
               queryOne.add(<UserCard key={user.id} cardUser={user} />);
               break;
-            case (user.match < 90):
+            case (user.match < 80):
               queryThree.add(<UserCard key={user.id} cardUser={user} />);
               break;
-            case (user.match >= 90):
+            case (user.match >= 80):
               queryTwo.add(<UserCard key={user.id} cardUser={user} />);
               break;
             default:
@@ -72,7 +72,7 @@ class HomeContainer extends React.Component {
           }
         }
       });
-      this.setState({ usersLoaded: true, queryOne, queryTwo, queryThree });
+      this.setState({ usersLoaded: true, queryOne, queryTwo, queryThree, interestQuery: randomInterest });
     }
 
   }
@@ -121,7 +121,7 @@ class HomeContainer extends React.Component {
       <div className="base">
         <Navigation />
         <div className="home-space-div" />
-        <DiscoverySection search={true} header="Hearthstone" queryResult={this.state.queryOne} />
+        <DiscoverySection search={false} header={this.state.interestQuery} queryResult={this.state.queryOne} />
         <DiscoverySection header={"Top Matches"} queryResult={this.state.queryTwo} />
         <DiscoverySection header="They're Also Extroverted" queryResult={this.state.queryThree} />
         <LoggedInFooter />
