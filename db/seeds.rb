@@ -290,11 +290,11 @@ end
 # 100 in new york, 100 in la
 200.times do |idx|
 
-  if idx < 50 && idx.even?
+  if idx.even?
     zip_code = NEW_YORK_ZIPS.sample
     city = ["New York City", "Manhattan", "Bronx", "Brooklyn", "Staten Island"].sample
     state = "NY"
-  elsif idx < 50
+  else
     zip_code = LA_ZIPS.sample
     city = "Los Angeles"
     state = "CA"
