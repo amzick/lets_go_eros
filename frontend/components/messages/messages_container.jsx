@@ -44,7 +44,7 @@ class MessagesContainer extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.messages !== this.props.messages) {
-      console.log("messages container props changed");
+      ("messages container props changed");
     }
   }
 
@@ -61,8 +61,6 @@ class MessagesContainer extends React.Component {
         });
         componentToRender = allThreads;
       } else {
-        console.log("Here");
-        console.log(currentUser.is_messaging_with);
         componentToRender = <p>You don&#39;t have any messages yet! Get Out there and start talking to people!</p>
       };
     };

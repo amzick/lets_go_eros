@@ -142,7 +142,7 @@ class LocationForm extends React.Component {
       <div className="dynamic-input-div"><h1 className="dynamic-input-message">Where do you primarily live?</h1>
         <form className="session-form" onSubmit={this.handleSubmit}>
           <label>{this.state.errors.length === 0 ? <RenderDyanmicMessages messages={this.state.messages} /> : <RenderDynamicErrors errors={this.state.errors} />}
-            <input className="session-form-input" onChange={this.handleChange("location")} type="text" value={this.state.newUser["location"]} placeholder="i.e. 10001" ></input>
+            <input className="session-form-input" onChange={this.handleChange("location")} type="text" value={this.state.newUser["location"]} placeholder="For best results, choose an LA or NY zip" ></input>
           </label>
           <button className={this.state.submitClass} disabled={this.state.disabled}>next</button>
 

@@ -40,8 +40,8 @@ class UpdateField extends React.Component {
       }).then(resp => {
         this.setState({submitValue: "Updated!"}, () => {
           setTimeout(that.props.closeModal, 500);
-        })
-      })
+        });
+      });
     });
   }
 

@@ -47,6 +47,7 @@ export const fetchEthnicities = () => {
 };
 
 export const updateUser = (user) => {
+  
   return (dispatch) => {
     return UserApiUtil.updateUser(user).then(resp => {
       dispatch(receiveUser(resp));

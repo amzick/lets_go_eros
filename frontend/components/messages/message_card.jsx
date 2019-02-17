@@ -51,9 +51,7 @@ class MessageCard extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.messages !== this.props.messages) {
-      console.log("message card props did update");
     //   this.setState({ messages: this.props.messages }, () => {
-      // debugger
       const {currentUser, cardUser } = this.props;
       const that = this;
       fetchMessagesBetween(currentUser.id, cardUser.id).then(resp => {

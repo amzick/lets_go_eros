@@ -31,6 +31,7 @@ class HomeContainer extends React.Component {
     super(props);
     this.state = {
       usersLoaded: false,
+      randomInterest: "",
       queryOne: new Set(),
       queryTwo: new Set(),
       queryThree: new Set(),
@@ -49,11 +50,11 @@ class HomeContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.users !== this.props.users) {
-      console.log("New Props");
       const { users } = this.props;
       let queryOne = new Set();
       let queryTwo = new Set();
       let queryThree = new Set();
+      debugger
       Object.values(users).forEach(user => {
         if (user !== this.props.currentUser) {
           switch (true) {

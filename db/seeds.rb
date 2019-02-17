@@ -206,7 +206,11 @@ OPENNESS_QUESTIONS.each.with_index do |question,idx|
   end
 end
 
-jay_summary = "Hey! This is the New York demo account for Aaron Zick's full stack project. My name is Jay. Please click around and enjoy the site. You can contact Aaron with the links at the bottom of the page for more information or to hire him. Please feel free to edit anything after this part of the text! //////////////////////////////////////////////////"
+jay_summary = "Hey! This is the New York demo account for Aaron Zick's full stack project. My name is Jay. Please click around and enjoy the site. You can contact Aaron with the links at the bottom of the page for more information or to hire him. 
+
+You may edit the interests with space separated topics. I seeded the database of users with interests in video games, desserts, colors, bands and albums. 
+
+Please feel free to edit anything after this part of the text! //////////////////////////////////////////////////"
 
 # Demo User
 User.create!(
@@ -222,13 +226,17 @@ User.create!(
   genders: [Gender.find_by(gender:"Man"),Gender.find_by(gender:"Cis Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"Black")],
   summary: jay_summary,
-  interests: "Hearthstone Cake"
+  interests: "Super Smash Bros. Melee Sundae The Rolling Stones green",
   height_in_inches: 67,
   # bot_img_src: "https://images-na.ssl-images-amazon.com/images/I/51iKj+F0qkL.jpg"
   bot_img_src: "http://static6.bornrichimages.com/cdn2/500/500/91/c/wp-content/uploads/s3/1/2012/06/28/1340866592_300x300.jpg"
 )
 
-mar_summary = "Hey! This is the Los Angeles demo account for Aaron Zick's full stack project. My name is Al. Please click around and enjoy the site. You can contact Aaron with the links at the bottom of the page for more information or to hire him. Please feel free to edit anything after this part of the text! //////////////////////////////////////////////////"
+mar_summary = "Hey! This is the Los Angeles demo account for Aaron Zick's full stack project. My name is Marilyn. Please click around and enjoy the site. You can contact Aaron with the links at the bottom of the page for more information or to hire him. 
+
+You may edit the interests with space separated topics. I seeded the database of users with interests in video games, desserts, colors, bands and albums. 
+
+Please feel free to edit anything after this part of the text! //////////////////////////////////////////////////"
 
 
 User.create!(
@@ -244,7 +252,7 @@ User.create!(
   genders: [Gender.find_by(gender:"Woman"),Gender.find_by(gender:"Cis Woman")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White")],
   summary: mar_summary,
-  interests: "Overwatch Pie",
+  interests: "Overwatch Pie The Beatles indigo",
   height_in_inches: 65,
   bot_img_src: "https://s3.amazonaws.com/letsgoeros-dev/mary.jpeg"
 )
@@ -266,6 +274,7 @@ User.create!(
   genders: [Gender.find_by(gender:"Man"), Gender.find_by(gender:"Cis Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
   summary: aaron_summary,
+  interests: "Hearthstone Cake Radiohead yellow",
   height_in_inches: 70,
   bot_img_src: "https://s3.amazonaws.com/letsgoeros-dev/vfs_ID.jpg"
 )
@@ -355,7 +364,7 @@ end
     lat: lat,
     lng: lng,
     summary: summary_maker,
-    interest: interests_maker,
+    interests: interests_maker,
     height_in_inches: height_gaussian.rng,
     bot_img_src: BOT_IMAGES.sample
   )
@@ -378,7 +387,7 @@ User.create!(
   genders: [Gender.find_by(gender:"Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
   summary: "Compare me to my enemy... if you can find him",
-  interests: "League of Legends Sundae",
+  interests: "League of Legends Cookie Bruce Springsteen red",
   height_in_inches: 70,
   bot_img_src: "https://s3-us-west-2.amazonaws.com/aa-progress-tracker/students/avatars/000/003/223/medium/DSC00356.JPG?1543343086"
   )
@@ -400,7 +409,7 @@ User.create!(
   genders: [Gender.find_by(gender:"Man")],
   ethnicities: [Ethnicity.find_by(ethnicity:"White"), Ethnicity.find_by(ethnicity:"Black")],
   summary: "There's a bizarro version of me floating around here somewhere...",
-  interests: "Starcraft Brownie",
+  interests: "Starcraft Brownie New Order blue",
   height_in_inches: 70,
   bot_img_src: "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/32802194_10211994145797503_7284711747485696000_n.jpg?_nc_cat=107&_nc_ht=scontent-lga3-1.xx&oh=ce8b1070a9420b50b17d51a85386686f&oe=5CBBD356"
 )
