@@ -33,14 +33,27 @@ class Splash extends React.Component {
 
   changeBG() {
     this.increment++;
-    this.setState({ currentImg: "hidden-img" }, () => {
+    const image = document.getElementById("splash-img");
+    // $(image).fadeOut(100);
+    // this.setState({
+    //   currentBG: this.bgClasses[this.increment % 5],
+    //   currentImg: this.imgClasses[this.increment % 5]
+    // }, () => {
+    //   console.log("??");
+    //   $(image).fadeIn(100);
+    // });
+    $(image).fadeOut(250, "linear", () => {
       setTimeout(() => {
-        console.log("Timeout..?");
-        this.setState({
-          currentBG: this.bgClasses[this.increment % 5],
-          currentImg: this.imgClasses[this.increment % 5]
+        this.setState({ currentImg: "hidden-img" }, () => {
+          setTimeout(() => {
+            this.setState({
+              currentBG: this.bgClasses[this.increment % 5],
+              currentImg: this.imgClasses[this.increment % 5]
+            });
+          }, 500);
+          $(image).fadeIn(100, "linear");
         });
-      }, 1000);
+      }, 500);
     });
   }
 

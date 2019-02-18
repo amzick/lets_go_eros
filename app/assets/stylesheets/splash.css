@@ -22,6 +22,8 @@ body, button, input, textare, p, div {
   font-size: 3em;
   -webkit-text-stroke: 3px black;
   -webkit-text-fill-color: transparent;
+  -moz-text-stroke: 3px black;
+  -moz-text-fill-color: transparent;
 }
 .logo-short {
   font-family: 'Luckiest Guy', 'Comic Zine', 'Londrinda Outline', cursive;
@@ -29,7 +31,9 @@ body, button, input, textare, p, div {
   font-weight: 200;
   color:white;
   -webkit-text-stroke: 3px #76a8e2;
-  -webkit-text-fill-color: white;
+  -webkit-text-stroke: 3px #76a8e2;
+  -moz-text-fill-color: white;
+  -moz-text-fill-color: white;
   transform: translate(0, 5px);
 
 }
@@ -42,6 +46,8 @@ body, button, input, textare, p, div {
   transform: rotate(-20deg) translate(5px, 0);
   -webkit-text-stroke: 2px white;
   -webkit-text-fill-color: transparent;
+  -moz-text-stroke: 2px white;
+  -moz-text-fill-color: transparent;
   /* top: -5px; */
 }
 /* splash page */
@@ -51,13 +57,6 @@ body, button, input, textare, p, div {
   /* width: 100%; */
   width: 1050px;
   
-  /* -webkit-transition: background-image 0.2s;
-  transition: background-image 0.2s; */
-  /* background-repeat: no-repeat; */
-  
-  /* background-position: 50% 35%; */
-  /* background-size: auto 80%; */
-  /* padding-left: 75px; */
   padding-left: 15%;
   padding-bottom: 0;
   margin-top: 0;
@@ -83,6 +82,7 @@ body, button, input, textare, p, div {
   bottom: 0;
   right: 0;
   -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
   transition: background-color 0.5s;
 }
 
@@ -92,34 +92,38 @@ body, button, input, textare, p, div {
   /* -webkit-transition: fadeinout 1s;
   transition: fadeinout 1s; */
   /* opacity: 1; */
-  -webkit-transition: opacity 1s linear;
-  transition: opacity 1s linear;
+  -webkit-transition: opacity 0.5s linear;
+  -moz-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
 }
 
 .hidden-img {
   opacity: 0;
   background-image: none;
   visibility: hidden;
-  -webkit-transition: visibility 1s background-image 1s opacity 1s linear;
-  transition: visibility 1s background-image 1s opacity 1s linear;
+  -webkit-transition: visibility 0.5s background-image 0.5s opacity 0.5s linear;
+  -moz-transition: visibility 0.5s background-image 0.5s opacity 0.5s linear;
+  transition: visibility 0.5s background-image 0.5s opacity 0.5s linear;
 }
 
 .splash-page-couch {
   background-color: #24d8f3;
   /* background-size: 200% 200%;
   animation-name: fadeinout;
-  animation-duration: 1ss; */
+  animation-duration: 0.5ss; */
 }
 
 .splash-page-couch-img {
   background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/couch.jpg);
-  background-position: calc(50% + 285px) 20%;
+  background-position: calc(50% + 285px) calc(10% + 100px);
   background-size: 551px auto;
   /* opacity: 1; */
-  /* -webkit-transition: opacity 1s linear;
-  transition: opacity 1s linear; */
+  /* -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear; */
   visibility: visible;
-  transition: visibility 1s opacity 1s linear;
+  -webkit-transition: visibility 0.5s opacity 0.5s linear;
+  -moz-transition: visibility 0.5s opacity 0.5s linear;
+  transition: visibility 0.5s opacity 0.5s linear;
   
 }
 
@@ -129,14 +133,16 @@ body, button, input, textare, p, div {
 
 .splash-page-eyemasks-img {
 background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
-  background-position: calc(50% + 300px) 20%;
+  background-position: calc(50% + 300px) calc(10% + 100px);
   background-size: 694px auto;
   /* opacity: 1; */
-  /* -webkit-transition: opacity 1s linear;
-  transition: opacity 1s linear; */
+  /* -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear; */
 
   visibility: visible;
-  transition: visibility 1s opacity 1s linear;
+  transition: visibility 0.5s opacity 0.5s linear;
+  -moz-transition: visibility 0.5s opacity 0.5s linear;
+  -webkit-transition: visibility 0.5s opacity 0.5s linear;
   
 }
 
@@ -146,14 +152,16 @@ background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
 
 .splash-page-rose-img {
   background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/rose.jpg);
-  background-position: calc(50% + 455px) 20%;
+  background-position: calc(50% + 455px) calc(10% + 100px);
   background-size: 975px auto;
   /* opacity: 1; */
-  /* -webkit-transition: opacity 1s linear;
-  transition: opacity 1s linear; */
+  /* -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear; */
 
   visibility: visible;
-  transition: visibility 1s opacity 1s linear;
+  transition: visibility 0.5s opacity 0.5s linear;
+  -moz-transition: visibility 0.5s opacity 0.5s linear;
+  -webkit-transition: visibility 0.5s opacity 0.5s linear;
   
 
 }
@@ -164,14 +172,16 @@ background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
 
 .splash-page-facepaint-img {
   background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/facepaint.jpg);
-  background-position: calc(50% + 300px) 20%;
+  background-position: calc(50% + 300px) calc(10% + 100px);
   background-size: 666px auto;
   /* opacity: 1; */
-  /* -webkit-transition: opacity 1s linear;
-  transition: opacity 1s linear; */
+  /* -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear; */
 
   visibility: visible;
-  transition: visibility 1s opacity 1s linear;
+  transition: visibility 0.5s opacity 0.5s linear;
+  -moz-transition: visibility 0.5s opacity 0.5s linear;
+  -webkit-transition: visibility 0.5s opacity 0.5s linear;
   
 
 }
@@ -182,14 +192,16 @@ background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
 
 .splash-page-hands-img {
   background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/hands.jpg);
-  background-position: calc(50% + 375px) 20%;
+  background-position: calc(50% + 375px) calc(10% + 100px);
   background-size: 865px auto;
   /* opacity: 1; */
-  /* -webkit-transition: opacity 1s linear;
-  transition: opacity 1s linear; */
+  /* -webkit-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear; */
 
   visibility: visible;
-  transition: visibility 1s opacity 1s linear;
+  transition: visibility 0.5s opacity 0.5s linear;
+  -moz-transition: visibility 0.5s opacity 0.5s linear;
+  -webkit-transition: visibility 0.5s opacity 0.5s linear;
   
 
 }
@@ -200,7 +212,7 @@ background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
   justify-content: space-between;
   padding: 30px 0 0;
   box-sizing: border-box;
-  width: 100%;
+  width: 110%;
 }
 
 .splash-header img {
@@ -238,6 +250,8 @@ background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
   text-transform: uppercase;
   -webkit-text-stroke: 2px black;
   -webkit-text-fill-color: white;
+  -moz-text-stroke: 2px black;
+  -moz-text-fill-color: white;
   text-shadow: -1px 1px 0px black,
   -2px 2px 0px black,
   -3px 3px 0px black,
