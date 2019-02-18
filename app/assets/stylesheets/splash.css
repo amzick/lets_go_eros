@@ -48,21 +48,23 @@ body, button, input, textare, p, div {
 
 #splash-main {
   height: 670px;
-  width: 100%;
-  -webkit-transition: background-color 1s;
-  transition: background-color 1s;
+  /* width: 100%; */
+  width: 1050px;
+  
   /* -webkit-transition: background-image 0.2s;
   transition: background-image 0.2s; */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   
   /* background-position: 50% 35%; */
-  background-size: auto 80%;
-  padding-left: 75px;
+  /* background-size: auto 80%; */
+  /* padding-left: 75px; */
+  padding-left: 15%;
   padding-bottom: 0;
   margin-top: 0;
   margin-bottom: 0;
+  background: transparent;
 }
-/* 
+
 @-webkit-keyframes fadeinout {
   0%, 100% {opacity: 1;}
   50% {opacity: 0}
@@ -71,58 +73,125 @@ body, button, input, textare, p, div {
 @keyframes fadeinout {
   0%, 100% {opacity: 1;}
   50% {opacity: 0}
-} */
-
-
-
-.splash-page-couch {
-  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/couch.jpg);
-  background-color: #24d8f3;
-  background-position: 50% 100%;
-  /* background-size: 200% 200%;
-  animation-name: fadeinout;
-  animation-duration: 0.5s; */
 }
 
-/* .splash-page-couch-none {
-  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/couch.jpg);
+#splash-backdrop {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  -webkit-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+
+#splash-img {
+  background-repeat: no-repeat;
+  height: 100%;
+  /* -webkit-transition: fadeinout 1s;
+  transition: fadeinout 1s; */
+  /* opacity: 1; */
+  -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear;
+}
+
+.hidden-img {
   opacity: 0;
+  background-image: none;
+  visibility: hidden;
+  -webkit-transition: visibility 1s background-image 1s opacity 1s linear;
+  transition: visibility 1s background-image 1s opacity 1s linear;
+}
+
+.splash-page-couch {
   background-color: #24d8f3;
-  background-position: 75% 100%;
-  background-size: 200% 200%;
+  /* background-size: 200% 200%;
   animation-name: fadeinout;
-  animation-duration: 0.5s;
-} */
+  animation-duration: 1ss; */
+}
+
+.splash-page-couch-img {
+  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/couch.jpg);
+  background-position: calc(50% + 285px) 20%;
+  background-size: 551px auto;
+  /* opacity: 1; */
+  /* -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear; */
+  visibility: visible;
+  transition: visibility 1s opacity 1s linear;
+  
+}
 
 .splash-page-eyemasks {
-  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
   background-color: #20bd66;
-  background-position: 50% 100%;
-  background-size: 1000%;
+}
+
+.splash-page-eyemasks-img {
+background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
+  background-position: calc(50% + 300px) 20%;
+  background-size: 694px auto;
+  /* opacity: 1; */
+  /* -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear; */
+
+  visibility: visible;
+  transition: visibility 1s opacity 1s linear;
+  
 }
 
 .splash-page-rose {
-  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/rose.jpg);
   background-color: #ffc5e3;
-  background-position: 75% 100%;
-  background-size: 100% 100%;
+}
+
+.splash-page-rose-img {
+  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/rose.jpg);
+  background-position: calc(50% + 455px) 20%;
+  background-size: 975px auto;
+  /* opacity: 1; */
+  /* -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear; */
+
+  visibility: visible;
+  transition: visibility 1s opacity 1s linear;
+  
 
 }
 
 .splash-page-facepaint {
-  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/facepaint.jpg);
   background-color: #22c2fc;
-  background-position: 50% 100%;
-  background-size: 100% 100%;
+}
+
+.splash-page-facepaint-img {
+  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/facepaint.jpg);
+  background-position: calc(50% + 300px) 20%;
+  background-size: 666px auto;
+  /* opacity: 1; */
+  /* -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear; */
+
+  visibility: visible;
+  transition: visibility 1s opacity 1s linear;
+  
 
 }
 
 .splash-page-hands {
-  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/hands.jpg);
   background-color: #f0a1c1;
-  background-position: 75% 100%;
-  background-size: 100% 100%;
+}
+
+.splash-page-hands-img {
+  background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/hands.jpg);
+  background-position: calc(50% + 375px) 20%;
+  background-size: 865px auto;
+  /* opacity: 1; */
+  /* -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear; */
+
+  visibility: visible;
+  transition: visibility 1s opacity 1s linear;
   
+
 }
 
 .splash-header {
@@ -130,11 +199,8 @@ body, button, input, textare, p, div {
   flex-direction: row;
   justify-content: space-between;
   padding: 30px 0 0;
-  /* padding-left: 0; */
-  margin: 10px;
-  margin-top: 0;
-  margin-bottom: 0;
   box-sizing: border-box;
+  width: 100%;
 }
 
 .splash-header img {
@@ -282,6 +348,7 @@ body, button, input, textare, p, div {
   height: 125px;
   padding: 0;
   margin: 0;
+  margin-top: 50px;
 }
 
 .splash-footer-div {

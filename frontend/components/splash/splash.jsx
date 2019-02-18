@@ -17,14 +17,31 @@ class Splash extends React.Component {
       "splash-page-facepaint",
       "splash-page-hands"
     ];
+    this.imgClasses = [
+      "splash-page-couch-img",
+      "splash-page-eyemasks-img",
+      "splash-page-rose-img",
+      "splash-page-facepaint-img",
+      "splash-page-hands-img"
+    ]
     this.increment = 0;
-    this.state = { currentBG: this.bgClasses[this.increment] };
+    this.state = {
+      currentBG: this.bgClasses[this.increment],
+      currentImg: this.imgClasses[this.increment]
+    };
   }
 
   changeBG() {
-
     this.increment++;
-    this.setState({ currentBG: this.bgClasses[this.increment % 5] });
+    this.setState({ currentImg: "hidden-img" }, () => {
+      setTimeout(() => {
+        console.log("Timeout..?");
+        this.setState({
+          currentBG: this.bgClasses[this.increment % 5],
+          currentImg: this.imgClasses[this.increment % 5]
+        });
+      }, 1000);
+    });
   }
 
   componentDidMount() {
@@ -42,11 +59,17 @@ class Splash extends React.Component {
   render() {
 
     return (
-      <main id="splash-main" className={this.state.currentBG}>
-        <SplashNavBar className="splash-nav" />
-        <SplashMain />
+      // <main id="splash-main" className={this.state.currentBG}>
+      <>
+        <div id="splash-backdrop" className={this.state.currentBG} >
+          <div id="splash-img" className={this.state.currentImg} />
+        </div>
+        <main id="splash-main">
+          <SplashNavBar className="splash-nav" />
+          <SplashMain />
+        </main>
         <SplashFooter />
-      </main>
+      </>
     );
   }
 };

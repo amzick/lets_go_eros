@@ -157,10 +157,10 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
     Question.select("*").where.not(id: self.answered_questions)
   end
 
-  def answer_n_questions(n = 1)
+  def answer_n_questions(n = 1, response = rand(0..4))
     return nil if self.unanswered_questions.empty?
     n.times do
-      Response.create(question:self.unanswered_questions.sample,user:self,response:rand(0..4))
+      Response.create(question:self.unanswered_questions.sample,user:self,response: response)
     end
   end
 
