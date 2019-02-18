@@ -22,6 +22,10 @@
       window.googleAPIKey = "<%= Rails.application.credentials.google[:api_key] %>"
     </script>
 
+    <%# favicon %>
+    <link rel="shortcut icon" href="https://s3.amazonaws.com/letsgoeros-dev/lge-favicon-black-font.gif">
+    <link rel="icon" href="https://s3.amazonaws.com/letsgoeros-dev/lge-favicon-black-font.gif" type="image/gif">
+
     <%= javascript_include_tag 'application' %>
   </head>
 
