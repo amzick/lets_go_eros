@@ -121,13 +121,9 @@ class ProfileHeader extends React.Component {
             <div className="profile-picture-thumb" onMouseEnter={this.showUpdatePrompt} onMouseLeave={this.hideUpdatePrompt} onClick={this.handleProfilePictureClick}>
               {currentUser === pageUser ?
                 <div className={this.state.promptClass}>
-
-
                   <div className="center-text-absolute">
                     <span>Change </span><span>Profile </span><span>Picture</span>
                   </div>
-
-
                 </div>
                 : null}
               <img src={profilePictureSrc} />

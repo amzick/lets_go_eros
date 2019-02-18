@@ -56,9 +56,11 @@
 
 .profile-picture-thumb {
   border: solid 1px #76a8e2;
-  max-height: 180px;
+  /* max-height: 180px;
   min-width: 180px;
-  max-width: 180px;
+  max-width: 180px; */
+  height: 180px;
+  width: 180px;
   overflow: hidden;
   border-radius: 50%;
   margin: 0px 20px -65px;
@@ -69,7 +71,19 @@
   position: relative;
 }
 
-.update-picture-hover{
+.profile-picture-thumb > img {
+  min-height: 189px;
+  min-width: 189px;
+  max-height: 300px;
+  max-width: 300px;
+  height: auto;
+  width: auto;
+  position: absolute;
+  top: -5%;
+  left: -5%;
+}
+
+.update-picture-hover {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   /* -webkit-filter: blur(8px);
@@ -319,18 +333,18 @@
   justify-content: space-between;
 }
 
-.profile-details * {
+.profile-details > div {
   min-height: 52px;
   font-size: 18px; 
 }
 
 .details-text {
   width: 90%;
-  padding-right: 10px;
+  padding: 0 10px;
   margin: auto 0;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  /* align-items: flex-start; */
+  justify-content: left;
   font-weight: 100px;
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
   color: black;
@@ -342,7 +356,7 @@
   margin: auto 0;
   display: flex;
   justify-content: flex-start;
-
+  
 }
 
 .details-icon > img {

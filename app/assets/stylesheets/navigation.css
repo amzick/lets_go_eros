@@ -91,13 +91,32 @@
 
 }
 
-.nav-user-img > img {
+.nav-user-thumb {
+  /* border: solid 1px yellow; */
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.nav-user-thumb > img {
+  /* min-width: 50px; */
+  /* min-height: 50px; */
+  /* height: auto; */
+  max-width: 62px;
+  min-width: 42px;
+  max-height: 62px;
+  min-height: 42px;
   width: auto;
   height: auto;
-  min-height: 42px;
-  min-width: 42px;
-  max-height:42px;
-  border-radius: 50%;
+  
+  /* min-width: 50px;
+  min-height: 50px; */
+  /* max-height:42px;
+  width: auto; */
+  /* height: auto; */
+  /* min-height: 42px; */
+  /* border-radius: 50%; */
 }
 
 .logged-in-footer {

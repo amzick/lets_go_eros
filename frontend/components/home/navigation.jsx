@@ -39,7 +39,7 @@ class Navigation extends React.Component {
         <div className="nav-right">
           <NavLink to="/hearts"><span className="nav-right-icon"><i className="fas fa-heart"></i></span></NavLink>
           <NavLink to="/messages"><span className="nav-right-icon"><i className="fas fa-comments"></i></span></NavLink>
-          <NavLink to="/profile" className="nav-user-img"><img src={profilePictureSrc} alt="profile picture" /></NavLink>
+          <NavLink to="/profile" ><div className="nav-user-thumb"><img src={profilePictureSrc} alt="profile picture" /></div></NavLink>
           <button onClick={this.props.logout}>Sign Out</button>
         </div>
 

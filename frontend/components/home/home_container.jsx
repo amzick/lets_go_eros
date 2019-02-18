@@ -43,29 +43,32 @@ class HomeContainer extends React.Component {
 
 
   componentDidMount() {
-    this.setState({usersLoaded: false});
+    this.setState({ usersLoaded: false });
     const { currentUser, fetchLocalUsers } = this.props;
     fetchLocalUsers(currentUser.id, 18);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.users !== this.props.users) {
-      const { users } = this.props;
+      const { users, currentUser } = this.props;
       let queryOne = new Set();
       let queryTwo = new Set();
       let queryThree = new Set();
-      const randomInterest = currentUser.interests.split(" ")[Math.floor(Math.random() * (currentUser.interests.split(" ").length))];
+      let randomInterest = this.state.interestQuery;
+      if (currentUser.interests) {
+        randomInterest = currentUser.interests.split(" ")[Math.floor(Math.random() * (currentUser.interests.split(" ").length))];
+      }
       Object.values(users).forEach(user => {
         if (user !== this.props.currentUser) {
           switch (true) {
+            case (user.match >= 80):
+              if (queryOne.size < 8) queryOne.add(<UserCard key={user.id} cardUser={user} />);
+              break;
             case (user.interests.includes(randomInterest)):
-              queryOne.add(<UserCard key={user.id} cardUser={user} />);
+              if (queryTwo.size < 8) queryTwo.add(<UserCard key={user.id} cardUser={user} />);
               break;
             case (user.match < 80):
-              queryThree.add(<UserCard key={user.id} cardUser={user} />);
-              break;
-            case (user.match >= 80):
-              queryTwo.add(<UserCard key={user.id} cardUser={user} />);
+              if (queryThree.size < 8) queryThree.add(<UserCard key={user.id} cardUser={user} />);
               break;
             default:
               break;
@@ -121,9 +124,9 @@ class HomeContainer extends React.Component {
       <div className="base">
         <Navigation />
         <div className="home-space-div" />
-        <DiscoverySection search={false} header={this.state.interestQuery} queryResult={this.state.queryOne} />
-        <DiscoverySection header={"Top Matches"} queryResult={this.state.queryTwo} />
-        <DiscoverySection header="They're Also Extroverted" queryResult={this.state.queryThree} />
+        <DiscoverySection search={false} header={`They're also interested in ${this.state.interestQuery}`} queryResult={this.state.queryTwo} />
+        <DiscoverySection header={"Top Matches"} queryResult={this.state.queryOne} />
+        <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} />
         <LoggedInFooter />
       </div>
     )
