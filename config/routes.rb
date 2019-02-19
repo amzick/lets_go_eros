@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       delete '/hearts', to: 'hearts#destroy'
 
       get '/random_unanswered_question', to: 'users#random_unanswered_question'
+      get '/random_answered_question', to: 'users#random_answered_question'
     end
 
     resource :session, only: [:create, :destroy]

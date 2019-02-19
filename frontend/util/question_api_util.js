@@ -11,3 +11,10 @@ export const fetchRandomUnansweredQuestion = (userID) => {
     url: `/api/users/${userID}/random_unanswered_question`
   });
 };
+
+export const fetchRandomAnsweredQuestion = (userID) => {
+  return $.ajax({
+    method:"GET",
+    url: `/api/users/${userID}/random_answered_question`     
+  });
+};

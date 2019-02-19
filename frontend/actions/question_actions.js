@@ -12,6 +12,7 @@ export const fetchQuestion = (questionID) => {
   };
 };
 
+// too much of a pain to do it this way, just getting the question id with the ajax request
 // export const fetchRandomUnansweredQuestion = (userID) => {
 //   return (dispatch) => {
 //     return QuestionApiUtil.fetchRandomUnansweredQuestion(userID).then(resp => {

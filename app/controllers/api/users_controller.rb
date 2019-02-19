@@ -73,7 +73,16 @@ class Api::UsersController < ApplicationController
   def random_unanswered_question
     @user = User.find(params[:user_id])
     unless @user.unanswered_questions.empty?
-      render json: @user.unanswered_questions.sample
+      render json: @user.unanswered_questions.sample.id
+    else
+      render json: nil
+    end
+  end
+
+  def random_answered_question 
+    @user = User.find(params[:user_id])
+    unless @user.answered_questions.empty?
+      render json: @user.answered_questions.sample.id
     else
       render json: nil
     end
