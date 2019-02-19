@@ -5,7 +5,8 @@ input, label, form, select, textarea {
 
 .login-div {
   height: 100vh;
-  width: inherit;
+  width: 100%;
+  /* width: inherit; */
   background-color: #b9efef;
 }
 
