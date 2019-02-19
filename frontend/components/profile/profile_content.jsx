@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ProfileTextCard from './profile_text_card';
 import YouAndThem from './you_and_them';
-import QuestionContainer from '../questions/question_container';
+import RandomQuestionContainer from '../questions/random_question_container';
 
 
 const msp = (state, ownProps) => {
@@ -100,7 +100,7 @@ class ProfileContent extends React.Component {
               <div className="details-text">{eyes}</div>
             </div>
           </div>
-          <QuestionContainer currentUser={currentUser} pageUser={pageUser} />
+          <RandomQuestionContainer currentUser={currentUser} pageUser={pageUser} />
         </div>
       </div>
     )
