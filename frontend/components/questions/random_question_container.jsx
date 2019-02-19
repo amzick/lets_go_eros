@@ -59,15 +59,43 @@ class RandomQuestionContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+
+    if (!this.state.questionLoaded) {
+      const { currentUser, pageUser } = this.props;
+      if (currentUser === pageUser) {
+        fetchRandomUnansweredQuestion(pageUser.id).then(resp => {
+          if (resp) {
+            this.props.fetchQuestion(resp).then(() => {
+              this.setState({ questionID: resp, questionLoaded: true });
+            });
+          } else {
+            this.setState({ questionLoaded: true });
+          }
+        });
+      } else {
+        fetchRandomAnsweredQuestion(pageUser.id).then(resp => {
+          if (resp) {
+            this.props.fetchQuestion(resp).then(() => {
+              this.setState({ questionID: resp, questionLoaded: true });
+            });
+          } else {
+            this.setState({ questionLoaded: true });
+          }
+        });
+      }
+    }
+
     if (prevProps.responses !== this.props.responses) {
       console.log("new response detected");
     }
+
+
   }
 
   render() {
-    const { questions } = this.props;
+    const { currentUser, pageUser } = this.props;
 
-    
+
     let renderComponent = <div>"Loading..."</div>;
     if (this.state.questionLoaded) {
       if (this.state.questionID) {
@@ -76,7 +104,10 @@ class RandomQuestionContainer extends React.Component {
         renderComponent = <QuestionContainer currentUser={this.props.currentUser} pageUser={this.props.pageUser} questionID={this.state.questionID} />
         // renderComponent = <div>"Something loaded"</div>;
       } else {
-        renderComponent = <div>"You've answered all the questions / haven't answered any questions"</div>;
+
+        renderComponent = <div>
+          {currentUser === pageUser ? "You've answered all the questions!" :  ` ${pageUser.fname} hasn't answered any questions!`}
+        </div>;
       }
     }
 

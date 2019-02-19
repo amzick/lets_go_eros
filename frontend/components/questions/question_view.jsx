@@ -19,9 +19,22 @@ class QuestionView extends React.Component {
   }
 
   render() {
+    const { question, response, pageUser } = this.props;
+    const responses = [
+      "strongly disagrees",
+      "disagrees",
+      "is neutral",
+      "agrees",
+      "strongly agrees"
+    ];
+    if (question.inversion) responses.reverse();
 
     return (
-      <div>"Question View"</div>
+      <div>
+        <h2>{question.category}</h2>
+        <h3>"I {`${question.question}`}"</h3>
+        <p>{pageUser.fname} {responses[response]}!</p>
+      </div>
     )
   }
 }

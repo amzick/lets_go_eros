@@ -34,15 +34,15 @@ class QuestionContainer extends React.Component {
     const { question, responses, currentUser, pageUser } = this.props;
     let renderComponent;
     if (currentUser === pageUser) {
-      renderComponent = <QuestionForm />
+      renderComponent = <QuestionForm pageUser={pageUser} question={question} response={responses[question.id]} />
     } else {
-      renderComponent = <QuestionView question={question} response={responses[question.id]} />
+      renderComponent = <QuestionView pageUser={pageUser} question={question} response={responses[question.id]} />
     }
     return (
       renderComponent
     )
   }
-  
+
 }
 
 export default connect(msp,mdp)(QuestionContainer);
