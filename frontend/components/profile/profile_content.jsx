@@ -2,11 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ProfileTextCard from './profile_text_card';
 import YouAndThem from './you_and_them';
+import QuestionContainer from '../questions/question_container';
 
 
-const msp = state => {
+const msp = (state, ownProps) => {
   
   return ({
+    currentUser: ownProps.currentUser,
+    pageUser: ownProps.pageUser,
     // genders: state.entities.genders,
     // ethnicities: state.entities.ethnicities,
   });
@@ -14,7 +17,6 @@ const msp = state => {
 
 const mdp = dispatch => {
   return ({
-
   });
 };
 
@@ -22,7 +24,13 @@ class ProfileContent extends React.Component {
 
   constructor(props) {
     super(props);
+    
   }
+
+  componentDidMount() {
+
+  }
+
 
   componentDidUpdate() {
     
@@ -92,9 +100,7 @@ class ProfileContent extends React.Component {
               <div className="details-text">{eyes}</div>
             </div>
           </div>
-          <div className="profile-answered-question">
-            Questions will go here
-          </div>
+          <QuestionContainer currentUser={currentUser} pageUser={pageUser} />
         </div>
       </div>
     )

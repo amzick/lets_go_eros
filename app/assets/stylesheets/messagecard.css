@@ -3,7 +3,8 @@
   height: auto;
   background-color: #f3f5f9;
   /* border: solid 1px red;   */
-  width: 952px;
+  min-width: 660px;
+  max-width: 952px;
   margin: 50px auto 0;
   padding-bottom: 60px;
   display: flex; 

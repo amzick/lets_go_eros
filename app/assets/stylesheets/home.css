@@ -6,7 +6,9 @@ html {
 .base {
   background-color: #f3f5f9;
   min-height: 100vh;
-  min-width: 100vw;
+  /* min-width: 100vw; */
+  min-width: 750px;
+  width: 100vw;
 }
 
 .home-space-div {
@@ -21,7 +23,7 @@ html {
   /* border: solid 1px red;   */
   width: 952px;
   min-width: 839px;
-
+  /* max-width: 952px; */
   margin: 0 auto;
   padding-bottom: 60px;
   /* display: flex; */

@@ -12,18 +12,14 @@ export const fetchQuestion = (questionID) => {
   };
 };
 
-export const fetchRandomUnansweredQuestion = (userID) => {
-  return (dispatch) => {
-    return QuestionApiUtil.fetchRandomUnansweredQuestion(userID).then(resp => {
-      if (resp) {
-        dispatch(receiveQuestion(resp));
-        return resp.id;
-      } else {
-        return resp;
-      }
-    });
-  };
-};
+// export const fetchRandomUnansweredQuestion = (userID) => {
+//   return (dispatch) => {
+//     return QuestionApiUtil.fetchRandomUnansweredQuestion(userID).then(resp => {
+//       dispatch(receiveQuestion(resp));
+//       debugger
+//     });
+//   };
+// };
 
 // actions
 

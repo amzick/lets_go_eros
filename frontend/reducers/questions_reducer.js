@@ -9,8 +9,12 @@ const questionsReducer = (state = {}, action) => {
     case RECEIVE_QUESTIONS:
       return action.questions;
     case RECEIVE_QUESTION:
-      newState = merge({}, state);
-      return merge(newState, {[action.question.id]: action.question});
+      if (action.question !== null) {
+        newState = merge({}, state);
+        return merge(newState, { [action.question.id]: action.question });
+      } else {
+        return state;
+      };
     default:
       return state;
   }
