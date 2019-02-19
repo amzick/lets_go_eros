@@ -10,6 +10,7 @@ import configureStore from './store/store';
 import { signup, logout} from './util/session_api_util';
 import {revealLocation} from './util/ui_util';
 import { fetchUser, fetchUsers, updateUser, fetchLocalUsers } from './actions/user_actions';
+import { fetchQuestion } from './actions/question_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.manLat = 40.7217861;
   window.manLng = -74.0094471;
   window.logout = logout;
+  window.fetchQuestion = fetchQuestion;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);
