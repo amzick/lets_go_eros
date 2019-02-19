@@ -64,7 +64,7 @@ class HomeContainer extends React.Component {
             case (user.match >= 80):
               if (queryOne.size < 8) queryOne.add(<UserCard key={user.id} cardUser={user} />);
               break;
-            case (user.interests.includes(randomInterest)):
+            case (user.interests && user.interests.includes(randomInterest)):
               if (queryTwo.size < 8) queryTwo.add(<UserCard key={user.id} cardUser={user} />);
               break;
             case (user.match < 80):

@@ -8,6 +8,7 @@
   font-size: 1.2em;
   
   height: 66px;
+  min-width: 839px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

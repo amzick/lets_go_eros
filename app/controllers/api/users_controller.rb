@@ -6,6 +6,16 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
+      Heart.create!({admirer: User.first, crush: @user})
+      Heart.create!({admirer: User.second, crush: @user})
+      Heart.create!({admirer: @user, crush:User.first})
+      Heart.create!({admirer: @user, crush:User.second})
+      Message.create!({
+        recipient: @user,
+        sender: User.third,
+        message: "Welcome to my app #{@user.fname}! Click on your profile to add a summary and (space-separated) interests, which will be used to find 
+        other users. Click on your profile picture to upload a new picture."
+      })
       login(@user)
       # render json response.. for now show (todo: profile)
       render :show

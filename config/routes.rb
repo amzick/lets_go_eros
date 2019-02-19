@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "static_pages#root"
 
   namespace :api, defaults: {format:'json'} do
+
     resources :users, only: [:index, :create, :show, :update] do
       get '/nearby', to: 'users#nearby'
 
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
       resources :hearts, only: [:create, :index]
       delete '/hearts', to: 'hearts#destroy'
     end
+
     resource :session, only: [:create, :destroy]
 
     get '/first_last', to: 'first_last#show'
@@ -25,10 +27,13 @@ Rails.application.routes.draw do
 
     resources :genders, only: [:index]
     resources :ethnicities, only: [:index]
-    resources :messages, only: [:show, :update]
-    resources :hearts, only: [:show]
-    get 'messages/limited/:message_ids', to: 'messages#limited'
 
+    resources :messages, only: [:show, :update]
+    get 'messages/limited/:message_ids', to: 'messages#limited'
+    resources :hearts, only: [:show]
+    
+    resources :questions, only: [:show]    
+    resources :responses, only: [:create, :update, :destroy]
   end
   
   #  was testing aws picture retrieval

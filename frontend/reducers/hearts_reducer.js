@@ -1,5 +1,5 @@
-import {RECEIVE_HEARTS, RECEIVE_HEART, REMOVE_HEART} from '../actions/heart_actions';
-import {merge} from 'lodash';
+import { RECEIVE_HEARTS, RECEIVE_HEART, REMOVE_HEART } from '../actions/heart_actions';
+import { merge } from 'lodash';
 
 const heartsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -9,7 +9,7 @@ const heartsReducer = (state = {}, action) => {
       return action.hearts;
     case RECEIVE_HEART:
       newState = merge({}, state);
-      return merge(newState, {[action.heart.id]: action.heart});
+      return merge(newState, { [action.heart.id]: action.heart });
     case REMOVE_HEART:
       newState = merge({}, state);
       delete newState[action.heart.id];
@@ -17,6 +17,6 @@ const heartsReducer = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 export default heartsReducer;
