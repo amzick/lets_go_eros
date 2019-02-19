@@ -1,4 +1,4 @@
-import * as QuestionApiUtil from '../util/qustion_api_util';
+import * as QuestionApiUtil from '../util/question_api_util';
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const RECEIVE_QUESTION = "RECEIVE_QUESTION";
@@ -8,6 +8,19 @@ export const fetchQuestion = (questionID) => {
   return (dispatch) => {
     return QuestionApiUtil.fetchQuestion(questionID).then(resp => {
       dispatch(receiveQuestion(resp));
+    });
+  };
+};
+
+export const fetchRandomUnansweredQuestion = (userID) => {
+  return (dispatch) => {
+    return QuestionApiUtil.fetchRandomUnansweredQuestion(userID).then(resp => {
+      if (resp) {
+        dispatch(receiveQuestion(resp));
+        return resp.id;
+      } else {
+        return resp;
+      }
     });
   };
 };

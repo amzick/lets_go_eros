@@ -62,15 +62,20 @@ class Api::UsersController < ApplicationController
   end
 
   def nearby
-    
     @user = User.find(params[:user_id])
-
-    
     if @user
-      
       render json: @user.nearby_user_ids(params[:max_result_size].to_i,params[:radius].to_i)
     else
       render json: ["User not found"], status: 404
+    end
+  end
+
+  def random_unanswered_question
+    @user = User.find(params[:user_id])
+    unless @user.unanswered_questions.empty?
+      render json: @user.unanswered_questions.sample
+    else
+      render json: nil
     end
   end
 

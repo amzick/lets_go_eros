@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get '/messages_with/:other_user', to: 'messages#between'
       resources :hearts, only: [:create, :index]
       delete '/hearts', to: 'hearts#destroy'
+
+      get '/random_unanswered_question', to: 'users#random_unanswered_question'
     end
 
     resource :session, only: [:create, :destroy]

@@ -20,6 +20,8 @@ html {
   background-color: #f3f5f9;
   /* border: solid 1px red;   */
   width: 952px;
+  min-width: 839px;
+
   margin: 0 auto;
   padding-bottom: 60px;
   /* display: flex; */

@@ -5,6 +5,12 @@ json.match current_user.match_percentage(user)
 json.is_crush current_user.crushes.include?(user)
 json.is_admirer current_user.admirers.include?(user)
 
+responses_hash = Hash.new
+user.responses.each do |response|
+  responses_hash[response.question_id] = response.response
+end
+json.responses responses_hash
+
 
 # 
 # json.profile_pictures do
