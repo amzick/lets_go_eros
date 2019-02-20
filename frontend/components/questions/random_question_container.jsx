@@ -42,7 +42,7 @@ class RandomQuestionContainer extends React.Component {
             this.setState({ questionID: resp, questionLoaded: true });
           });
         } else {
-          this.setState({ questionLoaded: true });
+          this.setState({ questionLoaded: true, questionID: null});
         }
       });
     } else {
@@ -52,7 +52,7 @@ class RandomQuestionContainer extends React.Component {
             this.setState({ questionID: resp, questionLoaded: true });
           });
         } else {
-          this.setState({ questionLoaded: true });
+          this.setState({ questionLoaded: true, questionID: null });
         }
       });
     }
@@ -60,6 +60,7 @@ class RandomQuestionContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
 
+    
     if (!this.state.questionLoaded) {
       const { currentUser, pageUser } = this.props;
       if (currentUser === pageUser) {
@@ -85,8 +86,11 @@ class RandomQuestionContainer extends React.Component {
       }
     }
 
-    if (prevProps.responses !== this.props.responses) {
+    // somehow refreshing the page causes prevProps.responses to go away, who knows why
+    if (prevProps.responses && (Object.entries(prevProps.responses).length !== Object.entries(this.props.responses).length)) {
       console.log("new response detected");
+      
+      this.setState({questionLoaded: false, questionID: null});
     }
 
 

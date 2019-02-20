@@ -30,7 +30,7 @@ class QuestionView extends React.Component {
     if (question.inversion) responses.reverse();
 
     return (
-      <div>
+      <div className="question-div">
         <h3>"I {`${question.question}`}"</h3>
         <p>{pageUser.fname} {responses[response]}!</p>
       </div>

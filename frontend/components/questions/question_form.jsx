@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { merge } from 'lodash';
+
+import { createResponse, updateResponse } from '../../util/question_api_util';
+import { fetchUser } from '../../actions/user_actions';
 
 const msp = state => {
   return ({
@@ -10,7 +12,7 @@ const msp = state => {
 
 const mdp = dispatch => {
   return ({
-
+    fetchUser: (userID) => dispatch(fetchUser(userID))
   });
 };
 
@@ -28,7 +30,8 @@ class QuestionForm extends React.Component {
       response: props.response,
     };
 
-    if (props.response) this.state.selections[response] = true;
+    if (props.response) this.state.selections[props.response] = true;
+    this.updating = props.response ? true : false;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,7 +62,20 @@ class QuestionForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("submitting");
+    const { currentUser, question, fetchUser } = this.props;
+    const newResponse = {
+      user_id: currentUser.id,
+      question_id: question.id,
+      response: this.state.response
+    };
+
+    if (this.updating) {
+      // call props.updateResponse
+      updateResponse(newResponse).then(() => fetchUser(currentUser.id));
+    } else {
+      // call create response, then fetchUser... he'll have new responses.. hopefully things rerender..
+      createResponse(newResponse).then(() => fetchUser(currentUser.id));
+    }
   }
 
   render() {
@@ -88,7 +104,7 @@ class QuestionForm extends React.Component {
 
 
     return (
-      <div>
+      <div className="question-div">
         <h3>"I {`${question.question}`}"</h3>
         <div className="response-options-div">
           {optionsArray}
