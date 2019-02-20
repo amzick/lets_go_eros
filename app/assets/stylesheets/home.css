@@ -5,12 +5,19 @@ html {
 
 .base {
   background-color: #f3f5f9;
-  min-height: 100vh;
+  min-height: 1000px;
   /* min-width: 100vw; */
   min-width: 750px;
   width: 100vw;
   /* margin: 0 0 125px; */
   position: relative;
+  margin-bottom: -125px;
+}
+
+.push {
+  background-color: #f3f5f9;
+
+  min-height: 125px;
 }
 
 .home-space-div {

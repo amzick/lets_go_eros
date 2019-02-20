@@ -126,11 +126,11 @@
   width: 100vw;
 
   padding: 0;
-  margin-top: 125px;
+  /* margin-top: 125px; */
   /* whyyyyyyyyy */
   margin-bottom: -125px;
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
   /* margin-top: 150px; */
 }
 

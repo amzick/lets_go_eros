@@ -129,6 +129,7 @@ class HomeContainer extends React.Component {
           <DiscoverySection header={"Top Matches"} queryResult={this.state.queryOne} />
           <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} />
         </div>
+        <div className="push" />
         <LoggedInFooter />
       </>
     )

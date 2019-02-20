@@ -82,6 +82,7 @@ class HeartsContainer extends React.Component {
           <div className="home-space-div" />
           {this.state.usersFetched ? componentsToRender : <p>Loading...</p>}
         </div>
+        <div className="push" />
         <LoggedInFooter />
       </>
     );

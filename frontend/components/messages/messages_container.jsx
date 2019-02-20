@@ -79,6 +79,7 @@ class MessagesContainer extends React.Component {
             </div>
           </div>
         </div>
+        <div className = "push" />
         <LoggedInFooter />
       </>
     )

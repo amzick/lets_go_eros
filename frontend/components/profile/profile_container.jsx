@@ -68,6 +68,7 @@ class ProfileContainer extends React.Component {
         <ProfileHeader currentUser={currentUser} pageUser={pageUser} />
         <ProfileContent currentUser={currentUser} pageUser={pageUser} genders={genders} ethnicities={ethnicities} />
       </div>
+      <div className="push" />
         <LoggedInFooter />
       </>
     )
