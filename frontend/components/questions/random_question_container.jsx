@@ -33,7 +33,6 @@ class RandomQuestionContainer extends React.Component {
   }
 
   componentDidMount() {
-    // debugger
     const { currentUser, pageUser } = this.props;
     if (currentUser === pageUser) {
       fetchRandomUnansweredQuestion(pageUser.id).then(resp => {
@@ -103,7 +102,6 @@ class RandomQuestionContainer extends React.Component {
     let renderComponent = <div>"Loading..."</div>;
     if (this.state.questionLoaded) {
       if (this.state.questionID) {
-        // debugger
         // renderComponent = <div>{`This will be a question form for ${questions[this.state.questionID].id}`}</div>
         renderComponent = <QuestionContainer currentUser={this.props.currentUser} pageUser={this.props.pageUser} questionID={this.state.questionID} />
         // renderComponent = <div>"Something loaded"</div>;

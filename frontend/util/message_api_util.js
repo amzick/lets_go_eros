@@ -29,7 +29,7 @@ export const fetchMessage = (messageID) => {
 export const createMessage = (message) => {
   return $.ajax({
     method: "POST",
-    url: `/api/users/${window.currentUser.id}/messages`,
+    url: `/api/users/${message.sender_id}/messages`,
     data: { message }
   });
 };

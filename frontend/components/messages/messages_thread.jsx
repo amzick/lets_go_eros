@@ -32,6 +32,7 @@ class MessagesThread extends React.Component {
       reply: "",
       submitValue: "Reply!"
     };
+    debugger
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,8 +51,11 @@ class MessagesThread extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const that = this;
+    debugger
+
     this.setState({ submitValue: "Sending...", disabled: "disabled", submitClass: "mini-processing-submit" }, () => {
       createMessage({
+        sender_id: this.props.currentUser.id,
         recipient_id: this.props.cardUser.id,
         message: this.state.reply
       }).then(resp => {
@@ -66,6 +70,8 @@ class MessagesThread extends React.Component {
   }
 
   render() {
+
+    const { currentUser } = this.props;
 
     let profilePictureSrc;
     if (currentUser.bot_img_src) {

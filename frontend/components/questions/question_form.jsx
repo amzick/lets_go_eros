@@ -39,7 +39,6 @@ class QuestionForm extends React.Component {
 
   handleChange(event) {
     event.preventDefault();
-    // debugger
     let newSelections = {};
     for (let i = 0; i < 5; i++) {
       if (i === parseInt(event.target.value)) {

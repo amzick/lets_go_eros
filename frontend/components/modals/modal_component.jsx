@@ -40,9 +40,11 @@ class Modal extends React.Component {
           component = null;
           break;
         case "messageUser":
+        debugger
           component = <NewMessage recipient={modalData.recipient} />;
           break;
         case "messagesThread":
+        debugger
           component = <MessagesThread messages={modalData.messages} userPicture={modalData.userPicture} cardUser={modalData.cardUser} />;
           break;
         case "updateUser":

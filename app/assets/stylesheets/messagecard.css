@@ -54,6 +54,12 @@
   transition-duration: 0.5s;
   -webkit-transform: scale(1.2);
   -webkit-transition-duration: 0.5s;
+  min-height: 110px;
+  min-width: 110px;
+  max-height: 150px;
+  max-width: 150px;
+  height: auto;
+  width: auto;
 }
 
 .messagecard-div .messagecard-thumb > img {
@@ -61,14 +67,22 @@
   transition-duration: 0.5s;
   -webkit-transform: scale(1);
   -webkit-transition-duration: 0.5s;
+  min-height: 110px;
+  min-width: 110px;
+  max-height: 150px;
+  max-width: 150px;
+  height: auto;
+  width: auto;
 }
 
 
 .messagecard-thumb {
   border: solid 5px #104da1;
-  max-height: 110px;
+  /* max-height: 110px;
   min-width: 110px;
-  max-width: 110px;
+  max-width: 110px; */
+  width: 110px;
+  height: 110px;
   overflow: hidden;
   border-radius: 50%;
   margin-right: 25px;

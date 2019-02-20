@@ -32,9 +32,11 @@ class MessagesContainer extends React.Component {
       usersLoaded: false,
       allThreads: [],
     };
+
   }
 
   componentDidMount() {
+    debugger
     this.props.fetchUserMessages(this.props.currentUser.id).then(() => {
       this.props.fetchUsers(this.props.currentUser.is_messaging_with).then(() => {
         this.setState({ usersLoaded: true });
@@ -43,18 +45,23 @@ class MessagesContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.messages !== this.props.messages) {
+    debugger
+    if (Object.entries(prevProps.messages).length !== Object.entries(this.props.messages).length) {
+      debugger
       ("messages container props changed");
     }
   }
 
   render() {
 
+    const { currentUser } = this.props;
+
     let componentToRender;
     let allThreads = [];
     if (this.state.usersLoaded) {
       if (currentUser.is_messaging_with.length > 0) {
         currentUser.is_messaging_with.forEach((userID) => {
+          debugger
           allThreads.push(
             <MessageCard key={userID} cardUser={this.props.allUsers[userID]} messages={this.props.messages} />
           );

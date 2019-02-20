@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_USER, RECEIVE_USERS, RECEIVE_GENDERS, RECEIVE_ETHNICITIES } from '../actions/user_actions';
 import { merge } from 'lodash';
 
@@ -15,6 +15,8 @@ export const usersReducer = (state = {}, action) => {
     case RECEIVE_USERS:
       newState = merge({}, state);
       return merge(newState, action.users);
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

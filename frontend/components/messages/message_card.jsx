@@ -8,6 +8,7 @@ import { openModal } from '../../actions/modal_actions';
 
 
 const msp = (state, ownProps) => {
+  debugger
   return ({
     currentUser: state.entities.users[state.session.id],
     cardUser: ownProps.cardUser,
@@ -31,7 +32,6 @@ class MessageCard extends React.Component {
       messagesWithCurrentUser: ["Loading"],
       counter: 0,
     };
-    
   }
 
   componentDidMount() {
@@ -51,12 +51,14 @@ class MessageCard extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.messages !== this.props.messages) {
+      
     //   this.setState({ messages: this.props.messages }, () => {
       const {currentUser, cardUser } = this.props;
       const that = this;
       fetchMessagesBetween(currentUser.id, cardUser.id).then(resp => {
         that.setState({messageIDsWithCurrentUser: resp.messages_between}, () => {
           const newMessage = that.props.messages[resp.messages_between[0]];
+          
            that.setState({messagesWithCurrentUser: [newMessage].concat(this.state.messagesWithCurrentUser)});
         });
       });
@@ -75,7 +77,7 @@ class MessageCard extends React.Component {
       profilePictureSrc = cardUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
     }
 
-    
+    debugger
     return (
 
       <div className="messagecard-div" onClick={this.props.openModal({ messages: this.state.messagesWithCurrentUser, userPicture: profilePictureSrc, cardUser: cardUser })} >
