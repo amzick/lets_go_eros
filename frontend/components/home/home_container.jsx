@@ -121,14 +121,16 @@ class HomeContainer extends React.Component {
     // }
 
     return (
-      <div className="base">
-        <Navigation />
-        <div className="home-space-div" />
-        <DiscoverySection search={false} header={`They're also interested in ${this.state.interestQuery}`} queryResult={this.state.queryTwo} />
-        <DiscoverySection header={"Top Matches"} queryResult={this.state.queryOne} />
-        <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} />
+      <>
+        <div className="base">
+          <Navigation />
+          <div className="home-space-div" />
+          <DiscoverySection search={false} header={`They're also interested in ${this.state.interestQuery}`} queryResult={this.state.queryTwo} />
+          <DiscoverySection header={"Top Matches"} queryResult={this.state.queryOne} />
+          <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} />
+        </div>
         <LoggedInFooter />
-      </div>
+      </>
     )
   }
 }

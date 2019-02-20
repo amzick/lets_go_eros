@@ -254,7 +254,7 @@ background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
 
 
 .splash-greeting {
-  width: 750px;
+  min-width: 535px;
   overflow: visible;
   color: black;
   font-size: 35pt;
@@ -377,8 +377,9 @@ background-image: url(https://cdn.okccdn.com/media/img/dtf/photos/eyemasks.jpg);
   margin: 0;
   margin-top: 50px;
   position: absolute;
-  min-width: 750px;
-  width: 100vw;
+  /* min-width: 750px; */
+  min-width: 500px;
+  width: 100%;
   top: 660px;
   bottom: 0;
 }

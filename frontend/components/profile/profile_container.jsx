@@ -62,12 +62,14 @@ class ProfileContainer extends React.Component {
     const { currentUser, pageUser, genders, ethnicities } = this.props;
 
     return (
+      <>
       <div className="base">
         <Navigation />
         <ProfileHeader currentUser={currentUser} pageUser={pageUser} />
         <ProfileContent currentUser={currentUser} pageUser={pageUser} genders={genders} ethnicities={ethnicities} />
-        <LoggedInFooter />
       </div>
+        <LoggedInFooter />
+      </>
     )
   }
 }
