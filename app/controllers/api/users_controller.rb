@@ -8,8 +8,6 @@ class Api::UsersController < ApplicationController
     if @user.save
       Heart.create!({admirer: User.first, crush: @user})
       Heart.create!({admirer: User.second, crush: @user})
-      Heart.create!({admirer: @user, crush:User.first})
-      Heart.create!({admirer: @user, crush:User.second})
       Message.create!({
         recipient: @user,
         sender: User.third,

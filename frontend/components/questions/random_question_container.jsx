@@ -107,8 +107,8 @@ class RandomQuestionContainer extends React.Component {
         // renderComponent = <div>"Something loaded"</div>;
       } else {
 
-        renderComponent = <div>
-          {currentUser === pageUser ? "You've answered all the questions!" :  ` ${pageUser.fname} hasn't answered any questions!`}
+        renderComponent = <div className="question-div">
+          {currentUser === pageUser ? "You've answered all the personality questions!" :  ` ${pageUser.fname} hasn't answered any questions!`}
         </div>;
       }
     }

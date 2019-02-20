@@ -39,10 +39,13 @@ class QuestionContainer extends React.Component {
       renderComponent = <QuestionView pageUser={pageUser} question={question} response={responses[question.id]} />
     }
     return (
-      renderComponent
+      <div className="question-div">
+      <h1>Personality Questions!</h1>
+        {renderComponent}
+      </div>
     )
   }
 
 }
 
-export default connect(msp,mdp)(QuestionContainer);
+export default connect(msp, mdp)(QuestionContainer);

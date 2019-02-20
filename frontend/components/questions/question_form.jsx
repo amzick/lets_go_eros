@@ -103,13 +103,13 @@ class QuestionForm extends React.Component {
 
 
     return (
-      <div className="question-div">
+      <>
         <h3>"I {`${question.question}`}"</h3>
         <div className="response-options-div">
           {optionsArray}
           <input type="submit" className={this.state.response ? "mini-valid-submit" : "mini-invalid-submit"} onClick={this.handleSubmit} disabled={this.state.response ? "" : "disabled"} value="Answer!" />
         </div>
-      </div>
+      </>
     )
   }
 }
