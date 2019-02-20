@@ -39,7 +39,6 @@ class Splash extends React.Component {
     //   currentBG: this.bgClasses[this.increment % 5],
     //   currentImg: this.imgClasses[this.increment % 5]
     // }, () => {
-    //   console.log("??");
     //   $(image).fadeIn(100);
     // });
     $(image).fadeOut(250, "linear", () => {

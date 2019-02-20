@@ -49,13 +49,9 @@ class QuestionForm extends React.Component {
     }
 
     if (this.state.selections[event.target.value]) {
-      this.setState({ selections: newSelections, response: null }, () => {
-        console.log(this.state.response);
-      });
+      this.setState({ selections: newSelections, response: null });
     } else {
-      this.setState({ selections: newSelections, response: event.target.value }, () => {
-        console.log(this.state.response);
-      });
+      this.setState({ selections: newSelections, response: event.target.value });
     }
   }
 

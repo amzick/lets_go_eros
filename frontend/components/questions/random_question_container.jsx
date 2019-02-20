@@ -87,7 +87,6 @@ class RandomQuestionContainer extends React.Component {
 
     // somehow refreshing the page causes prevProps.responses to go away, who knows why
     if (prevProps.responses && (Object.entries(prevProps.responses).length !== Object.entries(this.props.responses).length)) {
-      console.log("new response detected");
       
       this.setState({questionLoaded: false, questionID: null});
     }

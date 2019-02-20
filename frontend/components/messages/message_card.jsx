@@ -8,7 +8,6 @@ import { openModal } from '../../actions/modal_actions';
 
 
 const msp = (state, ownProps) => {
-  debugger
   return ({
     currentUser: state.entities.users[state.session.id],
     cardUser: ownProps.cardUser,
@@ -77,7 +76,7 @@ class MessageCard extends React.Component {
       profilePictureSrc = cardUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
     }
 
-    debugger
+    
     return (
 
       <div className="messagecard-div" onClick={this.props.openModal({ messages: this.state.messagesWithCurrentUser, userPicture: profilePictureSrc, cardUser: cardUser })} >
