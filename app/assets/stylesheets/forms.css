@@ -507,3 +507,22 @@ option[disabled="disabled"]::-ms-value {
   height: 140px;
   margin: 0 auto;
 }
+
+/* RADIO QUESTION RESPONSES */
+.response-radio-input {
+  visibility: hidden;
+}
+
+.response-options-div {
+  border: solid 1px red;
+  display: flex;
+  flex-direction: column;
+}
+
+.checked-response {
+  color: green;
+}
+
+.unchecked-response {
+  color: blue;
+}

@@ -34,7 +34,7 @@ class QuestionContainer extends React.Component {
     const { question, responses, currentUser, pageUser } = this.props;
     let renderComponent;
     if (currentUser === pageUser) {
-      renderComponent = <QuestionForm pageUser={pageUser} question={question} response={responses[question.id]} />
+      renderComponent = <QuestionForm currentUser={currentUser} question={question} response={responses[question.id]} />
     } else {
       renderComponent = <QuestionView pageUser={pageUser} question={question} response={responses[question.id]} />
     }

@@ -31,7 +31,6 @@ class QuestionView extends React.Component {
 
     return (
       <div>
-        <h2>{question.category}</h2>
         <h3>"I {`${question.question}`}"</h3>
         <p>{pageUser.fname} {responses[response]}!</p>
       </div>
