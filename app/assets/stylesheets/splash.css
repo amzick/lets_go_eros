@@ -108,7 +108,7 @@ body, button, input, textare, p, div {
   /* position: relative; */
 }
 
-@-webkit-keyframes fadeinout {
+/* @-webkit-keyframes fadeinout {
   0%, 100% {opacity: 1;}
   50% {opacity: 0}
 }
@@ -116,7 +116,7 @@ body, button, input, textare, p, div {
 @keyframes fadeinout {
   0%, 100% {opacity: 1;}
   50% {opacity: 0}
-}
+} */
 
 #splash-backdrop {
   z-index: -1;

@@ -38,6 +38,7 @@
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
   color: #f5f8fb;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
 }
 
 .nav-left > a {
@@ -79,6 +80,7 @@
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
   color: #f5f8fb;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
 }
 
 .nav-right-icon {

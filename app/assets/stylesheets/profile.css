@@ -60,6 +60,8 @@
   /* max-height: 180px;
   min-width: 180px;
   max-width: 180px; */
+
+  min-width: 180px;
   height: 180px;
   width: 180px;
   overflow: hidden;
@@ -149,6 +151,8 @@
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
   color: #f5f8fb;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+
 }
 
 .profile-age-location-match {
@@ -162,6 +166,8 @@
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
   color: #f5f8fb;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+
 }
 
 .profile-age-location-match > span {
@@ -171,6 +177,8 @@
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
   color: #f5f8fb;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+
   padding: 0 10px;
 }
 
@@ -201,6 +209,8 @@
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
   color: #f5f8fb;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+
   justify-content: center;
   align-items: center;
   margin: 0 8px;
@@ -219,6 +229,8 @@
   font-weight: 100px;
   font-family: 'GT America','IBM Plex Sans',Helvetica,Helvitca Neue;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: auto;
+
   justify-content: center;
   align-items: center;
   margin: 0 8px;
