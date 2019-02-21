@@ -46,8 +46,25 @@ class ProfileHeader extends React.Component {
     this.handleFile = this.handleFile.bind(this);
     this.handleProfilePictureClick = this.handleProfilePictureClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-
+  componentDidUpdate(prevProps) {
+    // in the process of fixing the picture upload bug for some reason if you clicked on another persons profile the profile pictures stayed the same.
+    // this fixes that
+    if (prevProps.pageUser.id !== this.props.pageUser.id) {
+      let profilePictureLastIndex;
+      if (this.props.pageUser.id) {
+        let profilePictureSrc;
+        if (this.props.pageUser.bot_img_src) {
+          profilePictureSrc = this.props.pageUser.bot_img_src;
+          this.setState({profilePictureSrc});
+        } else {
+          profilePictureLastIndex = this.props.pageUser.profile_pictures.length - 1;
+          profilePictureSrc = this.props.pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+          this.setState({ profilePictureSrc });
+        }
+      }
+    };
   }
 
   showUpdatePrompt(event) {
