@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Navigation from '../home/navigation';
 import LoggedInFooter from '../home/logged_in_footer';
 import MessageCard from './message_card';
+import LoadingComponent from '../loading/loading_component';
+
 
 import { fetchUser, fetchUsers } from '../../actions/user_actions';
 import { fetchUserMessages } from '../../actions/message_actions';
@@ -75,7 +77,7 @@ class MessagesContainer extends React.Component {
           <div className="messages-section">
             <h1>Messages</h1>
             <div className="threads-div">
-              {this.state.usersLoaded ? componentToRender : <p>Loading...</p>}
+              {this.state.usersLoaded ? componentToRender : <LoadingComponent />}
             </div>
           </div>
         </div>

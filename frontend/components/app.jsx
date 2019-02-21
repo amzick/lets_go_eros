@@ -14,7 +14,6 @@ import HomeContainer from '../components/home/home_container';
 import MessagesContainer from '../components/messages/messages_container';
 import HeartsContainer from './hearts/hearts_container';
 // testing
-import LoadingComponent from './loading/loading_component';
 
 //testing
 
@@ -34,8 +33,6 @@ const App = () => {
         <ProtectedRoute path={`/profiles/:id`} component={ProfileContainer} />
         <ProtectedRoute path='/messages' component={MessagesContainer} />
         <ProtectedRoute path='/hearts' component={HeartsContainer} />
-        {/* testing */}
-        <ProtectedRoute path='/loading' component={LoadingComponent} />
       </Switch>
       <Modal />
 

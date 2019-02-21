@@ -7,6 +7,8 @@ import Navigation from './navigation';
 import UserCard from './user_card';
 import DiscoverySection from './discovery_section';
 import LoggedInFooter from './logged_in_footer';
+import LoadingComponent from '../loading/loading_component';
+
 
 
 const msp = state => {
@@ -64,7 +66,7 @@ class HomeContainer extends React.Component {
             case (user.match >= 80):
               if (queryOne.size < 8) queryOne.add(<UserCard key={user.id} cardUser={user} />);
               break;
-            case (user.interests && user.interests.includes(randomInterest)):
+            case (currentUser.interests && user.interests && user.interests.includes(randomInterest)):
               if (queryTwo.size < 8) queryTwo.add(<UserCard key={user.id} cardUser={user} />);
               break;
             case (user.match < 80):
@@ -120,14 +122,26 @@ class HomeContainer extends React.Component {
     //   });
     // }
 
+    let componentToRender = <LoadingComponent />
+    if (this.state.usersLoaded) {
+      componentToRender = (
+        <>
+        {this.props.currentUser.interests ? <DiscoverySection search={false} header={`They're also interested in ${this.state.interestQuery}`} queryResult={this.state.queryTwo} /> : <div className="discovery-section"><h1>Mutual Interests</h1><div className="discovery-empty-results-div">Update your profile with some interests and we'll find users that share them!</div></div>}
+        {this.state.queryOne.size > 0 ? <DiscoverySection header={"Top Matches"} queryResult={this.state.queryOne} /> : null}
+        {this.state.queryThree.size > 0 ? <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} /> : null}
+        </>
+      );
+    }
+
     return (
       <>
         <div className="base">
           <Navigation />
           <div className="home-space-div" />
-          <DiscoverySection search={false} header={`They're also interested in ${this.state.interestQuery}`} queryResult={this.state.queryTwo} />
+          {/* <DiscoverySection search={false} header={`They're also interested in ${this.state.interestQuery}`} queryResult={this.state.queryTwo} />
           <DiscoverySection header={"Top Matches"} queryResult={this.state.queryOne} />
-          <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} />
+          <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} /> */}
+          {componentToRender}
         </div>
         <div className="push" />
         <LoggedInFooter />

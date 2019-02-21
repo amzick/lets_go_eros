@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import QuestionContainer from './question_container';
+import LoadingComponent from '../loading/loading_component';
+
 
 import { fetchRandomUnansweredQuestion, fetchRandomAnsweredQuestion } from '../../util/question_api_util';
 import { fetchQuestion } from '../../actions/question_actions';
@@ -98,14 +100,13 @@ class RandomQuestionContainer extends React.Component {
     const { currentUser, pageUser } = this.props;
 
 
-    let renderComponent = <div>"Loading..."</div>;
+  let renderComponent = <div className="question-div"><LoadingComponent /></div>;
     if (this.state.questionLoaded) {
       if (this.state.questionID) {
         // renderComponent = <div>{`This will be a question form for ${questions[this.state.questionID].id}`}</div>
         renderComponent = <QuestionContainer currentUser={this.props.currentUser} pageUser={this.props.pageUser} questionID={this.state.questionID} />
         // renderComponent = <div>"Something loaded"</div>;
       } else {
-
         renderComponent = <div className="question-div">
           {currentUser === pageUser ? "You've answered all the personality questions!" :  ` ${pageUser.fname} hasn't answered any questions!`}
         </div>;

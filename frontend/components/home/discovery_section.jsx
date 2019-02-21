@@ -69,12 +69,20 @@ class DiscoverySection extends React.Component {
     //   });
     // }
 
+    let componentToRender = <div className="discovery-empty-results-div">No results found :-(</div>
+    if (queryResult.size > 0) {
+      componentToRender = (
+        <div className="usercard-row">{queryResult}</div>
+      )
+    }
+
     return (
       <>
         <div className="discovery-section" >
           {this.props.search ? <DiscoverySearch /> : null}
           <h1>{header}</h1>
-          <div className="usercard-row">{queryResult}</div>
+          {/* <div className="usercard-row">{queryResult}</div> */}
+          {componentToRender}
         </div>
         <div className="discovery-section-fader" />
       </>

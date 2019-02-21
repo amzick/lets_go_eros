@@ -4,6 +4,7 @@ import Navigation from '../home/navigation';
 import LoggedInFooter from '../home/logged_in_footer';
 import UserCard from '../home/user_card';
 import DiscoverySection from '../home/discovery_section';
+import LoadingComponent from '../loading/loading_component';
 
 import { fetchUsers } from '../../actions/user_actions';
 import { fetchUserHeartsArray } from '../../util/heart_api_util';
@@ -80,7 +81,7 @@ class HeartsContainer extends React.Component {
         <div className="base">
           <Navigation />
           <div className="home-space-div" />
-          {this.state.usersFetched ? componentsToRender : <p>Loading...</p>}
+          {this.state.usersFetched ? componentsToRender : <LoadingComponent />}
         </div>
         <div className="push" />
         <LoggedInFooter />

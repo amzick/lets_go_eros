@@ -49,6 +49,10 @@ html {
   margin-top: 441px;
 } */
 
+.discovery-empty-results-div {
+  margin-left: 10px;
+}
+
 .discovery-section > h1 {
   /* border: solid 1px green; */
   margin: 21px 0;
