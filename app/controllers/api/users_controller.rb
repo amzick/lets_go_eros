@@ -49,7 +49,6 @@ class Api::UsersController < ApplicationController
  
 
   def update
-    
     @user = User.find(params[:id])
     if @user.update(user_params)
       # render json response
@@ -84,6 +83,12 @@ class Api::UsersController < ApplicationController
     else
       render json: nil
     end
+  end
+
+  def you_and_them
+    @user = User.find(params[:user_id])
+    @other_user = User.find(params[:other_user])
+    render json: @user.agreements(@other_user)
   end
 
   private
