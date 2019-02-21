@@ -44,11 +44,11 @@ export const fetchEthnicities = () => {
   });
 };
 
-export const createPhoto = (formData) => {
+export const createPhoto = (formData, userID) => {
   // last two two fields let ajax method know that we shouldn't be trying to format for rails backend, let rails handle it
   return $.ajax({
     method: "POST",
-    url: `/api/users/${currentUser.id}/profile_pictures`,
+    url: `/api/users/${userID}/profile_pictures`,
     data: formData,
     contentType: false,
     processData: false

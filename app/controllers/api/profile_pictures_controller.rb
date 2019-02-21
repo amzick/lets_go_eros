@@ -8,7 +8,7 @@ class Api::ProfilePicturesController < ApplicationController
     
     if current_user.id == photo_params[:id].to_i && @photo
       current_user.profile_pictures.attach(io: @photo, filename:"#{current_user.id}_profile_picture_#{current_user.profile_pictures.length}.jpg")
-      render json: "Picture Uploaded", status: 201
+      render json: @photo
     else
     
       render json: {current_user: current_user.id, photo: @photo, params_id: photo_params[:id]}, status: 400

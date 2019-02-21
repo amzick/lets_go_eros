@@ -1,0 +1,49 @@
+// @import "compass/css3";
+
+// $heartbeat-loader-color: #e87 !default;
+// $heartbeat-loader-size: 36px !default; // must be an integer divisible by 2 and 3
+// $heartbeat-loader-rotation: rotate(45deg) !default;
+
+// @include keyframes(heartbeat-loader) {
+//   0%  { @include transform($heartbeat-loader-rotation scale(1));   }
+//   14% { @include transform($heartbeat-loader-rotation scale(1.3)); }
+//   28% { @include transform($heartbeat-loader-rotation scale(1));   }
+//   42% { @include transform($heartbeat-loader-rotation scale(1.3)); }
+//   70% { @include transform($heartbeat-loader-rotation scale(1));   }
+// }
+
+// /* :not(:required) hides this rule from IE9 and below */
+// .heartbeat-loader:not(:required) {
+//   @include animation(heartbeat-loader 1300ms ease 0s infinite normal);
+  
+//   display: inline-block;
+//   position: relative;  
+//   overflow: hidden;
+//   text-indent: -9999px;
+//   width: $heartbeat-loader-size;  
+//   height: $heartbeat-loader-size;
+//   @include transform($heartbeat-loader-rotation scale(1));
+//   @include transform-origin(50%, 50%);
+  
+//   &:after, &:before {
+//     position: absolute;
+//     content: "";  
+//     background: $heartbeat-loader-color;
+//   }
+  
+//   &:before {
+//     @include border-left-radius($heartbeat-loader-size / 3);
+//     top: ($heartbeat-loader-size/3);
+//     left: 0;
+//     width: $heartbeat-loader-size;
+//     height: (2 * $heartbeat-loader-size / 3);
+//   }
+  
+//   &:after {
+//     @include border-top-radius($heartbeat-loader-size / 3);
+//     top: 0;
+//     left: ($heartbeat-loader-size / 3);
+//     width: (2 * $heartbeat-loader-size / 3);
+//     height: ($heartbeat-loader-size / 3);
+//   }
+// } 

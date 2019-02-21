@@ -1,35 +1,53 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { createPhoto } from '../../util/user_api_util';
+import { fetchUser } from '../../actions/user_actions';
 
 import HeartMessageButtons from './heart_message_buttons';
 
-// const msp = state => {
-//   return ({
-//     currentUser: state.entities.users[state.session.id],
-//   });
-// };
+const msp = state => {
+  return ({
+    // currentUser: state.entities.users[state.session.id],
+    users: state.entities.users
+  });
+};
 
-// const mdp = dispatch => {
-//   return ({
-
-//   });
-// };
+const mdp = dispatch => {
+  return ({
+    fetchUser: (userID) => dispatch(fetchUser(userID)),
+  });
+};
 
 class ProfileHeader extends React.Component {
 
   constructor(props) {
     super(props);
+
+    // Profile pictures need to be handled differently for bots
+    let profilePictureLastIndex;
+    let profilePictureSrc;
+    if (props.pageUser.id) {
+      if (props.pageUser.bot_img_src) {
+        profilePictureSrc = props.pageUser.bot_img_src;
+      } else {
+        profilePictureLastIndex = props.pageUser.profile_pictures.length - 1;
+        profilePictureSrc = props.pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+      }
+    }
+
     this.state = {
       promptClass: "update-picture-hidden",
       newPhoto: null,
       photoUrl: null,
+      profilePictureSrc,
     };
     this.showUpdatePrompt = this.showUpdatePrompt.bind(this);
     this.hideUpdatePrompt = this.hideUpdatePrompt.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.handleProfilePictureClick = this.handleProfilePictureClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+
   }
 
   showUpdatePrompt(event) {
@@ -71,22 +89,23 @@ class ProfileHeader extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {currentUser } = this.props;
-
+    // these should always be the same here but not taking any chances for now
+    const { currentUser, pageUser, fetchUser } = this.props;
+    const that = this;
     if (this.state.newPhoto) {
       // instantiate a new form data object
       const x = new FormData();
       // append form data into this object
       x.append('user[id]', currentUser.id);
       x.append('user[photo]', this.state.newPhoto);
-
-      createPhoto(x).then((resp) => {
-
-        this.setState({ newPhoto: null, photoUrl: null }, () => {
-          window.location.reload();
+      createPhoto(x, pageUser.id).then((resp) => {
+        fetchUser(pageUser.id).then(() => {
+          that.setState({ profilePictureSrc: that.props.users[pageUser.id].profile_pictures[that.props.users[pageUser.id].profile_pictures.length - 1] });
         });
+        // this.setState({ newPhoto: null, photoUrl: null }, () => {
+        //   window.location.reload();
+        // });
       }, (errors) => {
-
       });
 
     }
@@ -96,17 +115,17 @@ class ProfileHeader extends React.Component {
 
     const { currentUser, pageUser } = this.props;
 
-    let profilePictureLastIndex;
-    let profilePictureSrc;
+    // let profilePictureLastIndex;
+    // let profilePictureSrc;
 
-    if (pageUser.id) {
-      if (pageUser.bot_img_src) {
-        profilePictureSrc = pageUser.bot_img_src;
-      } else {
-        profilePictureLastIndex = pageUser.profile_pictures.length - 1;
-        profilePictureSrc = pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
-      }
-    }
+    // if (pageUser.id) {
+    //   if (pageUser.bot_img_src) {
+    //     profilePictureSrc = pageUser.bot_img_src;
+    //   } else {
+    //     profilePictureLastIndex = pageUser.profile_pictures.length - 1;
+    //     profilePictureSrc = pageUser.profile_pictures[profilePictureLastIndex] || "https://s3.amazonaws.com/letsgoeros-dev/Eros.jpeg";
+    //   }
+    // }
 
 
     return (
@@ -127,7 +146,7 @@ class ProfileHeader extends React.Component {
                   </div>
                 </div>
                 : null}
-              <img src={profilePictureSrc} />
+              <img src={this.state.profilePictureSrc} />
             </div>
             <div className="profile-info-div">
               <h1>{pageUser.fname}</h1>
@@ -151,4 +170,4 @@ class ProfileHeader extends React.Component {
   }
 }
 
-export default ProfileHeader;
+export default connect(msp, mdp)(ProfileHeader);
