@@ -29,9 +29,9 @@ class HeartsContainer extends React.Component {
     super(props);
     this.state = {
       usersFetched: false,
-      matches: {},
-      crushes: {},
-      admirers: {},
+      matches: new Set(),
+      crushes: new Set(),
+      admirers: new Set(),
 
     };
     // next steps:
@@ -54,26 +54,40 @@ class HeartsContainer extends React.Component {
   render() {
 
     const { currentUser, users, userIDs } = this.props;
+    let componentsToRender = <LoadingComponent />
+    // const componentsToRender = (
+    //   <div>
+    //     {Object.entries(this.state.matches).length > 0 ? <DiscoverySection header="Matches" queryResult={Object.values(this.state.matches)} /> : <div className="discovery-section"><h1>No Matches</h1></div>}
+    //     {Object.entries(this.state.crushes).length > 0 ? <DiscoverySection header="Crushes" queryResult={Object.values(this.state.crushes)} /> : <div className="discovery-section"><h1>No Crushes</h1> </div>}
+    //     {Object.entries(this.state.admirers).length > 0 ? <DiscoverySection header="Admirers" queryResult={Object.values(this.state.admirers)} /> : <div className="discovery-section"><h1>No Admirers</h1>:-(</div>}
+    //   </div>
+    // )
 
     if (this.state.usersFetched) {
+      
       userIDs.forEach(userID => {
         const user = users[userID];
         if (user.is_crush && user.is_admirer) {
-          this.state.matches[user.id] = <UserCard key={user.id} cardUser={user} />;
+          // this.state.matches[user.id] = <UserCard key={user.id} cardUser={user} />;
+          this.state.matches.add(<UserCard key={user.id} cardUser={user} />);
         } else if (user !== currentUser && user.is_crush) {
-          this.state.crushes[user.id] = <UserCard key={user.id} cardUser={user} />;
+          // this.state.crushes[user.id] = <UserCard key={user.id} cardUser={user} />;
+          this.state.crushes.add(<UserCard key={user.id} cardUser={user} />);
         } else if (user !== currentUser && user.is_admirer) {
-          this.state.admirers[user.id] = <UserCard key={user.id} cardUser={user} />;
+          // this.state.admirers[user.id] = <UserCard key={user.id} cardUser={user} />;
+          this.state.admirers.add(<UserCard key={user.id} cardUser={user} />);
         }
       });
+      componentsToRender = (
+        <div>
+          {this.state.matches.size > 0 ? <DiscoverySection header="Matches" queryResult={this.state.matches} /> : <div className="discovery-section"><h1>No Matches</h1></div>}
+          {this.state.crushes.size > 0 ? <DiscoverySection header="Crushes" queryResult={this.state.crushes} /> : <div className="discovery-section"><h1>No Crushes</h1> </div>}
+          {this.state.admirers.size > 0 ? <DiscoverySection header="Admirers" queryResult={this.state.admirers} /> : <div className="discovery-section"><h1>No Admirers</h1>:-(</div>}
+        </div>
+      )
     }
-    const componentsToRender = (
-      <div>
-        {Object.entries(this.state.matches).length > 0 ? <DiscoverySection header="Matches" queryResult={Object.values(this.state.matches)} /> : <div className="discovery-section"><h1>No Matches</h1></div>}
-        {Object.entries(this.state.crushes).length > 0 ? <DiscoverySection header="Crushes" queryResult={Object.values(this.state.crushes)} /> : <div className="discovery-section"><h1>No Crushes</h1> </div>}
-        {Object.entries(this.state.admirers).length > 0 ? <DiscoverySection header="Admirers" queryResult={Object.values(this.state.admirers)} /> : <div className="discovery-section"><h1>No Admirers</h1>:-(</div>}
-      </div>
-    )
+    
+
 
 
     return (
@@ -81,6 +95,7 @@ class HeartsContainer extends React.Component {
         <div className="base">
           <Navigation />
           <div className="home-space-div" />
+          {/* {this.state.usersFetched ? componentsToRender : <LoadingComponent />} */}
           {this.state.usersFetched ? componentsToRender : <LoadingComponent />}
         </div>
         <div className="push" />
