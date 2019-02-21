@@ -71,6 +71,7 @@ class ProfileHeader extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const {currentUser } = this.props;
 
     if (this.state.newPhoto) {
       // instantiate a new form data object
