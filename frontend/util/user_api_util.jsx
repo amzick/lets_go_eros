@@ -62,3 +62,10 @@ export const updateUser = (user) => {
     data: { user }
   });
 }
+
+export const fetchAgreementPercentage = (userID1, userID2) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/users/${userID1}/youandthem/${userID2}`
+  });
+};

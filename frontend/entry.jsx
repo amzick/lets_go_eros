@@ -12,7 +12,6 @@ import {revealLocation} from './util/ui_util';
 // import { fetchUser, fetchUsers, updateUser, fetchLocalUsers } from './actions/user_actions';
 // import { updateResponse } from './util/question_api_util';
 // import { createResponse } from './actions/question_actions';
-
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
