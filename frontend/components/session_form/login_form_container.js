@@ -106,8 +106,8 @@ class LoginForm extends React.Component {
 
           <form className="session-form" onSubmit={this.handleSubmit}>
 
-            <label><span>Email</span>
-              <input className="session-form-input" type="text" value={email} onChange={this.handleChange("email")} placeholder="Email" />
+            <label><span>Username</span>
+              <input className="session-form-input" type="text" value={email} onChange={this.handleChange("email")} placeholder="Username" />
             </label>
 
             <label><span>Password</span>

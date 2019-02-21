@@ -83,7 +83,7 @@ class EmailForm extends React.Component {
       <div className="dynamic-input-div"><h1 className="dynamic-input-message">Welcome! Who are you?</h1>
         <form className="session-form" onSubmit={this.handleSubmit}>
           <label><RenderDynamicErrors errors={this.state.errors} />
-            <input className="session-form-input" onChange={this.handleChange("email")} type="text" value={this.state.newUser["email"]} placeholder="your.email@example.com" ></input>
+            <input className="session-form-input" onChange={this.handleChange("email")} type="text" value={this.state.newUser["email"]} placeholder="cool username" ></input>
           </label>
           <button className={this.state.submitClass} disabled={this.state.disabled}>next</button>
 
