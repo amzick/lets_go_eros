@@ -206,6 +206,22 @@ https://stackoverflow.com/questions/10147289/rails-nested-sql-queries
   now we will weigh the mutually answered responses equally (tbd) with the answered questions
 =end
 
+  def agreements(match)
+    maqs = Question.select(:id).where(id: self.answered_questions).where(id: match.answered_questions).includes(:responses)
+    user_responses = Hash.new
+    Response.select(:question_id, :response).where(id: self.responses).map{|response| user_responses[response.question_id] = response.response}
+    match_responses = Hash.new
+    Response.select(:question_id, :response).where(id: match.responses).map{|response| match_responses[response.question_id] = response.response}
+
+    agreements = 0;
+    maqs.each do |question|
+      agreements += 1 if (user_responses[question.id] == match_responses[question.id])
+    end
+
+    return ((agreements.to_f / maqs.size)*100).round if maqs.size > 0
+    nil
+  end
+
   # mutually answered questions difference
   def maq_diffs(match)
     # avoiding n+1 queries. increases spacial complexity with the hashes, but there will be way more total responses on the database than one user could have
