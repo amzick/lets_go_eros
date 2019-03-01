@@ -1,9 +1,9 @@
 export const RECEIVE_DISTANCE = "RECEIVE_DISTANCE";
 
-import { revealDistance } from '../util/ui_util';
+// import { revealDistance } from '../util/ui_util';
 
 // thunk actions creators
-export const fetchDistance = (user1, user2) => dispatch => {
+export const fetchDistance = (currentUser, user2) => dispatch => {
   const service = new google.maps.DistanceMatrixService;
   return service.getDistanceMatrix({
     origins: [new google.maps.LatLng(currentUser.lat, currentUser.lng)],
