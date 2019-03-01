@@ -11,6 +11,8 @@ import { signup, logout} from './util/session_api_util';
 // import { fetchUser, fetchUsers, updateUser, fetchLocalUsers } from './actions/user_actions';
 // import { updateResponse } from './util/question_api_util';
 // import { createResponse } from './actions/question_actions';
+// import { revealDistance } from './util/ui_util';
+import { fetchDistance } from './actions/distance_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -44,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.fetchQuestion = fetchQuestion;
   // window.fetchRandomUnansweredQuestion = fetchRandomUnansweredQuestion;
   // window.updateResponse = updateResponse;
+  // window.revealDistance = revealDistance;
+  window.fetchDistance = fetchDistance;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

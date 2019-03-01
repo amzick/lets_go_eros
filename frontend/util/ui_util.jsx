@@ -42,16 +42,20 @@ export const revealLocation = (zip) => {
 
 export const revealDistance = (currentUser, user2) => {
   // const { google } = window;
+  // let miles;
+  let miles;
+  const callback = (resp) => {
+    console.log(miles);
+    miles = resp.rows[0].elements[0].distance.value / 1000 * 0.621371192;
+    console.log(miles);
+    return miles;
+  };
+
   const service = new google.maps.DistanceMatrixService;
-  service.getDistanceMatrix({
+  return service.getDistanceMatrix({
     origins: [new google.maps.LatLng(currentUser.lat,currentUser.lng)],
     destinations: [new google.maps.LatLng(user2.lat,user2.lng)],
     travelMode: 'DRIVING',
     unitSystem: google.maps.UnitSystem.IMPERIAL
-  }, (resp) => {
-    // convert meters into miles
-    const miles = resp.rows[0].elements[0].distance.value / 1000 * 0.621371192;
-    
-    // dispatch action to add user2's distance to the slice of state
-  });
+  }, callback);
 };
