@@ -1,13 +1,13 @@
 // custom routes to make ajax requests
 
 export const validateField = (field, value) => {
-  
+
   if (value instanceof Date) {
-    value = `${value.getFullYear()}-${value.getMonth()+1}-${value.getDate()}`;
+    value = `${value.getFullYear()}-${value.getMonth() + 1}-${value.getDate()}`;
   } else if (value instanceof Set) {
     value = Array.from(value);
   }
-  
+
   return $.ajax({
     method: "GET",
     url: `/api/validity/${field}/${value}`,
@@ -39,3 +39,18 @@ export const revealLocation = (zip) => {
 //   travelMode: 'DRIVING',
 //   unitSystem: google.maps.UnitSystem.IMPERIAL
 // }, resp => console.log(resp))
+
+export const revealDistance = (currentUser, user2) => {
+  const { google } = window;
+  const service = new google.maps.DistanceMatrixService;
+  service.getDistanceMatrix({
+    origins: [new google.maps.LatLng(currentUser.lat,currentUser.lng)],
+    destinations: [new google.maps.LatLng(user2.lat,user2.lng)],
+    travelMode: 'DRIVING',
+    unitSystem: google.maps.UnitSystem.IMPERIAL
+  }, (resp) => {
+    // convert meters into miles
+      const miles = resp.rows[0].elements[0].distance.value / 1000 * 0.621371192;
+    // dispatch action to add user2's distance to the slice of state
+  });
+};
