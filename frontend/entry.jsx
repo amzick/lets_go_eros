@@ -8,7 +8,6 @@ import configureStore from './store/store';
 // import { createMessage } from './actions/message_actions';
 
 import { signup, logout} from './util/session_api_util';
-import { revealDistance } from './util/ui_util';
 // import { fetchUser, fetchUsers, updateUser, fetchLocalUsers } from './actions/user_actions';
 // import { updateResponse } from './util/question_api_util';
 // import { createResponse } from './actions/question_actions';
@@ -42,8 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.manLat = 40.7217861;
   // window.manLng = -74.0094471;
   window.logout = logout;
-  window.google = google;
-  window.revealDistance = revealDistance;
   // window.fetchQuestion = fetchQuestion;
   // window.fetchRandomUnansweredQuestion = fetchRandomUnansweredQuestion;
   // window.updateResponse = updateResponse;

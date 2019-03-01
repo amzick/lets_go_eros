@@ -41,7 +41,7 @@ export const revealLocation = (zip) => {
 // }, resp => console.log(resp))
 
 export const revealDistance = (currentUser, user2) => {
-  const { google } = window;
+  // const { google } = window;
   const service = new google.maps.DistanceMatrixService;
   service.getDistanceMatrix({
     origins: [new google.maps.LatLng(currentUser.lat,currentUser.lng)],
@@ -50,7 +50,8 @@ export const revealDistance = (currentUser, user2) => {
     unitSystem: google.maps.UnitSystem.IMPERIAL
   }, (resp) => {
     // convert meters into miles
-      const miles = resp.rows[0].elements[0].distance.value / 1000 * 0.621371192;
+    const miles = resp.rows[0].elements[0].distance.value / 1000 * 0.621371192;
+    
     // dispatch action to add user2's distance to the slice of state
   });
 };

@@ -29,11 +29,7 @@
     <%# loading javascript maps api %>
     <%# Google doesn't allow ajax requests to the distance matrix api, so I have to load the js api here %>
     <%# https://stackoverflow.com/questions/44336773/google-maps-api-no-access-control-allow-origin-header-is-present-on-the-reque %>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&libraries=places"
-      async defer>
-    </script>
-
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.google[:api_key]}&libraries=places" %>
     <%= javascript_include_tag 'application' %>
   </head>
 
