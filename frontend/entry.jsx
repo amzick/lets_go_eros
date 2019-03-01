@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.manLat = 40.7217861;
   // window.manLng = -74.0094471;
   window.logout = logout;
+  window.google = google;
   // window.fetchQuestion = fetchQuestion;
   // window.fetchRandomUnansweredQuestion = fetchRandomUnansweredQuestion;
   // window.updateResponse = updateResponse;

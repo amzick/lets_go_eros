@@ -30,3 +30,12 @@ export const revealLocation = (zip) => {
     url: `https://maps.googleapis.com/maps/api/geocode/json?components=postal_code%3A${zip}%7Ccountry%3AUS&key=${window.googleAPIKey}`,
   });
 };
+
+// calculate distance
+// const service = new google.maps.DistanceMatrixService
+// service.getDistanceMatrix({
+//   origins: [new google.maps.LatLng(jay.lat, jay.lng)],
+//   destinations: [new google.maps.LatLng(mary.lat, mary.lng)],
+//   travelMode: 'DRIVING',
+//   unitSystem: google.maps.UnitSystem.IMPERIAL
+// }, resp => console.log(resp))
