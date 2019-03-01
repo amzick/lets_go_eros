@@ -30,6 +30,8 @@ class GenderForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+
+    // bad - don't want to mess with
     this.state.newUser = props.newUser;
     
     this.state.errors = props.errors;

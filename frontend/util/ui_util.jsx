@@ -4,6 +4,8 @@ export const validateField = (field, value) => {
   
   if (value instanceof Date) {
     value = `${value.getFullYear()}-${value.getMonth()+1}-${value.getDate()}`;
+  } else if (value instanceof Set) {
+    value = Array.from(value);
   }
   
   return $.ajax({
