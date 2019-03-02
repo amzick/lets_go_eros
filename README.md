@@ -13,7 +13,7 @@
 ### User Creation
 
 The signup process splits each form into its own page. A user can go back and forth and update data as they like, but can only progress based on real time validation of email (can't already have a user with the same email), password (length at least 6), birthday (must be at least 18), genders and race (limited to 5) and location (must be a valid US zip code). This is accomplished with a UI slice of state that maintains the information between components:
-```
+```json
 entities: {users: {…}, genders: {…}, ethnicities: {…}}
 errors: {session: Array(0), ui: Array(1)}
 session: {id: null}
@@ -43,7 +43,7 @@ Errors and messages are displayed in real time.
 Location is validated with a Google Maps API request.
 <img src="https://s3.amazonaws.com/letsgoeros-dev/lge-location-valid.png"/>
 All other inputs are validated along a custom route I wrote that calls a function that checks the validity of a parameter without attempting to persist the user to the database.
-```
+```ruby
 <i>routes.rb</i>
 ...
 get 'validity/:field/:value/', to: 'validity#show', constraints: {value: %r{[^\/]+}}
@@ -93,7 +93,7 @@ end
 Every question is formulated as a statement that the user can either agree or disagree with, weighed from strong disagreement to indifference to strong agreement. Each question falls into a category, and each user has a 'score' for each question category, scaled from 0 to 1. For example: the user is presented with the statement "I am the life of the party!". If the user answered 'strongly agree', that would shift their category scale closer to one. Answering all 'extroversion' questions with a strongly extroverted response (some of the questions can invert the logic; for example strongly <i>disagreeing</i> with "I am quiet around strangers" should increase the extroversion score) shifts the users extroversion score closer to one.
 Using categories allows us to compare users that may not have necessarily answered the same questions. Of course, the responses to mutually answered questions are also compared and factored into the matchmaking algorithm.
 
-```
+```ruby
 <i>user.rb</i>
 def match_percentage(match)
     category_comparison = 100.0
