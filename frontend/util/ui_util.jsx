@@ -31,23 +31,14 @@ export const revealLocation = (zip) => {
   });
 };
 
-// calculate distance
-// const service = new google.maps.DistanceMatrixService
-// service.getDistanceMatrix({
-//   origins: [new google.maps.LatLng(jay.lat, jay.lng)],
-//   destinations: [new google.maps.LatLng(mary.lat, mary.lng)],
-//   travelMode: 'DRIVING',
-//   unitSystem: google.maps.UnitSystem.IMPERIAL
-// }, resp => console.log(resp))
 
+/*
 export const revealDistance = (currentUser, user2) => {
   // const { google } = window;
   // let miles;
   let miles;
   const callback = (resp) => {
-    console.log(miles);
     miles = resp.rows[0].elements[0].distance.value / 1000 * 0.621371192;
-    console.log(miles);
     return miles;
   };
 
@@ -59,3 +50,4 @@ export const revealDistance = (currentUser, user2) => {
     unitSystem: google.maps.UnitSystem.IMPERIAL
   }, callback);
 };
+*/

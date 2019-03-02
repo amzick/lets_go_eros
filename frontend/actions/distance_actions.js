@@ -1,6 +1,5 @@
 export const RECEIVE_DISTANCE = "RECEIVE_DISTANCE";
 
-// import { revealDistance } from '../util/ui_util';
 
 // thunk actions creators
 export const fetchDistance = (currentUser, user2) => dispatch => {
@@ -10,7 +9,7 @@ export const fetchDistance = (currentUser, user2) => dispatch => {
   src: https://stackoverflow.com/questions/19125716/wait-for-the-end-of-an-asynchronous-javascript-function-to-retrieve-a-result-de
   */
 
-  
+
   const service = new google.maps.DistanceMatrixService;
   const dfd = $.Deferred();
   service.getDistanceMatrix({
@@ -38,7 +37,7 @@ export const fetchDistance = (currentUser, user2) => dispatch => {
     }
   });
   return dfd.promise();
-  
+
 
   /* 
   ended up switching to the google geometry instead of distance matrix because
@@ -60,10 +59,8 @@ export const fetchDistances = (currentUser, usersArray) => dispatch => {
     if (user.id !== currentUser.id) {
       dispatch(fetchDistance(currentUser, user)).then(() => {
         counter++;
-        console.log(user.id, counter);
         if (counter >= usersArray.length - 1) {
           // minus one because the current user
-          // debugger
           dfd.resolve();
         }
       });
