@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers, fetchUser, fetchLocalUsers } from '../../actions/user_actions';
+import { fetchDistance } from '../../actions/distance_actions';
 // import { fetchFirstLast } from '../../util/user_api_util';
 
 import Navigation from './navigation';
@@ -16,6 +17,7 @@ const msp = state => {
   return ({
     currentUser: state.entities.users[state.session.id],
     users: state.entities.users,
+    distances: state.distances
   });
 };
 
@@ -24,6 +26,7 @@ const mdp = dispatch => {
     // fetchUsers: (idsArray) => dispatch(fetchUsers(idsArray)),
     // fetchUser: (userID) => dispatch(fetchUser(userID)),
     fetchLocalUsers: (userID, maxResultSize = 40, radius = 500) => dispatch(fetchLocalUsers(userID, maxResultSize, radius)),
+    fetchDistance: (currentUser, user2) => dispatch(fetchDistance(currentUser, user2)),
   });
 };
 
@@ -47,12 +50,21 @@ class HomeContainer extends React.Component {
   componentDidMount() {
     this.setState({ usersLoaded: false });
     const { currentUser, fetchLocalUsers } = this.props;
-    fetchLocalUsers(currentUser.id, 18);
+    fetchLocalUsers(currentUser.id, 50);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.users !== this.props.users) {
-      const { users, currentUser } = this.props;
+      // get the distances
+      // .then to boost the counter
+      // if counter is same as users size proceed
+      const { users, distances, currentUser } = this.props;
+
+      Object.keys(users).forEach(userID => {
+        console.log("calculating distance to ", userID);
+        this.props.fetchDistance(currentUser, users[userID]);
+      });
+
       let queryOne = new Set();
       let queryTwo = new Set();
       let queryThree = new Set();
@@ -70,6 +82,7 @@ class HomeContainer extends React.Component {
               if (queryTwo.size < 8) queryTwo.add(<UserCard key={user.id} cardUser={user} />);
               break;
             case (user.match < 80):
+            // case (user.match < 80)
               if (queryThree.size < 8) queryThree.add(<UserCard key={user.id} cardUser={user} />);
               break;
             default:
@@ -77,7 +90,7 @@ class HomeContainer extends React.Component {
           }
         }
       });
-      this.setState({ usersLoaded: true, queryOne, queryTwo, queryThree, interestQuery: randomInterest });
+      this.setState({usersLoaded: true, queryOne, queryTwo, queryThree, interestQuery: randomInterest });
     }
 
   }
@@ -126,9 +139,9 @@ class HomeContainer extends React.Component {
     if (this.state.usersLoaded) {
       componentToRender = (
         <>
-        {this.props.currentUser.interests ? <DiscoverySection search={false} header={`They're also interested in ${this.state.interestQuery}`} queryResult={this.state.queryTwo} /> : <div className="discovery-section"><h1>Mutual Interests</h1><div className="discovery-empty-results-div">Update your profile with some interests and we'll find users that share them!</div></div>}
-        {this.state.queryOne.size > 0 ? <DiscoverySection header={"Top Matches"} queryResult={this.state.queryOne} /> : null}
-        {this.state.queryThree.size > 0 ? <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} /> : null}
+          {this.props.currentUser.interests ? <DiscoverySection search={false} header={`They're also interested in ${this.state.interestQuery}`} queryResult={this.state.queryTwo} /> : <div className="discovery-section"><h1>Mutual Interests</h1><div className="discovery-empty-results-div">Update your profile with some interests and we'll find users that share them!</div></div>}
+          {this.state.queryOne.size > 0 ? <DiscoverySection header={"Top Matches"} queryResult={this.state.queryOne} /> : null}
+          {this.state.queryThree.size > 0 ? <DiscoverySection header="Also Nearby" queryResult={this.state.queryThree} /> : null}
         </>
       );
     }

@@ -12,7 +12,7 @@ import { signup, logout} from './util/session_api_util';
 // import { updateResponse } from './util/question_api_util';
 // import { createResponse } from './actions/question_actions';
 // import { revealDistance } from './util/ui_util';
-import { fetchDistance } from './actions/distance_actions';
+import { fetchDistance, fetchDistances } from './actions/distance_actions';
 // end
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.updateResponse = updateResponse;
   // window.revealDistance = revealDistance;
   window.fetchDistance = fetchDistance;
+  window.fetchDistances = fetchDistances;
   //end 
 
   ReactDOM.render(<Root store={store} />, root);

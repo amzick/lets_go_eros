@@ -8,8 +8,6 @@ const distancesReducer = (state = {}, action) => {
   let tempSet;
   switch (action.type) {
     case RECEIVE_DISTANCE:
-      // 2 (0-2), 5 (2-5), 10 (5-10), 10+
-
       switch (true) {
         case (action.distance <= 2):
 
