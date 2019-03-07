@@ -1,14 +1,14 @@
 # Lets Go Eros!
 
-<a href="https://letsgoeros.herokuapp.com" target="_blank">Lets Go Eros</a> is a replica of OKCupid, a dating website that assigns match percentages between users based on responses to questions, what the user is 'looking for' (short term, long term, or casual relationships), and various other secret factors.
+<a href="https://letsgoeros.herokuapp.com" target="_blank">Lets Go Eros</a> is a replica of OKCupid, a dating website that assigns match percentages between users based on responses to questions, what the user is looking for (short term, long term, or casual relationships), and various other secret factors.
 
 ## Features
 
 - Frontend and backend user authentication using BCrypt
 - Users can customize their profile by changing profile pictures and editing their summary.
 - Users can search other users by words in their summaries, or browse and filter the results by gender, race, height, and distance.
-- Users can answer questions that will allow an algorithm to determin their 'match potential' with another user.
-- Users can send each other messages and 'heart' each other.
+- Users can answer questions that will allow an algorithm to determine their match potential with another user.
+- Users can send each other messages and heart each other.
 
 ### User Creation
 
