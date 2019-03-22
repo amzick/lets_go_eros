@@ -24,7 +24,6 @@ class Api::SessionsController < ApplicationController
       #testing
       # p "logged out"
       logout!
-      # todo render empty object...?
       render json: {}
       # redirect_to root_url
     else

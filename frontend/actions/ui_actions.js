@@ -7,15 +7,15 @@ import * as UiAPI from '../util/ui_util';
 
 //thunk action creators
 export const updateNewUser = (datum) => dispatch => {
-  
+
   UiAPI.validateField(datum.field, datum.value).then((resp) => {
     if (resp.field === "birthday") {
       // inexplicably, the date conversion here (not anywhere else, using the exact same syntax) results in the date being  a day earlier
       // unless i use slash notation for the date declaration... that was fun to debug
       // https://code.i-harness.com/en/q/734def
-      dispatch(receiveDatum({ field: resp.field, value: new Date(resp.value.replace(/-/g, '\/'))}));
+      dispatch(receiveDatum({ field: resp.field, value: new Date(resp.value.replace(/-/g, '\/')) }));
     } else {
-    dispatch(receiveDatum({field:resp.field, value: resp.value}));
+      dispatch(receiveDatum({ field: resp.field, value: resp.value }));
     }
   },
     (errors) => dispatch(receiveErrors(errors.responseJSON))
@@ -73,7 +73,7 @@ const receiveOptions = (options) => {
 // export const RECEIVE_BIRTHDAY = "RECEIVE_BIRTHDAY";
 // export const RECEIVE_LOCATION = "RECEIVE_LOCATION";
 
-// not needed because I'm not making async requests?
+// not needed because I'm not making async requests
 
 //actions: one for each piece of information
 
