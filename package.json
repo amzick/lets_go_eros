@@ -2,21 +2,21 @@
   "name": "lets_go_eros",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
-    "lodash": "^4.17.11",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-redux": "^6.0.0",
+    "@babel/core": "^7.10.1",
+    "@babel/preset-env": "^7.10.1",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "lodash": "^4.17.15",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-    "redux": "^4.0.1",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "spin.js": "^4.0.0",
+    "spin.js": "^4.1.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^4.29.0",
-    "webpack-cli": "^3.2.3"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "devDependencies": {
     "redux-logger": "^3.0.6"
